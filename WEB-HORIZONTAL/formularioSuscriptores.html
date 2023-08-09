@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Software acueductos comunitarios </title>
+    <link rel="icon" type="image/x-icon" href="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png"/>
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/loader.js"></script>
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->   
+
+</head>
+<body class="alt-menu sidebar-noneoverflow">
+    <!-- BEGIN LOADER -->
+    <div id="load_screen"> <div class="loader"> <div class="loader-content">
+        <div class="spinner-grow align-self-center"></div>
+    </div></div></div>
+    <!--  END LOADER -->
+
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container">
+        <header class="header navbar navbar-expand-sm">
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+
+            <div class="nav-logo align-self-center">
+                <a class="navbar-brand" href="index.html"><img alt="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png"> <span class="navbar-brand-name">ACUEDUCTO</span></a>
+            </div>
+
+            <ul class="navbar-item flex-row mr-auto">
+                <li class="nav-item align-self-center search-animated">
+                    <form class="form-inline search-full form-inline search" role="search">
+                        
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-item flex-row nav-dropdowns">
+
+                <li class="nav-item dropdown notification-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="badge badge-success"></span>
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
+                        <div class="notification-scroll">
+                            <div class="dropdown-item">
+                                <div class="media file-upload">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                    <div class="media-body">
+                                        <div class="data-info">
+                                            <h6 class="">FormatoEstatuos.pdf</h6>
+                                            <p class="">670 kb</p>
+                                        </div>
+
+                                        <div class="icon-status">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media">
+                            <div class="media-body align-self-center">
+                                <h6>Diego Legarda</h6>
+                                <p>Administrativo</p>
+                            </div>
+                            <img src="https://media.licdn.com/dms/image/C5603AQFOL2sybW6Fsw/profile-displayphoto-shrink_800_800/0/1516838550540?e=2147483647&v=beta&t=xSa8qm0Ls7PrqmgZbUAkl6zKk9jD2O6kRAR_mxNSClY" class="img-fluid" alt="admin-profile">
+                            <span class="badge badge-success"></span>
+                        </div>
+                    </a>
+
+                    <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
+                        <div class="dropdown-item">
+                            <a href="user_profile.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Perfil</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="auth_login.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Cerrar Sesión</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+        
+        <!--  BEGIN TOPBAR  -->
+        <div class="topbar-nav header navbar" role="banner">
+            <nav id="topbar">
+                <ul class="navbar-nav theme-brand flex-row  text-center">
+                    <li class="nav-item theme-logo">
+                        <a href="index.html">
+                            <img src="v" class="navbar-logo" alt="logo">
+                        </a>
+                    </li>
+                    <li class="nav-item theme-text">
+                        <a href="index.html" class="nav-link"> ACUEDUCTO </a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled menu-categories" id="topAccordion">
+
+                    <li class="menu single-menu active">
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle autodroprown">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                <span>Inicio</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu single-menu">
+                        <a href="#app" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Recursos y Documentos</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="app" data-parent="#topAccordion">
+                            <li>
+                                <a href="./censo.html"> Censo </a>
+                            </li>
+                            <li>
+                                <a href=""> Asamblea </a>
+                            </li>
+                            <li>
+                                <a href=""> Administrativo</a>
+                            </li>
+                            <li>
+                                <a href=""> Carga Documental</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu single-menu">
+                        <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                <span>Suscriptores</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="tables"  data-parent="#topAccordion">
+                            <li>
+                                <a href="formularioSuscriptores.html">Formulario Suscriptor</a>
+                            </li>
+                            <li>
+                                <a href="listado_suscriptores.html">Listado Suscriptor</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--  END TOPBAR  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="container">
+                <div class="container">
+
+                    <div class="page-header">
+                       
+                    </div>
+
+                   
+
+                                  
+                    <div id="tableCheckbox" class="col-md-12 col-sm-12 layout-spacing"> 
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12 col-sm-12">
+                                        <h4 class="text-center mt-3">Lista Suscriptores</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped table-checkable table-highlight-head mb-4">
+                                        <thead>
+                                            <tr>
+                                                <th class="checkbox-column">
+                                                    <label class="new-control new-checkbox checkbox-primary">
+                                                        <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
+                                                        <span class="new-control-indicator"></span>
+                                                    </label>
+                                                </th>
+                                                <th class="">Nombre</th>
+                                                <th class="">Fecha</th>
+                                                <th class="">Ventas</th>
+                                                <th class="text-center">Iconos</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="checkbox-column">
+                                                        <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
+                                                            <span class="new-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">Shaun Park</p>
+                                                    </td>
+                                                    <td>10/08/2020</td>
+                                                    <td>320</td>
+
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="checkbox-column">
+                                                        <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-2">
+                                                            <span class="new-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <p  class="mb-0">Alma Clarke</p>
+                                                    </td>
+                                                    <td>11/08/2020</td>
+                                                    <td>420</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="checkbox-column">
+                                                        <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-3">
+                                                            <span class="new-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">Kelly Young</p>
+                                                    </td>
+                                                    <td>12/08/2020</td>
+                                                    <td>130</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="checkbox-column">
+                                                        <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-4">
+                                                            <span class="new-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <p  class="mb-0">Vincent Carpenter</p>
+                                                    </td>
+                                                    <td>13/08/2020</td>
+                                                    <td>260</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="checkbox-column">
+                                                        <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-5">
+                                                            <span class="new-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <p  class="mb-0">Andy King</p>
+                                                    </td>
+                                                    <td>14/08/2020</td>
+                                                    <td>180</td>
+                                                    <td class="text-center">
+                                                        <ul class="table-controls">
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="footer-wrapper">
+        </div>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
+    <script src="plugins/highlight/highlight.pack.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+    <script src="assets/js/scrollspyNav.js"></script>
+    <script>
+        checkall('todoAll', 'todochkbox');
+        $('[data-toggle="tooltip"]').tooltip()
+    </script>
+    <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
+</body>
+</html>
