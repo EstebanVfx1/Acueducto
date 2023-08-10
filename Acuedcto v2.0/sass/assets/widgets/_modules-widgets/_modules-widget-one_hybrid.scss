@@ -1,0 +1,76 @@
+/*
+    ==================
+        Statistics
+    ==================
+*/
+
+.widget-one_hybrid {
+  background: #fff;
+  padding: 0;
+
+  .widget-heading {
+    padding: 20px 13px;
+
+    .w-title {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .w-icon {
+      display: inline-block;
+      align-self: center;
+      padding: 10px;
+      border-radius: 12px;
+      margin-right: 16px;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .w-value {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 0;
+      align-self: center;
+    }
+
+    h5 {
+      margin-bottom: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #506690;
+    }
+  }
+
+  .apexcharts-canvas svg {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  &.widget-followers .widget-heading .w-icon {
+    color: $primary;;
+    background: #c2d5ff;
+  }
+
+  &.widget-referral .widget-heading .w-icon {
+    color: $danger;
+    background-color: #ffe1e2;
+  }
+
+  &.widget-social {
+    background: #bae7ff;
+    background: $primary;;
+
+    .widget-heading .w-icon {
+      color: $info;;
+      border: 1px solid $info;;
+    }
+  }
+
+  &.widget-engagement .widget-heading .w-icon {
+    background-color: #e6ffbf;
+    color: #009688;
+  }
+}

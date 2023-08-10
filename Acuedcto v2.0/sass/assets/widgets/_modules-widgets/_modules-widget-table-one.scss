@@ -1,0 +1,152 @@
+/*
+    ==================
+        Transaction
+    ==================
+*/
+
+.widget-table-one {
+  .widget-heading {
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+
+    .task-action {
+      .dropdown-toggle svg {
+        color: #888ea8;
+        width: 19px;
+        height: 19px;
+      }
+
+      .dropdown-menu {
+        transform: translate3d(-141px, 0, 0px);
+      }
+    }
+  }
+
+  .transactions-list {
+    border-radius: 6px;
+
+    &:not(:last-child) {
+      margin-bottom: 19px;
+    }
+
+    .t-item {
+      display: flex;
+      justify-content: space-between;
+
+      .t-company-name {
+        display: flex;
+      }
+
+      .t-icon {
+        margin-right: 12px;
+
+        .avatar {
+          position: relative;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 1px;
+
+          .avatar-title {
+            background-color: #ffe1e2;
+            color: $danger;
+            border-radius: 12px;
+            position: relative;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            width: 42px;
+          }
+        }
+      }
+    }
+
+    &.t-info .t-item .t-icon .avatar .avatar-title {
+      background-color: #e7f7ff;
+      color: $info;
+    }
+
+    &.t-secondary .t-item .t-icon .icon {
+      background-color: #f3effc;
+
+      svg {
+        color: $secondary;
+      }
+    }
+
+    .t-item {
+      .t-icon .icon {
+        position: relative;
+        background-color: #ffeccb;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+        width: 42px;
+
+        svg {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 19px;
+          height: 19px;
+          color: $warning;
+          stroke-width: 2;
+        }
+      }
+
+      .t-name {
+        align-self: center;
+
+        h4 {
+          font-size: 14px;
+          font-weight: 700;
+          margin-bottom: 0;
+          transition: all 0.5s ease;
+        }
+      }
+    }
+
+    &:hover .t-item .t-name h4 {
+      color: $info;
+    }
+
+    .t-item {
+      .t-name .meta-date {
+        font-size: 12px;
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #888ea8;
+      }
+
+      .t-rate {
+        align-self: center;
+
+        p {
+          margin-bottom: 0;
+          font-size: 14px;
+          letter-spacing: 1px;
+          font-weight: 500;
+        }
+
+        svg {
+          width: 14px;
+          height: 14px;
+          vertical-align: baseline;
+        }
+
+        &.rate-inc p {
+          color: #009688;
+        }
+
+        &.rate-dec p {
+          color: $danger;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+/*
+    =====================
+        Recent Orders
+    =====================
+*/
+
+.widget-table-two {
+  position: relative;
+
+  .widget-content {
+    background: transparent;
+  }
+
+  .table {
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin-bottom: 0;
+
+    > {
+      thead > tr > th {
+        text-transform: initial;
+        font-weight: 600;
+        border-top: none;
+        background: #fafafa;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        padding-left: 0;
+        -webkit-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+        padding: 10px 0 10px 5px;
+
+        &:first-child {
+          border-bottom-left-radius: 6px;
+          border-top-left-radius: 6px;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 6px;
+          border-top-right-radius: 6px;
+        }
+
+        .th-content {
+          color: $primary;;
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: 1px;
+        }
+
+        &:first-child .th-content {
+          margin-left: 10px;
+        }
+
+        &:last-child .th-content {
+          text-align: right;
+          margin-right: 10px;
+        }
+
+        &:nth-last-child(2) .th-content {
+          text-align: center;
+          padding: 0 15px 0 0;
+        }
+      }
+
+      tbody > tr {
+        > td {
+          border-top: none;
+          background: transparent;
+          padding-top: 0;
+          padding-bottom: 0;
+          padding-right: 10px;
+          padding-left: 10px;
+          -webkit-transition: all 0.1s ease;
+          transition: all 0.1s ease;
+
+          .td-content {
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #888ea8;
+          }
+        }
+
+        &:hover > td .td-content {
+          color: #515365;
+        }
+
+        > td {
+          &:first-child {
+            border-top-left-radius: 6px;
+            padding: 10px 0 10px 15px;
+            border-bottom-left-radius: 6px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 6px;
+            padding: 15.5px 15px 15.5px 0;
+            text-align: right;
+            border-bottom-right-radius: 6px;
+          }
+        }
+      }
+    }
+
+    .td-content {
+      &.customer-name {
+        color: #515365;
+        display: flex;
+
+        span {
+          align-self: center;
+        }
+      }
+
+      &.product-brand {
+        letter-spacing: 1px;
+      }
+
+      img {
+        border-radius: 12px;
+        margin-right: 13px;
+        width: 35px;
+        height: 35px;
+        border-radius: 6px;
+        margin-right: 10px;
+        padding: 2px;
+        box-shadow: 1px 1px 16px 0px rgba(0, 0, 0, 0.18);
+        align-self: center;
+      }
+    }
+
+    tr > td:nth-last-child(2) .td-content {
+      text-align: center;
+    }
+
+    .td-content .badge {
+      transform: none;
+      border: 0;
+    }
+
+    tr .td-content {
+      .outline-badge-dark {
+        background-color: #acb0c3;
+      }
+
+      .outline-badge-info {
+        color: $info;;
+        background-color: #bae7ff;
+      }
+
+      .outline-badge-danger {
+        background-color: #ffe1e2;
+      }
+    }
+  }
+}

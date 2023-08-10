@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Importar Datos de Excel a HTML</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function() {
+      $('#my_file_input').on('change', function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          var data = new Uint8Array(e.target.result);
+          var workbook = XLSX.read(data, { type: 'array' });
+
+          workbook.SheetNames.forEach(function(sheetName) {
+            var html = '<table>';
+            var sheet = workbook.Sheets[sheetName];
+            var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+            rows.forEach(function(row) {
+              html += '<tr>';
+              row.forEach(function(cellData) {
+                html += '<td>' + cellData + '</td>';
+              });
+              html += '</tr>';
+            });
+
+            html += '</table>';
+            $('#my_file_output').html(html);
+          });
+        };
+
+        reader.readAsArrayBuffer(file);
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="file" id="my_file_input" accept=".xlsx, .xls" />
+  <div id="my_file_output"></div>
+</body>
+</html>

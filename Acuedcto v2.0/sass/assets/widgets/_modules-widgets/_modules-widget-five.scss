@@ -1,0 +1,99 @@
+/*
+    =====================
+        Task Indicator
+    =====================
+*/
+
+.widget-five {
+  background: #fff;
+  padding: 28px 0 0 0;
+  height: 100%;
+
+  .widget-content {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 23px;
+      border-bottom: 1px dashed #e0e6ed;
+    }
+
+    .header-body {
+      align-self: center;
+
+      h6 {
+        font-size: 19px;
+        display: block;
+        color: #0e1726;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      p {
+        margin-bottom: 0;
+        font-weight: 600;
+        color: #888ea8;
+        padding: 0;
+      }
+    }
+
+    .task-action {
+      display: flex;
+
+      .dropdown {
+        align-self: center;
+
+        a.dropdown-toggle svg {
+          color: #888ea8;
+          width: 19px;
+          height: 19px;
+        }
+      }
+    }
+  }
+
+  .w-content {
+    text-align: center;
+    height: 100%;
+    padding: 20px 26px;
+
+    div {
+      .task-left {
+        margin-bottom: 0;
+        font-size: 30px;
+        color: $secondary;
+        background: #f3effc;
+        font-weight: 600;
+        border-radius: 12px;
+        display: inline-flex;
+        height: 76px;
+        width: 76px;
+        justify-content: center;
+        align-self: center;
+        padding: 16px 0px;
+        border: 1px solid #ebedf2;
+        margin-bottom: 20px;
+        box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+      }
+
+      .task-completed {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #009688;
+      }
+
+      .task-hight-priority {
+        color: #acb0c3;
+        font-weight: 500;
+        margin-bottom: 0;
+
+        span {
+          color: $danger;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

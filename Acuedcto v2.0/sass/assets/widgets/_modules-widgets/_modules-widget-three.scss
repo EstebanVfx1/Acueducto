@@ -1,0 +1,132 @@
+/*
+    ====================
+        Order Summary
+    ====================
+*/
+
+.widget-three {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100%;
+  box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+}
+
+.widget-three {
+  .widget-heading {
+    margin-bottom: 54px;
+
+    h5 {
+      font-size: 19px;
+      display: block;
+      color: #0e1726;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+  }
+
+  .widget-content {
+    font-size: 17px;
+
+    .summary-list {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 30px;
+      }
+    }
+
+    .w-icon {
+      display: inline-block;
+      padding: 8px 8px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-self: center;
+      height: 34px;
+      width: 34px;
+      margin-right: 12px;
+
+      svg {
+        display: block;
+        width: 17px;
+        height: 17px;
+      }
+    }
+
+    .summary-list {
+      &:nth-child(1) .w-icon {
+        background: rgba(220, 207, 247, 0.55);
+      }
+
+      &:nth-child(2) .w-icon {
+        background: rgba(199, 230, 228, 0.62);
+      }
+
+      &:nth-child(3) .w-icon {
+        background: rgba(255, 236, 203, 0.51);
+      }
+
+      &:nth-child(1) .w-icon svg {
+        color: $secondary;
+      }
+
+      &:nth-child(2) .w-icon svg {
+        color: #009688;
+      }
+
+      &:nth-child(3) .w-icon svg {
+        color: $warning;
+      }
+    }
+
+    .w-summary-details {
+      width: 100%;
+      align-self: center;
+    }
+
+    .w-summary-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1px;
+
+      h6 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 0;
+        color: #888ea8;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 0;
+        color: #888ea8;
+      }
+    }
+
+    .w-summary-stats .progress {
+      margin-bottom: 0;
+      height: 6px;
+      border-radius: 20px;
+      box-shadow: 0 2px 2px rgba(224, 230, 237, 0.4588235294), 1px 6px 7px rgba(224, 230, 237, 0.4588235294);
+
+      .progress-bar {
+        &.bg-gradient-secondary {
+          background-color: $primary;;
+          background-image: linear-gradient(to right, #BA68C8 0%, #7579ff 100%);
+        }
+
+        &.bg-gradient-success {
+          background-color: $primary;;
+          background-image: linear-gradient(to right, #009688 0%, #25d5e4 100%);
+        }
+
+        &.bg-gradient-warning {
+          background-color: #fc9842;
+          background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+        }
+      }
+    }
+  }
+}
