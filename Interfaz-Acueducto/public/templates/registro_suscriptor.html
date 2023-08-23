@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block meta %}
+  {% include 'meta.html' %}
+  {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+  <!-- [ navigation menu ] start -->
+  {% block nav %}
+  {% include 'nav.html' %}
+  {% endblock %}
+  <!-- [ Header ] end -->
+
+  <!-- BEGIN LOADER -->
+  {% block loader %}
+  {% include 'loader.html' %}
+  {% endblock %}
+  <!--  END LOADER -->
+
+  <!--  BEGIN MAIN CONTAINER  -->
+  <div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+      <div class="layout-px-spacing">
+        <div class="container-xxl">
+          <div class="layout-top-spacing">
+            <div class="col-left-content">
+
+
+              <!-- Formulario registro suscriptores -->
+              <div class="container-xxl d-flex justify-content-center align-items-center vh-100">
+                <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  <h2 class="text-center mb-4">Registro Suscriptores</h2>
+                  <form>
+                    <div class="form-group">
+                      <label for="nit">NIT</label>
+                      <input type="text" class="form-control" id="nit" placeholder="NIT">
+                    </div>
+                    <div class="form-group">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" placeholder="Nombres">
+                    </div>
+                    <div class="form-group">
+                      <label for="apellidos">Apellidos</label>
+                      <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+                    </div>
+                    <div class="form-group">
+                      <label for="telefono">Teléfono</label>
+                      <input type="tel" class="form-control" id="telefono" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                      <label for="ubicacion">Ubicación</label>
+                      <input type="text" class="form-control" id="ubicacion" placeholder="Ubicación">
+                    </div>
+                    <div class="form-group">
+                      <label for="municipio">Municipio</label>
+                      <input type="text" class="form-control" id="municipio" placeholder="Municipio">
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-success">Registrar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="footer-wrapper col-xl-12">
+                <div class="footer-section f-section-1">
+                  <p class="">&copy; 2023 <a target="_blank"
+                      href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+  </div>
+  <!-- END MAIN CONTAINER -->
+
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  {% endblock %}
+
+</body>
+
+</html>

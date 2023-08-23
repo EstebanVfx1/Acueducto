@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div>
+
+                        <div class="row g-5 align-items-end">
+
+                            <div class="col-lg-3 col-md-5 pb-4">
+                                <img class="img-fluid rounded"
+                                    src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                            </div>
+                            <div class="col-lg-9 col-md-7">
+                                <h2 class="text-center" style="color: #00af00;">LLAMADO A LISTA </h2>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <p>El registro de asistencia es un componente esencial en el proceso de toma de
+                                    decisiones, con un impacto directo en la eficacia y legitimidad de cualquier
+                                    reunión.
+                                    <br><br>
+                                    El propósito principal de este proceso es garantizar la representatividad y el
+                                    cuórum necesario para tomar decisiones significativas y válidas. La toma de
+                                    decisiones informadas y equitativas es esencial para el progreso y éxito de
+                                    cualquier iniciativa.
+                                    <br><br>
+                                    El cuórum se refiere al número mínimo de miembros o participantes requeridos para
+                                    que una asamblea pueda llevarse a cabo y tomar decisiones válidas. Es esencial
+                                    contar con el cuórum adecuado en nuestra Asamblea de Constitución para asegurar que
+                                    las decisiones tomadas representen a la mayoría de la comunidad y sean legalmente
+                                    vinculantes.
+                                </p>
+                            </div>
+
+
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-md-6 text-center">
+                                    <a href="/registro_comision" class="btn btn-success me-2">Registrar </a>
+                                    <a href="#" class="btn btn-success">Cancelar</a>
+                                </div>
+                            </div>
+
+                            <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                <div class="footer-section f-section-1">
+                                    <p class="">&copy; 2023 <a target="_blank"
+                                            href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                            Acueducto</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- BEGIN SCRIPTS -->
+        {% block scripts %}
+        {% include 'scripts.html' %}
+        {% endblock %}
+        <!-- END SCRIPTS -->
+
+</body>
+
+</html>

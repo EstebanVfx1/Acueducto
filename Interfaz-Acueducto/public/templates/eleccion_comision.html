@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN SIDEBAR  -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!--  END SIDEBAR  -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
+                <div class="container-xxl py-5 bg-white">
+                    <div class="container">
+                        <div>
+    
+                            <div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-5 pb-4">
+                                            <img class="img-fluid rounded"
+                                                src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="mb-5 mt-2">
+                                                <div class="media-body">
+                                                    <br><br><br><br><br><br>
+    
+                                                    <h2 class=" display-4 text-primary mb-0 ">Eleccion de la comision</h2>
+                                                    <h6 class="text-primary mb-5">En la Asamblea de Constitución de nuestra asociación comunitaria de acueducto, es fundamental contar con una comisión encargada de dirigir y facilitar el desarrollo de la reunión. Esta comisión estará conformada por un grupo de personas que serán responsables de conducir los procedimientos, mantener el orden y garantizar que todos los participantes tengan la oportunidad de expresar sus opiniones y ejercer su derecho a voto. </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5 mt-4">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Presentación de candidatos: </h4>
+                                                    <span class="mb-5">Se dará la oportunidad a los asistentes interesados en formar parte de la comisión de presentarse como candidatos. Los candidatos podrán expresar brevemente sus motivaciones y habilidades para desempeñar este rol.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-4">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Votación:  </h4>
+                                                    <span class="mb-5">Una vez presentados los candidatos, se procederá a la votación para elegir a los miembros de la comisión. Cada asistente tendrá la oportunidad de emitir su voto por los candidatos de su elección.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Anuncio de los resultados: </h4>
+                                                    <span class="mb-5">Una vez finalizada la votación, se contarán los votos y se anunciarán los resultados. Los candidatos con el mayor número de votos serán los seleccionados como miembros de la comisión.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Anuncio de los resultados:
+                                                    </h4>
+                                                    <span class="mb-5">Una vez finalizada la votación, se contarán los votos y se anunciarán los resultados. Los candidatos con el mayor número de votos serán los seleccionados como miembros de la comisión.<span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mt-3">
+                                            <div class="">
+                                                <div class="media-body">
+                                                 
+                                                    <h6 class="mb-5">La comisión será la encargada de guiar el orden del día, moderar los debates, asegurarse de que se respeten los turnos de palabra y anotar las decisiones tomadas durante la asamblea. Su objetivo principal es facilitar un proceso transparente y participativo, donde se promueva la igualdad de oportunidades y se respeten las opiniones de todos los asistentes.</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <div class="container mt-5">
+                                                    <div class="text-center">
+                                                        <!-- falta el boton para registrar comision -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                    <div class="footer-section f-section-1">
+                                        <p class="">&copy; 2023 <a target="_blank"
+                                                href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                                Acueducto</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRPITS -->
+
+</body>
