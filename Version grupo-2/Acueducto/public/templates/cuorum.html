@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div>
+
+                        <div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-5 pb-4">
+                                        <img class="img-fluid rounded"
+                                            src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="mb-5 mt-2">
+                                            <div class="media-body">
+                                                <br><br><br><br><br><br>
+
+                                                <h2 class=" display-4 text-primary mb-0 ">Verificación Del Quórum</h2>
+                                                <h6 class="text-primary mb-5">¡Es importante entender qué es el cuórum y
+                                                    cómo se calcula para la Asamblea de Constitución de nuestra
+                                                    asociación comunitaria de acueducto! Aquí te explico en detalle:
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <span class="mb-5">El cuórum se refiere al número mínimo de miembros o
+                                                    participantes requeridos para que una asamblea pueda llevarse a cabo
+                                                    y tomar decisiones válidas. Es esencial contar con el cuórum
+                                                    adecuado en nuestra Asamblea de Constitución para asegurar que las
+                                                    decisiones tomadas representen a la mayoría de la comunidad y sean
+                                                    legalmente vinculantes.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <span class="mb-5">El cálculo del cuórum generalmente se basa en un
+                                                    porcentaje específico del total de miembros o suscriptores de la
+                                                    asociación comunitaria de acueducto. El porcentaje requerido para
+                                                    alcanzar el cuórum puede variar según los estatutos o regulaciones
+                                                    establecidos.
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <span class="mb-5">Para calcular el cuórum, primero necesitamos
+                                                    determinar el número total de miembros o suscriptores de la
+                                                    asociación (Censo de suscriptores). Este número se basa en aquellos
+                                                    que están debidamente registrados y forman parte activa de la
+                                                    comunidad. </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+
+                                                <span class="mb-5">A continuación, aplicamos el porcentaje establecido
+                                                    para determinar el número mínimo de participantes necesarios para
+                                                    alcanzar el cuórum. Por ejemplo, si se requiere un 50% +1 de cuórum
+                                                    y tenemos 100 miembros en total, el número mínimo de participantes
+                                                    para alcanzar el cuórum sería de 50+1 personas (51 personas).<span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h6 class="mb-5">Es importante tener en cuenta que el cuórum se refiere
+                                                    al número de participantes presentes en la asamblea en el momento de
+                                                    la votación. Si el número de participantes presentes no alcanza el
+                                                    cuórum requerido, la asamblea no podrá tomar decisiones válidas y es
+                                                    posible que se requiera convocar otra reunión en una fecha
+                                                    posterior.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+
+                                                <h6 class="mb-5">Es fundamental promover la participación y la
+                                                    asistencia de los miembros en la Asamblea de Constitución para
+                                                    alcanzar el cuórum requerido. Asegurémonos de comunicar claramente
+                                                    la importancia de su presencia y participación para tomar decisiones
+                                                    que beneficien a toda la comunidad y asegurar que nuestras voces
+                                                    sean escuchadas.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="">
+                                            <div class="media-body">
+                                                <h6 class="mb-5">Recuerda, alcanzar el cuórum es un paso crucial en el
+                                                    proceso de establecimiento de nuestra asociación comunitaria de
+                                                    acueducto. ¡Contamos contigo para lograrlo juntos!..</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                    <div class="footer-section f-section-1">
+                                        <p class="">&copy; 2023 <a target="_blank"
+                                                href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                                Acueducto</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--  END CONTENT AREA  -->
+        </div>
+        <!-- END MAIN CONTAINER -->
+
+        {% block scripts %}
+        {% include 'scripts.html' %}
+        {% endblock %}
+</body>
+
+</html>

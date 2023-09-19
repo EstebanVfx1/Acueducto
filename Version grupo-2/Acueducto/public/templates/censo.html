@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <!--  BEGIN CONTENT AREA  -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div class="">
+                        <div class="admin-data-content layout-top-spacing ">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-5 pb-4">
+                                        <img class="img-fluid rounded"
+                                            src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="mb-5 mt-2">
+                                            <div class="media-body">
+                                                <br><br><br><br><br><br><br><br>
+
+                                                <h2 class=" display-4 text-primary mb-0 ">Censo</h2>
+                                                <h6 class=" mb-5">El censo de suscriptores es un
+                                                    registro detallado de todas las personas u hogares que forman
+                                                    parte de una comunidad y desean ser usuarios del acueducto
+                                                    comunitario. Es una herramienta fundamental para el
+                                                    establecimiento y gestión eficiente del acueducto. </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">La Importancia del Censo de Suscriptores: </h4>
+                                                <span class="mb-5">El censo de suscriptores es importante por varias
+                                                    razones. En primer lugar, nos permite conocer con precisión
+                                                    cuántas personas utilizarán el servicio de agua. Esto es vital
+                                                    para dimensionar adecuadamente la capacidad del acueducto y
+                                                    asegurar que se pueda satisfacer la demanda de agua de manera
+                                                    adecuada.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Gestión Eficiente y Equitativa: </h4>
+                                                <span class="mb-5">Además, el censo de suscriptores nos permite
+                                                    planificar y calcular los costos operativos y de mantenimiento
+                                                    del acueducto. Al tener un registro actualizado de los
+                                                    suscriptores, podemos determinar las tarifas de agua de manera
+                                                    justa y equitativa, y que los costos sean compartidos de manera
+                                                    proporcional entre los usuarios.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Optimizando el Suministro de Agua: </h4>
+                                                <span class="mb-5">Otro aspecto importante del censo de suscriptores
+                                                    es que nos ayuda a establecer políticas de gestión y
+                                                    distribución del agua de manera eficiente. Conociendo el número
+                                                    de suscriptores y sus ubicaciones, podemos diseñar una red de
+                                                    distribución que sea efectiva y garantice un suministro
+                                                    equitativo de agua a todos los usuarios. </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Mirando hacia el Futuro del Suministro de Agua:
+                                                </h4>
+                                                <span class="mb-5">Además, el censo de suscriptores es valioso para
+                                                    la toma de decisiones en cuanto a inversiones futuras en
+                                                    infraestructura. Con base en la información recopilada, podemos
+                                                    identificar áreas donde se requiere expandir la red de
+                                                    distribución o mejorar la infraestructura existente,
+                                                    garantizando así el crecimiento sostenible del acueducto
+                                                    comunitario.<span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="">
+                                            <div class="media-body">
+                                                <h6 class="mb-5">En resumen, el censo de suscriptores es una
+                                                    herramienta esencial para el establecimiento del acueducto
+                                                    comunitario. Proporciona información precisa sobre los usuarios,
+                                                    facilita la planificación financiera y operativa, y contribuye a
+                                                    una gestión eficiente y equitativa del suministro de agua. Es
+                                                    una base sólida para garantizar un servicio confiable y de
+                                                    calidad para toda la comunidad.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-center">
+                                            <a href="" type="button" class="mx-3 mt-3 btn"
+                                                style="background-color: #00af00; color: white;"> <b>Descargar
+                                                    Formato</b> </a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                <div class="footer-section f-section-1">
+                                    <p class="">&copy; 2023 <a target="_blank"
+                                            href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                            Acueducto</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+
+</html>

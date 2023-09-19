@@ -1,0 +1,7 @@
+<h1>Consultar empresa</h1>
+{% for emp in empresa %}
+<h5>{{ emp.nom_empresa }}</h5>
+<h5>{{ emp.direccion_empresa }}</h5>
+<h5>{{ emp.tel_fijo }}</h5>
+<h5>{{ emp.email }}</h5>
+{% endfor %}

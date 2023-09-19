@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+</head>
+
+<body>
+    <h1>Registro de Usuario</h1>
+    <form action="/crear_super_admin" method="POST">
+        <label for="id_usuario">ID de Usuario:</label>
+        <input type="text" name="id_usuario" id="id_usuario" required><br>
+
+        <label for="rol">Rol:</label>
+        <select name="rol" id="rol" required>
+            <option value="SuperAdmin">Super Admin</option>
+            <option value="Admin">Admin</option>
+            <option value="Tecnico">Técnico</option>
+            <option value="Suscriptor">Suscriptor</option>
+        </select><br>
+
+        <label for="empresa">ID de Empresa:</label>
+        <input type="number" name="empresa" id="empresa"><br>
+
+        <label for="nom_usuario">Nombre de Usuario:</label>
+        <input type="text" name="nom_usuario" id="nom_usuario" required><br>
+
+        <label for="apellido_usuario">Apellido de Usuario:</label>
+        <input type="text" name="apellido_usuario" id="apellido_usuario" required><br>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" name="correo" id="correo" required><br>
+
+        <label for="tipo_doc">Tipo de Documento:</label>
+        <select name="tipo_doc" id="tipo_doc" required>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="DNI">DNI</option>
+            <option value="NIT">NIT</option>
+        </select><br>
+
+        <label for="num_doc">Número de Documento:</label>
+        <input type="text" name="num_doc" id="num_doc" required><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" id="direccion" required><br>
+
+        <label for="municipio">Municipio:</label>
+        <input type="text" name="municipio" id="municipio" required><br>
+
+        <label for="contrasenia">Contraseña:</label>
+        <input type="password" name="contrasenia" id="contrasenia" required><br>
+
+        <button type="submit">Registrar Usuario</button>
+    </form>
+</body>
+</html>
