@@ -22,6 +22,7 @@ import urllib.parse
 
 SUPER_ADMIN = "SuperAdmin"
 ADMIN = "Admin"
+TECNICO = "Tecnico"
 datos_usuario = None
 
 
@@ -41,19 +42,25 @@ def login(
 
 
 @app.get("/index", response_class=RedirectResponse)
-def inicio(
-    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
-):
+def inicio(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
     if token:
         is_valid = verificar_token(token, db)
         if is_valid:
             usuario = db.query(Usuario).filter(Usuario.id_usuario == is_valid).first()
-            return template.TemplateResponse(
+            headers = {
+                "Cache-Control": "no-store, must-revalidate",
+                "Pragma": "no-cache",
+            }
+
+            response = template.TemplateResponse(
                 "index.html", {"request": request, "usuario": usuario}
             )
+            response.headers.update(headers)  # Actualiza las cabeceras
+            return response
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
+    return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # -- 1.1 --
 # CENSO
@@ -320,8 +327,10 @@ async def login(
             "mensaje": "Por favor ingrese los datos.",
             "color": "info",
         }
-        return template.TemplateResponse("login.html", {"request": request, "alerta": alerta})
-        #return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+        return template.TemplateResponse(
+            "login.html", {"request": request, "alerta": alerta}
+        )
+        # return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
     usuario = db.query(Usuario).filter(Usuario.correo == email).first()
     if usuario is None:
@@ -329,8 +338,10 @@ async def login(
             "mensaje": "El correo " + email + " es incorrecto.",
             "color": "danger",
         }
-        return template.TemplateResponse("login.html", {"request": request, "alerta": alerta})
-        #return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+        return template.TemplateResponse(
+            "login.html", {"request": request, "alerta": alerta}
+        )
+        # return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
     if not bcrypt.checkpw(
         password.encode("utf-8"), usuario.contrasenia.encode("utf-8")
@@ -339,24 +350,24 @@ async def login(
             "mensaje": "La contraseña es incorrecta.",
             "color": "danger",
         }
-        return template.TemplateResponse("login.html", {"request": request, "alerta": alerta})
-        #return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+        return template.TemplateResponse(
+            "login.html", {"request": request, "alerta": alerta}
+        )
+        # return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
     tokenge = generar_token(usuario.id_usuario)
     token = Token(token=tokenge)
     db.add(token)
     db.commit()
 
-    #datos_usuario = get_datos_usuario(usuario.id_usuario, db)
+    # datos_usuario = get_datos_usuario(usuario.id_usuario, db)
     # Codificar el diccionario en la URL como un parámetro
-    #encoded_usuario = urllib.parse.urlencode(datos_usuario)
+    # encoded_usuario = urllib.parse.urlencode(datos_usuario)
 
     # Construir la URL con el diccionario de usuario codificado
     redirect_url = f"/index"
 
-    template.TemplateResponse(
-        "index.html", {"request": request, "usuario": usuario}
-    )
+    template.TemplateResponse("index.html", {"request": request, "usuario": usuario})
     response = RedirectResponse(url=redirect_url, status_code=status.HTTP_303_SEE_OTHER)
     response.set_cookie(key="token", value=tokenge)
     return response
@@ -370,6 +381,7 @@ async def una_ruta(token: str = Cookie(None), db: Session = Depends(get_database
         if deleteToken:
             db.delete(deleteToken)
             db.commit()
+
             return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
@@ -391,7 +403,8 @@ def get_form_usuario(
             if rol_usuario == SUPER_ADMIN or rol_usuario == ADMIN:
                 datos_usuario = get_datos_usuario(is_token_valid, db)
                 return template.TemplateResponse(
-                    "registro_usuario.html", {"request": request, "usuario": datos_usuario}
+                    "registro_usuario.html",
+                    {"request": request, "usuario": datos_usuario},
                 )
             else:
                 alerta = {
@@ -405,12 +418,13 @@ def get_form_usuario(
             return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
     else:
         return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
-    
+
 
 # Opcion consultar empresa
 @app.get("/consultar_empresa", response_class=HTMLResponse)
-def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
-
+def consultarEmpresa(
+    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
+):
     if token:
         token_valido = verificar_token(token, db)
         if token_valido:
@@ -418,27 +432,59 @@ def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = 
             if rol_usuario == SUPER_ADMIN:
                 query_empresas = db.query(Empresa)
                 if query_empresas:
-                    return template.TemplateResponse("consultar_empresa.html", {"request": request, "empresa": query_empresas})
+                    return template.TemplateResponse(
+                        "consultar_empresa.html",
+                        {"request": request, "empresa": query_empresas},
+                    )
                 else:
-                    raise HTTPException(status_code=403, detail="No hay empresas que consultar")
+                    raise HTTPException(
+                        status_code=403, detail="No hay empresas que consultar"
+                    )
             elif rol_usuario == ADMIN:
                 # si se quieren traer varias empresas hay que decirle en lugar de .first() .all()
-                query_empresas_admin = db.query(Empresa).join(Usuario, Empresa.id_empresa == Usuario.empresa).all()
+                query_empresas_admin = (
+                    db.query(Empresa)
+                    .join(Usuario, Empresa.id_empresa == Usuario.empresa)
+                    .all()
+                )
                 if query_empresas_admin:
-                    return template.TemplateResponse("consultar_empresa.html",  {"request": request, "empresa": query_empresas_admin})
+                    return template.TemplateResponse(
+                        "consultar_empresa.html",
+                        {"request": request, "empresa": query_empresas_admin},
+                    )
                 else:
-                   raise HTTPException(status_code=403, detail="No hay empresas para consultar")
+                    raise HTTPException(
+                        status_code=403, detail="No hay empresas para consultar"
+                    )
+            elif rol_usuario == TECNICO:
+                # si se quieren traer varias empresas hay que decirle en lugar de .first() .all()
+                query_empresas_tecnico = (
+                    db.query(Empresa)
+                    .join(Usuario, Empresa.id_empresa == Usuario.empresa)
+                    .first()
+                )
+                if query_empresas_tecnico:
+                    return template.TemplateResponse(
+                        "consultar_empresa.html",
+                        {"request": request, "empresa": query_empresas_tecnico},
+                    )
+                else:
+                    raise HTTPException(
+                        status_code=403, detail="No hay empresas para consultar"
+                    )
             else:
                 raise HTTPException(status_code=403, detail="No puede entrar")
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)    
+        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+
 
 # Opcion consultar Usuario
 @app.get("/consultar_usuario", response_class=HTMLResponse)
-def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
-
+def consultarUsuario(
+    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
+):
     if token:
         token_valido = verificar_token(token, db)
         if token_valido:
@@ -446,28 +492,45 @@ def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = 
             if rol_usuario == SUPER_ADMIN:
                 query_usuarios = db.query(Usuario)
                 if query_usuarios:
-                    return template.TemplateResponse("consultar_usuario.html",  {"request": request, "usuarios": query_usuarios})
+                    return template.TemplateResponse(
+                        "consultar_usuario.html",
+                        {"request": request, "usuarios": query_usuarios},
+                    )
                 else:
-                    raise HTTPException(status_code=403, detail="No hay usuarios para consultar")
+                    raise HTTPException(
+                        status_code=403, detail="No hay usuarios para consultar"
+                    )
             elif rol_usuario == ADMIN:
                 usuario = get_datos_usuario(token_valido, db)
                 if usuario:
                     print(usuario)
                     # Accediendo a los datos del diccionario que retorna la función de get_datos_usuario
                     id_empresa = usuario.get("empresa")
-                    query_usuarios_admin = db.query(Usuario).filter(Usuario.empresa == id_empresa).all()
+                    query_usuarios_admin = (
+                        db.query(Usuario).filter(Usuario.empresa == id_empresa).all()
+                    )
                     if query_usuarios_admin:
-                        return template.TemplateResponse("consultar_usuario.html",  {"request": request, "usuarios": query_usuarios_admin})
+                        return template.TemplateResponse(
+                            "consultar_usuario.html",
+                            {"request": request, "usuarios": query_usuarios_admin},
+                        )
                     else:
-                        raise HTTPException(status_code=403, detail="No hay usuarios para consultar") 
+                        raise HTTPException(
+                            status_code=403, detail="No hay usuarios para consultar"
+                        )
                 else:
-                    raise HTTPException(status_code=403, detail="Problemas al momento de consultar el usuario") 
+                    raise HTTPException(
+                        status_code=403,
+                        detail="Problemas al momento de consultar el usuario",
+                    )
             else:
-                raise HTTPException(status_code=403, detail="No cuenta con los permisos") 
+                raise HTTPException(
+                    status_code=403, detail="No cuenta con los permisos"
+                )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)                       
+            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)           
+        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
 
 
 # ACCESO A PERFIL DE USUARIO
@@ -481,10 +544,15 @@ def get_perfil_usuario(
         if is_token_valid:
             rol_usuario = get_rol(is_token_valid, db)
             print(rol_usuario)
-            if rol_usuario == SUPER_ADMIN or rol_usuario == "Admin":
+            if (
+                rol_usuario == SUPER_ADMIN
+                or rol_usuario == "Admin"
+                or rol_usuario == TECNICO
+            ):
                 datos_usuario = get_datos_usuario(is_token_valid, db)
                 return template.TemplateResponse(
-                    "perfil_usuario.html", {"request": request, "usuario": datos_usuario}
+                    "perfil_usuario.html",
+                    {"request": request, "usuario": datos_usuario},
                 )
             else:
                 alerta = {
@@ -497,6 +565,4 @@ def get_perfil_usuario(
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)            
-    
-
+        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)

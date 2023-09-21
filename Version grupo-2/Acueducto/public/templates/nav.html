@@ -7,7 +7,7 @@
                     <img class="img-radius" src="{{ url_for('static', path='assets/images/user/avatar-2.jpg') }}"
                         alt="User-Profile-Image">
                     <div class="user-details">
-                        {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin': %}
+                        {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' or usuario.rol == 'Tecnico': %}
                         <span class="username">{{ usuario.nom_usuario }} {{usuario.apellido_usuario}}</span>
                         <div id="more-details">Más detalles<i class="fa fa-chevron-down m-l-5"></i></div>
                         {% endif %}
@@ -302,6 +302,10 @@
             <li class="nav-item">
                 <a class="text-dark" href="/consultar_usuario" target="_self">Consultar Usuario</a>
             </li>
+            <li class="nav-item">
+                <a class="text-dark" href="/consultar_empresa" target="_self">Consultar Empresa</a>
+            </li>
+            {% elif usuario.rol == 'Tecnico': %}
             <li class="nav-item">
                 <a class="text-dark" href="/consultar_empresa" target="_self">Consultar Empresa</a>
             </li>
