@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
+                <div class="container-xxl py-5 bg-white">
+                    <div class="container">
+                        <div class="row g-5 align-items-end">
+
+                            <div class="col-lg-3 col-md-5 pb-4">
+                                <img class="img-fluid rounded"
+                                    src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                            </div>
+                            <div class="col-lg-9 col-md-7">
+                                <h2 class="text-center" style="color: #00af00;">REGISTRO DE COMISION</h2>
+                            </div>
+
+                            <!-- Formulario registro comisión -->
+                            <div class="container bg-light shadow p-5 rounded">
+                                <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <label for="nombrePresidente" class="form-label">Nombre Presidente</label>
+                                        <input type="text" class="form-control" id="nombrePresidente"
+                                            placeholder="Nombre del Presidente">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="telefonoPresidente" class="form-label">Teléfono Presidente</label>
+                                        <input type="tel" class="form-control" id="telefonoPresidente"
+                                            placeholder="Teléfono del Presidente">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="votosPresidente" class="form-label">Cantidad de Votos</label>
+                                        <input type="number" class="form-control" id="votosPresidente"
+                                            placeholder="Cantidad de Votos">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <label for="nombreModerador" class="form-label">Nombre Moderador</label>
+                                        <input type="text" class="form-control" id="nombreModerador"
+                                            placeholder="Nombre del Moderador">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="telefonoModerador" class="form-label">Teléfono Moderador</label>
+                                        <input type="tel" class="form-control" id="telefonoModerador"
+                                            placeholder="Teléfono del Moderador">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="votosModerador" class="form-label">Cantidad de Votos</label>
+                                        <input type="number" class="form-control" id="votosModerador"
+                                            placeholder="Cantidad de Votos">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="nombreSecretario" class="form-label">Nombre Secretario/a</label>
+                                        <input type="text" class="form-control" id="nombreSecretario"
+                                            placeholder="Nombre del Secretario/a">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="telefonoSecretario" class="form-label">Teléfono Secretario/a</label>
+                                        <input type="tel" class="form-control" id="telefonoSecretario"
+                                            placeholder="Teléfono del Secretario/a">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="votosSecretario" class="form-label">Cantidad de Votos</label>
+                                        <input type="number" class="form-control" id="votosSecretario"
+                                            placeholder="Cantidad de Votos">
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center my-2">
+
+                                    <button class="btn btn-success ">Registrar</button>
+
+                                </div>
+                                <div class="row justify-content-center ">
+
+
+                                    <a href="/llamado_lista" class="btn btn-success">Cancelar</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="footer-wrapper col-xl-12">
+                            <div class="footer-section f-section-1">
+                                <p class="">&copy; 2023 <a target="_blank"
+                                        href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRPITS -->
+
+</body>
+
+</html>

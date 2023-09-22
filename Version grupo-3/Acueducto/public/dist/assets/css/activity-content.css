@@ -1,0 +1,531 @@
+.activity-section-animation {
+  background-repeat: no-repeat;
+  background-position: left top;
+  padding-top:95px;
+  margin-bottom:60px;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+
+#content .col-right {
+  padding: 0;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+  width: 350px;
+
+  position: fixed;
+  top: 0;
+  width: 310px;
+  right: 0;
+  border-radius: 0;
+  z-index: 1029!important;
+  transition: .3s ease all;
+  width: 348px;
+}
+#content .col-right-content {
+  background: #030305;
+  padding: 32px 32px 0 32px;
+  margin: 0 0 0 5px;
+  z-index: 4;
+  height: 100%;
+  border-top-left-radius: 30px;
+}
+
+/* 
+  widget profile
+*/
+
+
+.widget-profile {
+  margin-bottom: 20px;
+}
+.widget-profile .w-profile-view {
+  display: flex;
+  padding: 15px 22px;
+  background: #151516;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.widget-profile .w-profile-view img {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  border: 3px solid rgb(255 255 255 / 18%);
+  margin-right: 12px;
+  box-shadow: 0px 1px 9px 8px #000000;
+}
+.widget-profile .w-profile-view .w-profile-content h6 {
+  font-size: 15px;
+
+  color: #fff;
+  margin-bottom: 0;
+}
+.widget-profile .w-profile-view .w-profile-content p {
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #bfc9d4;
+}
+.widget-profile .w-profile-links {
+  display: flex;
+  background: #151516;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 6px 9px 16px 69px;
+}
+.widget-profile .w-profile-links .w-p-link {
+  text-align: center;
+  align-self: center;
+  margin-right: 12px;
+  display: flex;
+  border-radius: 6px;
+  padding: 4px 9px;
+  border: 1px solid #515365;
+}
+.widget-profile .w-profile-links .w-p-link svg {
+  width: 17px;
+  height: 17px;
+  margin-right: 6px;
+  color: #fff;
+  stroke-width: 1.5;
+}
+.widget-profile .w-profile-links .w-p-link p {
+  font-size: 11px;
+  font-weight: 100;
+  margin-bottom: 0;
+  align-self: center;
+  color: #fff;
+}
+
+
+/* 
+  widget todo
+*/
+
+.widget-todo {
+  padding: 12px 21px;
+  border-radius: 16px;
+  background: #151516;
+  margin-bottom: 20px;
+}
+.widget-todo .todo-content {
+  display: flex;
+}
+.widget-todo .todo-content .todo-title {
+  align-self: center;
+  margin-right: 12px;
+  padding-right: 9px;
+  border-right: 1px solid #515365;
+}
+.widget-todo .todo-content .todo-title h6 {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+}
+.widget-todo .todo-content .todo-title h6 span.icon {
+  display: inline-flex;
+  background: #4361ee;
+  padding: 3px 6px;
+  border-radius: 6px;
+  height: 27px;
+  width: 29px;
+  margin-right: 9px;
+}
+.widget-todo .todo-content .todo-title h6 svg {
+  width: 17px;
+  height: 19px;
+  vertical-align: bottom;
+  align-self: center;
+}
+.widget-todo .todo-content .todo-text {
+  align-self: center;
+}
+.widget-todo .todo-content .todo-text p {
+  margin-bottom: 0;
+  font-size: 17px;
+  color: #bfc9d4;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+
+/* 
+  widget message
+*/
+
+.widget-message {
+  padding: 22px 22px;
+  border-radius: 16px;
+  background: #151516;
+  margin-bottom: 20px;
+  background: linear-gradient(229deg, #517281 0%, #3b5d70 27%, #4d5c82 72%, #5d647f 100%);
+}
+.widget-message .widget-title {
+  display: flex;
+  justify-content: space-between;
+}
+.widget-message .widget-title h5 {
+  color: #fff;
+  margin-bottom: 0;
+}
+.widget-message .widget-title svg {
+  width: 18px;
+  height: 19px;
+  align-self: center;
+  color: #bfc9d4;
+}
+.widget-message .widget-messages {
+  margin-top: 25px;
+}
+.widget-message .widget-messages .w-message:not(:last-child) {
+  margin-bottom: 18px;
+}
+.widget-message .widget-messages .w-message {
+  display: flex;
+}
+.widget-message .widget-messages .w-message img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid rgb(191 201 212 / 21%);
+  margin-right: 10px;
+}
+.widget-message .widget-messages .w-message .msg-content {
+  align-self: center;
+}
+.widget-message .widget-messages .w-message .w-msg-username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #bfc9d4;
+  margin-bottom: 0;
+}
+.widget-message .widget-messages .w-message .w-msg-text  {
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 12px;
+}
+
+
+
+/* 
+  widget invoice
+*/
+
+.widget-invoice {
+  padding: 22px 22px;
+  border-radius: 16px;
+  background: #151516;
+  margin-bottom: 20px;
+}
+.widget-invoice .widget-title {
+  display: flex;
+  justify-content: space-between;
+}
+.widget-invoice .widget-title h5 {
+  color: #fff;
+  margin-bottom: 0;
+}
+.widget-invoice .widget-title svg {
+  width: 18px;
+  height: 19px;
+  align-self: center;
+  color: #bfc9d4;
+}
+.widget-invoice .widget-invoice-lists {
+  margin-top: 25px;
+}
+.widget-invoice .widget-invoice-lists .w-invoice {
+  position: relative;
+}
+.widget-invoice .widget-invoice-lists .w-invoice:not(:last-child) {
+  margin-bottom: 15px;
+}
+.widget-invoice .widget-invoice-lists .w-invoice p {
+  color: #bfc9d4;
+  margin-bottom: 0;
+}
+.widget-invoice .widget-invoice-lists .w-invoice p span.inv-number {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4cd265;
+}
+.widget-invoice .widget-invoice-lists .w-invoice p span.usr-name {
+  font-weight: 700;
+}
+
+
+
+/* 
+  widget taskBoard
+*/
+
+.widget-taskBoard {
+  padding: 22px 22px;
+  border-radius: 16px;
+  background: #151516;
+  margin-bottom: 20px;
+}
+.widget-taskBoard .widget-title {
+  display: flex;
+  justify-content: space-between;
+}
+.widget-taskBoard .widget-title h5 {
+  color: #fff;
+  margin-bottom: 0;
+}
+.widget-taskBoard .widget-title svg {
+  width: 18px;
+  height: 19px;
+  align-self: center;
+  color: #bfc9d4;
+}
+.widget-taskBoard .widget-taskBoard-lists {
+  margin-top: 25px;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard {
+  position: relative;
+  padding-left: 18px;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard:before {
+  content: '';
+  background: #bfc9d4;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  border-radius: 50%;
+  left: 3px;
+  top: 6px;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard p {
+  color: #bfc9d4;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard:not(:last-child) p {
+  margin-bottom: 10px;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard p span.taskBoard-number {
+  font-weight: 600;
+  font-size: 13px;
+  color: #61b6cd;
+}
+.widget-taskBoard .widget-taskBoard-lists .w-taskBoard p span.usr-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+/* 
+  widget calendar
+*/
+
+.widget-calendar {
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.widget-calendar .widget-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-calendar .widget-title h5 {
+  color: #fff;
+  margin-bottom: 0;
+}
+.widget-calendar .widget-title svg {
+  color: #888ea8;
+  width: 19px;
+  height: 19px;
+}
+
+.widget-calendar .dropdown:not(.custom-dropdown-icon):not(.custom-dropdown) .dropdown-menu {
+  background: #555555;
+  border: 1px solid #555555;
+  transform: translate3d(-141px, 0, 0px);
+}
+
+.widget-calendar .dropdown .dropdown-menu a {
+  color: #fff!important;
+}
+
+.widget-calendar .widget-calendar-lists {
+  margin-top: 24px;
+}
+.widget-calendar .widget-calendar-lists .w-calendar {
+  padding: 15px 15px;
+  border-radius: 12px;
+  background: #151516;
+  margin-bottom: 12px;
+  display: flex;
+}
+.widget-calendar .widget-calendar-lists .w-calendar .w-icon {
+  padding: 10px;
+  border-radius: 12px;
+  margin-right: 16px;
+  height: 42px;
+  width: 42px;
+  align-self: center;
+}
+.widget-calendar .widget-calendar-lists .w-calendar .w-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c2 .w-icon {
+  background: linear-gradient(215deg, #c52d47 0%, #a5325c 30%, #8b366d 100%);    
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c2 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 66%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c1 .w-icon {
+  background: linear-gradient(to right, #005e7f, #61b6cd);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c1 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 75%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c3 .w-icon {
+  background: linear-gradient(225deg, #1623A6 0%, #3343D4 29%, #175EAC 73%, #176682 100%);    
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c3 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 75%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c4 .w-icon {
+  background: linear-gradient(to right top, #604C7C 0%, #257983 50%, #20825A 100%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c4 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 75%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c5 .w-icon {
+  background: linear-gradient(to bottom, #203025 0%, #151516 100%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c5 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 75%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c6 .w-icon {
+  background: linear-gradient(to right top, #194189 0%, #3B4980 25%, #8738A7 100%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar.w-calendar-c6 .w-icon svg {
+  fill: rgb(3 3 5 / 11%);
+  color: rgb(255 255 255 / 75%);
+}
+.widget-calendar .widget-calendar-lists .w-calendar p {
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 13px;
+  align-self: center;
+}
+.widget-calendar .widget-calendar-lists .w-calendar p span.calendar-number {
+  color: #61b6cd;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+body .col-right-content .col-right-content-container {
+  position: relative;
+  height: calc(100vh - 92px);
+}
+body #content .col-right-content .ps .ps__rail-y:hover {
+  background: transparent;
+}
+body .col-right-content .col-right-content-container .ps__rail-y.ps--clicking {
+  background-color: transparent;
+}
+
+.col-right-content-container  .ps__rail-y:hover > .ps__thumb-y {
+  background-color: #555555;
+}
+.col-right-content-container  .ps__thumb-y {
+  background-color: #555555;
+}
+
+@media (max-width: 1199px) {
+  
+
+  #content .col-right {
+      position: fixed;
+      top: 0;
+      width: 310px;
+      left: -380px;
+      border-radius: 0;
+      z-index: 1029!important;
+      transition: .3s ease all;
+      width: 348px;
+  }
+  #content .col-right.show {
+      left: -10px;
+  }
+  .col-right-content .col-right-content-container {
+      position: relative;
+      height: calc(100vh - 92px);
+      padding: 0 0 0 0;
+      padding-right: 14px;
+  }
+  #content .col-right-content {
+      border-top-left-radius: 0;
+      border-top-right-radius: 30px;
+      padding: 32px 18px 32px 32px;
+  }
+
+  #content .col-right-content .ps .ps__rail-y:hover {
+      background: transparent;
+  }
+
+  .admin-header .search-ul {
+      padding-right: 14px;
+  }
+  
+  
+}
+
+
+/* =================================================================================================================
+  Below CSS is for adjusting Notification Sidebar on Smaller Resolution Devices (such as iPhone Mini and iPhone SE)
+  ================================================================================================================= */
+
+@media (max-width: 399px) {
+  
+  
+  #content .col-right-content {
+      padding: 32px 0 32px 15px;
+  }
+  .col-right-content .col-right-content-container {
+      padding-right: 15px;
+  }
+  #content .col-right {
+      width: 315px;
+  }
+}

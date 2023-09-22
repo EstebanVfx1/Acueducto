@@ -1,0 +1,13 @@
+<h1>Consultar usuario</h1>
+
+{% for usuario in usuarios %}
+    <h5>------------------------------</h5>
+    <h5>{{ usuario.nom_usuario }}</h5>
+    <h5>{{ usuario.apellido_usuario }}</h5>
+    <h5>{{ usuario.correo }}</h5>
+    <h5>{{ usuario.rol }}</h5>
+    <h5>{{ usuario.tipo_doc }}</h5>
+    <h5>{{ usuario.num_doc}}</h5>
+    <h5>{{ usuario.municipio }}</h5>
+    <h5>{{ usuario.direccion }}</h5>
+{% endfor %}

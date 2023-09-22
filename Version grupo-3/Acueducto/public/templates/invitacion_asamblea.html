@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+
+    <link href="{{ url_for('static', path='plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ url_for('static', path='plugins/fullcalendar/custom-fullcalendar.advance.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ url_for('static', path='plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', path='plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet"
+        type="text/css">
+    <style>
+        @media (max-width: 1410px) {
+            .my-button-special {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <!--  BEGIN SIDEBAR  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="">
+            <div class="layout-px-spacing">
+                <div class="container-xxl">
+                    <div class="layout-top-spacing">
+                        <div class="col-left-content">
+                            <br><br><br>
+                            <div class="admin-data-content layout-top-spacing">
+                                <div class="statbox widget box box-shadow">
+                                    <div class="widget-content widget-content-area">
+                                        <div class="calendar-upper-section">
+                                            <div class="row">
+                                                <div class="col-md-8 col-12">
+                                                    <div class="labels">
+                                                        <p class="label label-primary">Trabajo</p>
+                                                        <p class="label label-warning">Viaje</p>
+                                                        <p class="label label-success">Personal</p>
+                                                        <p class="label label-danger">Importante</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-12">
+                                                    <form action="javascript:void(0);"
+                                                        class="form-horizontal mt-md-0 mt-3 text-md-right text-center">
+                                                        <button type="button"
+                                                            class="btn btn-secondary my-button-special mb-2"
+                                                            data-toggle="modal" data-target="#exampleModal">Ver
+                                                            Invitacion</button>
+                                                        <button type="button" class="btn btn-primary mb-2">Descargar
+                                                            Invitacion</button>
+                                                        <button id="myBtn" class="btn btn-primary mb-2"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-calendar mr-2">
+                                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2">
+                                                                </rect>
+                                                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                            </svg> Agregar Evento</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="calendar"></div>
+                                    </div>
+                                </div>
+                                <!-- El Modal -->
+                                <div id="addEventsModal" class="modal animated fadeIn">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <!-- Contenido del Modal -->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <span class="close">&times;</span>
+                                                <div class="add-edit-event-box">
+                                                    <div class="add-edit-event-content">
+                                                        <h5 class="add-event-title modal-title">Agregar Eventos</h5>
+                                                        <h5 class="edit-event-title modal-title">Editar Eventos</h5>
+                                                        <form class="">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label for="start-date" class="">Título del
+                                                                        Evento:</label>
+                                                                    <div class="d-flex event-title">
+                                                                        <input id="write-e" type="text"
+                                                                            placeholder="Ingrese Título"
+                                                                            class="form-control" name="task">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-12">
+                                                                    <div class="form-group start-date">
+                                                                        <label for="start-date" class="">Desde:</label>
+                                                                        <div class="d-flex">
+                                                                            <input id="start-date"
+                                                                                placeholder="Fecha de Inicio"
+                                                                                class="form-control" type="text">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-12">
+                                                                    <div class="form-group end-date">
+                                                                        <label for="end-date" class="">Hasta:</label>
+                                                                        <div class="d-flex">
+                                                                            <input id="end-date"
+                                                                                placeholder="Fecha de Fin" type="text"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label for="start-date" class="">Descripción del
+                                                                        Evento:</label>
+                                                                    <div class="d-flex event-description">
+                                                                        <textarea id="taskdescription"
+                                                                            placeholder="Ingrese Descripción" rows="3"
+                                                                            class="form-control"
+                                                                            name="taskdescription"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="event-badge">
+                                                                        <p class="">Insignia:</p>
+                                                                        <div class="d-sm-flex d-block">
+                                                                            <div class="n-chk">
+                                                                                <label
+                                                                                    class="new-control new-radio radio-primary">
+                                                                                    <input type="radio"
+                                                                                        class="new-control-input"
+                                                                                        name="marker"
+                                                                                        value="bg-primary">
+                                                                                    <span
+                                                                                        class="new-control-indicator"></span>Trabajo
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="n-chk">
+                                                                                <label
+                                                                                    class="new-control new-radio radio-warning">
+                                                                                    <input type="radio"
+                                                                                        class="new-control-input"
+                                                                                        name="marker"
+                                                                                        value="bg-warning">
+                                                                                    <span
+                                                                                        class="new-control-indicator"></span>Viaje
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="n-chk">
+                                                                                <label
+                                                                                    class="new-control new-radio radio-success">
+                                                                                    <input type="radio"
+                                                                                        class="new-control-input"
+                                                                                        name="marker"
+                                                                                        value="bg-success">
+                                                                                    <span
+                                                                                        class="new-control-indicator"></span>Personal
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="n-chk">
+                                                                                <label
+                                                                                    class="new-control new-radio radio-danger">
+                                                                                    <input type="radio"
+                                                                                        class="new-control-input"
+                                                                                        name="marker" value="bg-danger">
+                                                                                    <span
+                                                                                        class="new-control-indicator"></span>Importante
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="discard" class="btn" data-dismiss="modal">Descartar</button>
+                                                <button id="add-e" class="btn">Agregar Tarea</button>
+                                                <button id="edit-event" class="btn">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="footer-wrapper col-xl-12 d-flex justify-content-center">
+                                <div class="footer-section f-section-1">
+                                    <p class="">&copy; 2023 <a target="_blank"
+                                            href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                            Acueducto</a></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal con iframe -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Preview PDF</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Agregar el iframe aquí -->
+                        <iframe src="assets/pdf/invitacion-asamble.pdf" width="100%" height="500"
+                            frameborder="0"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cerrar</button>
+                        <button type="button" class="btn btn-primary">Descargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+
+    <script src="{{ url_for('static', path='plugins/fullcalendar/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', path='plugins/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ url_for('static', path='plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+
+    <script src="{{ url_for('static', path='plugins/fullcalendar/custom-fullcalendar.advance.js') }}"></script>
+
+</body>
+
+</html>
