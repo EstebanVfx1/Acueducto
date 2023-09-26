@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        <link href="{{ url_for('static', path='assets/css/authentication/form-1.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css"  href="{{ url_for('static', path='assets/css/forms/theme-checkbox-radio.css') }}" />
+        <link rel="stylesheet" type="text/css"  href="{{ url_for('static', path='assets/css/forms/switches.css') }}" />
         {% block meta %}
-        {% include 'metalogin.html' %}
         {% include 'meta.html' %}
         {% endblock %}
     </head>
@@ -27,7 +29,7 @@
                         
                                 <div id="username-field" class="field-wrapper input">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <input id="email" name="email" type="text" class="form-control" placeholder="Nombre de usuario">
+                                    <input id="email" name="email" type="text" class="form-control" placeholder="Correo">
                                 </div>
                         
                                 <div id="password-field" class="field-wrapper input mb-2">
@@ -46,7 +48,7 @@
                                         <button type="submit" class="btn btn-success" value="">Iniciar sesión</button>
                                     </div>
                                 </div>
-                        
+                                
                                 <div class="field-wrapper text-center keep-logged-in">
                                     <div class="n-chk new-checkbox checkbox-outline-primary">
                                         <label class="new-control new-checkbox checkbox-outline-success">
@@ -74,19 +76,12 @@
         </div>
     </div>
 
-    
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- BEGIN SCRIPTS -->
     {% block scripts %}
-    {% include 'scripts.html' %}
+        {% include 'scripts.html' %}
     {% endblock %}
-    <!-- END SCRIPTS -->
-    
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/authentication/form-1.js"></script>
+    <script src="{{ url_for('static', path='assets/js/authentication/form-1.js') }}"></script>
+    <script src="{{ url_for('static', path='assets/js/mostrar-contrasenia.js') }}"></script>
+
 
 </body>
 </html>

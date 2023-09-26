@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+
+
+    <!--  BEGIN MAIN CONTAINER  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
+                <div class="container-xxl">
+                    <div class="layout-top-spacing">
+                        <div class="col-left-content">
+
+                            <div class="admin-data-content layout-top-spacing ">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center ">
+                                            <video class="img-fluid" autoplay muted loop controls width="520"
+                                                height="340">
+                                                <source
+                                                    src="{{ url_for('static', path='ArchivosDescarga/Video_Asamblea-de-constitución.mp4') }}"
+                                                    type="video/mp4">
+                                                Tu navegador no admite la reproducción de videos.
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-center">
+                                            <a href="{{ url_for('static', path='ArchivosDescarga/Video_Asamblea-de-constitución.mp4') }}"
+                                                type="button" class="mx-3 mt-3 btn"
+                                                style="background-color: #37a349; color: white;"> <b>Descargar Video</b>
+                                            </a> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                    <div class="footer-section f-section-1">
+                                        <p class="">&copy; 2023 <a target="_blank"
+                                                href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                                Acueducto</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  END CONTENT AREA  -->
+        </div>
+
+        <!-- BEGIN SCRIPTS -->
+        {% block scripts %}
+        {% include 'scripts.html' %}
+        {% endblock %}
+        <!-- END SCRIPTS -->
+</body>
+
+</html>

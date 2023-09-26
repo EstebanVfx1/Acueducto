@@ -1,0 +1,22 @@
+CUENTAS REGISTRADAS.
+---------------------------------------------------
+SUPER ADMIN:
+correo: superadmin@gmail.com
+contra: adso
+
+---------------------------------------------------
+ADMIN:
+correo: mateo@gmail.com	
+contra: mateo1904
+
+Preguntar por el ingresar del navegador del menu
+Preguntar por el nombre del perfil del usuario
+
+--------------------------------------------------
+TECNICO:
+
+--------------------------------------------------
+SUSCRIPTOR:
+
+correo:braulio@gmail.com
+contra:braulio123

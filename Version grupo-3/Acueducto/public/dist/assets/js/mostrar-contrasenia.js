@@ -1,5 +1,5 @@
-const passwordInput = document.getElementById("user_contrasenia");
-const showPasswordCheckbox = document.getElementById("showPassword");
+const passwordInput = document.getElementById("password");
+const showPasswordCheckbox = document.getElementById("toggle-password");
 
 showPasswordCheckbox.addEventListener("change", function() {
     if (showPasswordCheckbox.checked) {

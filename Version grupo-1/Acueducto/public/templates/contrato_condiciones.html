@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+
+    <!--  BEGIN MAIN CONTAINER  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
+                <div class="container-xxl py-5 bg-white">
+                    <div class="container">
+                        <div>
+    
+                            <div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-5 pb-4">
+                                            <img class="img-fluid rounded"
+                                                src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="mb-5 mt-2">
+                                                <div class="media-body">
+                                                    <br><br><br>
+    
+                                                    <h2 class=" display-4 text-primary mb-0 ">Contrato De Condiciones Uniformes</h2>
+                                                    <h6 class="text-primary mb-5">Un contrato de condiciones uniformes para prestar el servicio de acueducto es un acuerdo legal entre un proveedor de servicios de agua y un usuario, que establece los términos y condiciones bajo los cuales se brindará dicho servicio. Este contrato tiene como objetivo garantizar una relación clara y equitativa entre ambas partes, y establecer los derechos y responsabilidades de cada una. En un contrato de condiciones uniformes para prestar el servicio de acueducto, se suelen incluir los siguientes elementos: </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5 mt-4">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Identificación de las partes: </h4>
+                                                    <span class="mb-5">Se detallan los nombres y las direcciones del proveedor del servicio de acueducto y del usuario.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-4">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Descripción del servicio: </h4>
+                                                    <span class="mb-5">Se establece la naturaleza del servicio que se proporcionará, incluyendo el suministro de agua potable, la disponibilidad de caudal, la calidad del agua, y cualquier otro detalle relevante.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Obligaciones del proveedor: </h4>
+                                                    <span class="mb-5">Se especifican las responsabilidades del proveedor, como asegurar el suministro constante de agua potable, mantener la infraestructura en buen estado, realizar reparaciones y mantenimiento, y cumplir con los estándares de calidad establecidos. </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Obligaciones del usuario
+                                                    </h4>
+                                                    <span class="mb-5">Se detallan las responsabilidades del usuario, como pagar las tarifas correspondientes en tiempo y forma, utilizar el agua de manera adecuada, notificar al proveedor sobre cualquier anomalía o problema, y permitir el acceso al personal autorizado para realizar inspecciones o reparaciones.<span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Tarifas y pagos:
+                                                    </h4>
+                                                    <h6 class="mb-5">Se establecen las tarifas por el servicio de acueducto, así como los métodos de pago aceptados y los plazos de pago. También se puede incluir información sobre posibles ajustes de tarifas en el futuro.</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="border-start ps-4">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Medición y facturación: 
+                                                    </h4>
+                                                    <h6 class="mb-5">Se detalla el proceso de medición del consumo de agua, ya sea a través de medidores individuales o estimaciones basadas en el tamaño de la vivienda. Se especifica cómo se calcularán los consumos y cómo se realizará la facturación correspondiente.
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Suspensión del servicio:
+                                                    </h4>
+                                                    <h6 class="mb-5">Se establecen las circunstancias en las que el proveedor puede suspender temporalmente el suministro de agua, como en casos de falta de pago o incumplimiento de las condiciones establecidas.</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="">
+                                                <div class="media-body">
+                                                    <h4 class="mb-3">Duración y terminación del contrato:
+                                                    </h4>
+                                                    <h6 class="mb-5">Se indica la duración del contrato y las condiciones bajo las cuales puede ser terminado, tanto por el proveedor como por el usuario. También se pueden incluir disposiciones sobre renovación automática del contrato.</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mt-3">
+                                            <div class="">
+                                                <div class="media-body">
+                                                    <h6 class="mb-5">Es importante destacar que los contratos de condiciones uniformes para prestar el servicio de acueducto varían en contenido y alcance dependiendo del proveedor y la jurisdicción. Sin embargo, su objetivo principal es establecer un marco legal claro y equitativo para la prestación del servicio de acueducto, protegiendo los derechos y responsabilidades tanto del proveedor como del usuario.</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <div class="container mt-5">
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                                            data-target="#exampleModal">Cargar Documento</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                    <div class="footer-section f-section-1">
+                                        <p class="">&copy; 2023 <a target="_blank"
+                                                href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                                Acueducto</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <!-- END MAIN CONTAINER -->
+
+        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+        {% block scripts %}
+        {% include 'scripts.html' %}
+        {% endblock %}
+        <!-- END SCRIPTS -->
+</body>
+
+</html>

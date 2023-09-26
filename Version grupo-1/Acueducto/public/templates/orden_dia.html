@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+
+    <div class="main-container" id="container">
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <div class="pcoded-content">
+                <div class="container-xxl py-5 bg-white">
+                    <div class="container">
+                        <div>
+
+                            <div class="row g-5 align-items-end">
+                                <div class="col-lg-3 col-md-5 pb-4">
+                                    <img class="img-fluid rounded"
+                                        src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                </div>
+                                <div class="col-lg-9 col-md-7">
+                                    <h2 class="text-center" style="color: #00af00;">ORDEN DEL DÍA DE LA ASAMBLEA DE
+                                        CONSTITUCIÓN DE LA ASOCIACIÓN COMUNITARIA DE ACUEDUCTO</h2>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row g-5">
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">1. Apertura de la asamblea: </h6>
+                                                <span>
+                                                    El presidente o moderador de la reunión da la bienvenida a los
+                                                    asistentes y declara oficialmente abierta la Asamblea de
+                                                    Constitución.
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">2. Verificación del cuórum: </h6>
+                                                <span>
+                                                    Es importante tener en cuenta que el cuórum se refiere al número de
+                                                    participantes presentes en la asamblea en el momento de la votación.
+                                                    Si el número de participantes presentes no alcanza el cuórum
+                                                    requerido, la asamblea no podrá tomar decisiones válidas y es
+                                                    posible que se requiera convocar otra reunión en una fecha
+                                                    posterior.
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">3. Presentación de objetivos y propósito: </h6>
+                                                <span>
+                                                    Se expone de manera clara y concisa el propósito de la asamblea, así
+                                                    como los objetivos y beneficios de establecer la asociación
+                                                    comunitaria de acueducto.
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">4. Lectura y aprobación del acta de convocatoria: </h6>
+                                                <span>
+                                                    Se lee el acta de convocatoria de la Asamblea de Constitución y se
+                                                    solicita la aprobación por parte de los asistentes. Esto confirma
+                                                    que la convocatoria fue realizada correctamente y en cumplimiento de
+                                                    los estatutos y reglamentos establecidos.
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">5. Presentación de informe técnico: </h6>
+                                                <span>
+                                                    Se brinda un informe técnico detallado sobre la situación actual del
+                                                    suministro de agua en la comunidad, incluyendo aspectos como la
+                                                    calidad del agua, la infraestructura existente y cualquier otro dato
+                                                    relevante. Esto proporciona un panorama claro de la necesidad y
+                                                    viabilidad de establecer la asociación comunitaria de acueducto.
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">6. Discusión y aprobación de estatutos: </h6>
+                                                <span>
+                                                    Se presenta el proyecto de estatutos de la asociación comunitaria de
+                                                    acueducto y se abre un espacio de discusión para que los asistentes
+                                                    puedan plantear preguntas, hacer aportes o sugerencias.
+                                                    Posteriormente, se procede a la votación para aprobar los estatutos.
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">7. Elección de la junta directiva: </h6>
+                                                <span>
+                                                    Se lleva a cabo el proceso de elección de los miembros que
+                                                    conformarán la junta directiva de la asociación. Esto implica la
+                                                    presentación de candidatos, la votación y el anuncio de los
+                                                    resultados.
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">8. Presentación del plan de acción y presupuesto: </h6>
+                                                <span>
+                                                    Se presenta el plan de acción y el presupuesto para el primer año de
+                                                    funcionamiento de la asociación comunitaria de acueducto. Se
+                                                    detallan las metas, actividades y recursos necesarios para el
+                                                    correcto funcionamiento del acueducto.
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">9. Informe sobre las tarifas y Contrato de Condiciones
+                                                    Uniformes: </h6>
+                                                <span>
+                                                    Se presenta el informe sobre las tarifas de agua propuestas y el
+                                                    Contrato de Condiciones Uniformes. Esto incluye aspectos como la
+                                                    forma de cálculo de las tarifas, los plazos de pago y las normas de
+                                                    uso responsable del agua.
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-6">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">10. Asuntos varios: </h6>
+                                                <span>
+                                                    Se abre un espacio para abordar cualquier otro asunto o tema
+                                                    relevante que los asistentes deseen discutir y que esté relacionado
+                                                    con la constitución de la asociación comunitaria de acueducto.
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-lg-6">
+                                            <div class="border-start ps-4">
+
+                                                <h6 class="mb-3">11. Cierre de la asamblea:</h6>
+                                                <span>
+                                                    Se agradece a todos los asistentes por su participación y se da por
+                                                    finalizada la Asamblea de Constitución de la Asociación Comunitaria
+                                                    de Acueducto.
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <!-- Modal registro de suscriptores -->
+                                    <div class="modal fade" id="registroModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="registroModalLabel" ariahidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="registroModalLabel">Registro de
+                                                        Suscriptores</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="nit">NIT</label>
+                                                            <input type="text" class="form-control" id="nit"
+                                                                placeholder="Ingrese su NIT">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="nombre">Nombre</label>
+                                                            <input type="text" class="form-control" id="nombre"
+                                                                placeholder="Ingrese su nombre">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="apellidos">Apellidos</label>
+                                                            <input type="text" class="form-control" id="apellidos"
+                                                                placeholder="Ingrese sus apellidos">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="telefono">Teléfono</label>
+                                                            <input type="tel" class="form-control" id="telefono"
+                                                                placeholder="Ingrese su teléfono">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="ubicacion">Ubicación</label>
+                                                            <input type="text" class="form-control" id="ubicacion"
+                                                                placeholder="Ingrese su ubicación">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="municipio">Municipio</label>
+                                                            <input type="text" class="form-control" id="municipio"
+                                                                placeholder="Ingrese su municipio">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary">Registrar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                            <div class="footer-section f-section-1">
+                                <p class="">&copy; 2023 <a target="_blank"
+                                        href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+</html>

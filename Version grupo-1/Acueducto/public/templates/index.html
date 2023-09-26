@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div class="row g-5 align-items-end">
+                        {% if alerta: %}
+                        <div class="alert alert-{{alerta.color}}" role="alert">
+                            {{alerta.mensaje}}
+                        </div>
+                        {% endif %}
+                        <div class="col-lg-3 col-md-5 pb-4">
+                            <img class="img-fluid rounded"
+                                src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                        </div>
+                        <div class="col-lg-9 col-md-7">
+                            <h1 class="display-4 text-primary mb-0 ">Contrato de Condiciones Uniformes</h1>
+                            <p class="text-primary mb-4">Un contrato de condiciones uniformes para prestar
+                                el servicio
+                                de acueducto es un acuerdo legal entre un proveedor de servicios de agua y
+                                un usuario,
+                                que establece los términos y condiciones bajo los cuales se brindará dicho
+                                servicio.
+                                Este contrato tiene como objetivo garantizar una relación clara y equitativa
+                                entre ambas
+                                partes, y establecer los derechos y responsabilidades de cada una.
+                                En un contrato de condiciones uniformes para prestar el servicio de
+                                acueducto, se suelen
+                                incluir los siguientes elementos:
+                            </p>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row g-5">
+                                <div class="col-12 col-sm-6 col-lg-4 mb-">
+                                    <div class="border-start ps-4">
+
+                                        <h4 class="mb-3">Identificación de las partes:</h4>
+                                        <span> Se detallan los nombres y las direcciones del proveedor del
+                                            servicio de
+                                            acueducto y del usuario.</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-4 mt-4">
+                                    <div class="border-start ps-4">
+
+                                        <h4 class="mb-3">Descripción del servicio: </h4>
+                                        <span>idad del
+                                            agua, y cualquier otro detalle relevante.</span>
+                                    </div>
+                                </div>Se establece la naturaleza del servicio que se proporcionará,
+                                incluyendo
+                                el suministro de agua potable, la disponibilidad de caudal, la
+                                cal
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                    <div class="border-start ps-4">
+
+                                        <h4 class="mb-3">Obligaciones del proveedor:</h4>
+                                        <span>Se especifican las responsabilidades del proveedor, como
+                                            asegurar el
+                                            suministro constante de agua potable, mantener la
+                                            infraestructura en buen
+                                            estado, realizar reparaciones y mantenimiento, y cumplir con los
+                                            estándares
+                                            de calidad establecidos.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-6">
+                                    <div class="border-start ps-4">
+
+                                        <h4 class="mb-3">Obligaciones del usuario:</h4>
+                                        <span>Se detallan las responsabilidades del usuario, como pagar las
+                                            tarifas
+                                            correspondientes en tiempo y forma, utilizar el agua de manera
+                                            adecuada,
+                                            notificar al proveedor sobre cualquier anomalía o problema, y
+                                            permitir el
+                                            acceso al personal autorizado para realizar inspecciones o
+                                            reparaciones.
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-6">
+                                    <div class="border-start ps-4">
+
+                                        <h4 class="mb-3">Tarifas y pagos:</h4>
+                                        <span>Se establecen las tarifas por el servicio de acueducto, así
+                                            como los
+                                            métodos de pago aceptados y los plazos de pago. También se puede
+                                            incluir
+                                            información sobre posibles ajustes de tarifas en el futuro.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="ArchivosDescarga/P01-F-02 Formato Contrato Condiciones Uniformes.docx"
+                                class="btn btn-primary py-sm-3 px-sm-4 col-5">Descargar CCU</a>
+                        </div>
+                        <input type="file">
+
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
+                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="w-100" src="{{ url_for('static', path='assets/images/carousel-1.jpg') }}"
+                                alt="Image">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8">
+                                            <h1 class="display-2 text-white mb-5 animated slideInDown">Make
+                                                Your Home
+                                                Like Garden</h1>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100" src="{{ url_for('static', path='assets/images/carousel-2.jpg') }}"
+                                alt="Image">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-7">
+                                            <h1 class="display-3 text-white mb-5 animated slideInDown">
+                                                Create Your Own
+                                                Small Garden At Home</h1>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Resuelve tus inquietudes</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container mt-5" style="max-width: 400px;">
+                        <h3 class="mb-4">Chat Bot</h3>
+                        <div class="card mb-4">
+                            <div class="card-body" id="chat-box" style="height: 300px; overflow-y: scroll;">
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="message-input"
+                                placeholder="Escribe un mensaje...">
+                            <button class="btn btn-primary" id="send-button">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+
+</html>

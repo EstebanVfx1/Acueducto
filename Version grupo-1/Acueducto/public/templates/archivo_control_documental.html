@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head> 
+<body class="dashboard-analytics admin-header">
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+        {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+        {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+        <!--  BEGIN MAIN CONTAINER  -->
+        <!--  BEGIN CONTENT AREA  -->
+        <div class="pcoded-main-container">
+            <!-- Formulario Asistencia -->
+            <section class="py-1">
+                <div class="container px-5">
+                    <!-- Contact form-->
+                    <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+                        <div class="text-center mb-5">
+                            <div class="align-self-center py-1">
+                                <img src="{{ url_for('static', path='assets/images/logo-sena.ico') }}" width="40px" height="43px" alt="">
+                            </div>
+                            <h1 class="fw-bolder">Control Documental!</h1>
+                            <p class="lead fw-normal text-muted mb-0">Ingresa los datos para obtener tu documento</p>
+                        </div>
+                        <div class="row gx-5 justify-content-center">
+                            <div class="col-lg-8 col-xl-6">
+                                <form action="/generar_pdf_P01_F_03/" method="post">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="nombre_de_la_asociacion" name="nombre_de_la_asociacion" type="text" placeholder="" required />
+                                        <label for="nombre_de_la_asociacion">Nombre de la Asociación</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="nit" name="nit" type="text" placeholder="" required/>
+                                        <label for="nit">NIT</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="direccion" name="direccion" type="text" placeholder="" required/>
+                                        <label for="direccion">Dirección</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="municipio" name="municipio" type="text" placeholder="" required/>
+                                        <label for="municipio">Municipio</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="departamento" name="departamento" type="text" placeholder=""/>
+                                        <label for="departamento">Departamento</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="telefono" name="telefono" type="number" placeholder=""/>
+                                        <label for="telefono">Número de Teléfono</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="web" name="web" type="text" placeholder=""/>
+                                        <label for="web">Página Web</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="correo" name="correo" type="email" placeholder=""/>
+                                        <label for="correo">Correo Electrónico</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="horario" name="horario" type="text" placeholder=""/>
+                                        <label for="horario">Horario de Atención</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="sigla" name="sigla" type="text" placeholder="" required/>
+                                        <label for="sigla">Sigla</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="vereda" name="vereda" type="text" placeholder=""/>
+                                        <label for="vereda">Vereda</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="fecha" name="fecha" type="date" placeholder=""/>
+                                        <label for="fecha">Fecha de Constitución</label>
+                                    </div>
+                                    <!-- Submit Button-->
+                                    <div class="d-grid"><button class="btn btn-success btn-lg" type="submit">Enviar</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Main Content -->
+            <div class="container py-4">
+                <div class="col-lg-12 mb-4">
+                    
+                    <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                        <div class="footer-section f-section-1">
+                            <p class="">&copy; 2023 <a target="_blank"
+                                    href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                    Acueducto</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+        </div>
+    
+        
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+        {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+</html>

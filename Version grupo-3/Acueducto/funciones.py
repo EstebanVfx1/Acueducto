@@ -3,9 +3,10 @@ from datetime import datetime, timedelta
 from jose import jwt
 from docx import Document
 from fpdf import FPDF
-from models import Token, Usuario
+from models import Token, Usuario, Empresa
 
 SECRET_KEY = "sd45g4f45SWFGVHHuoyiad4F5SFD65V4SFDVOJWNHACUfwghdfvcguDCwfghezxhAzAKHGFBJYTFdkjfghtjkdgb"
+
 
 def generar_token(usuario_id: str):
     expiration = datetime.utcnow() + timedelta(hours=1)  # Token expira en 1 hora
@@ -14,6 +15,8 @@ def generar_token(usuario_id: str):
     return token
 
 # FUNCION VERIFICAR TOKEN
+
+
 def verificar_token(token: str, db):
     if token is None:
         return None
@@ -32,12 +35,13 @@ def verificar_token(token: str, db):
             return None
     else:  # Token no válido
         return None
-    
+
 
 # FUNCION PARA OBTENER EL ROL DE USUARIO
 def get_rol(id_usuario, db):
     if id_usuario:
-        usuario = db.query(Usuario).filter(Usuario.id_usuario == id_usuario).first()
+        usuario = db.query(Usuario).filter(
+            Usuario.id_usuario == id_usuario).first()
         if usuario:
             return usuario.rol
         else:
@@ -49,7 +53,8 @@ def get_rol(id_usuario, db):
 # FUNCION PARA OBTENER LOS DATOS DE USUARIO
 def get_datos_usuario(id_usuario, db):
     if id_usuario:
-        usuario = db.query(Usuario).filter(Usuario.id_usuario == id_usuario).first()
+        usuario = db.query(Usuario).filter(
+            Usuario.id_usuario == id_usuario).first()
         if usuario:
             datos_usuario = {
                 "id_usuario": usuario.id_usuario,
@@ -59,6 +64,7 @@ def get_datos_usuario(id_usuario, db):
                 "direccion": usuario.direccion,
                 "municipio": usuario.municipio,
                 "rol": usuario.rol,
+                "estado": usuario.estado,
                 "empresa": usuario.empresa,
                 "correo": usuario.correo
                 # Agrega otros campos del usuario
@@ -70,6 +76,8 @@ def get_datos_usuario(id_usuario, db):
         return None
 
 # CAMBIAR LOS CAMPOS "[]" POR VALORES DE FORMULARIO
+
+
 def reemplazar_texto(docx_path, datos):
     document = Document(docx_path)
 
@@ -83,15 +91,38 @@ def reemplazar_texto(docx_path, datos):
     return document
 
 # CONVIERTE EL DOCUMENTO DOCX A PDF
+
+
 def convertir_a_pdf(docx_path, pdf_path):
     document = Document(docx_path)
-    
+
     pdf = FPDF()
     pdf.add_page()
     pdf.set_auto_page_break(auto=True, margin=15)
-    
+
     for paragraph in document.paragraphs:
         pdf.set_font("Arial", size=12)
         pdf.multi_cell(0, 10, paragraph.text)
-    
+
     pdf.output(pdf_path)
+
+
+# OBTENER DATOS EMPRESAS:
+def get_datos_empresa(id_empresa, db):
+    if id_empresa:
+        empresa = db.query(Empresa).filter(
+            Empresa.id_empresa == id_empresa).first()
+        if empresa:
+            datos_empresa = {
+                "id_empresa": empresa.id_empresa,
+                "nom_empresa": empresa.nom_empresa,
+                "tel_fijo": empresa.tel_fijo,
+                "tel_cel": empresa.tel_cel,
+                "email": empresa.email,
+                "estado": empresa.estado,
+            }
+            return datos_empresa
+        else:
+            return None
+    else:
+        return None

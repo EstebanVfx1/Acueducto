@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <title>Editar Empresa</title>
+  {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+
+</head>
+
+<body>
+  <header>
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+  </header>
+  
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+  <div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+      <div class="layout-px-spacing">
+        <div class="container-xxl">
+          <div class="layout-top-spacing">
+            <div class="col-left-content">
+
+
+              <!-- Formulario Edición de empresa -->
+              <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
+                <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  {% if empresa %}
+
+                  <h2 class="text-center mb-4">Estas modificando a {{ empresa.nom_empresa }}</h2>
+
+                  <form action="/EditarEmpresa/" method="POST">
+                    <input type="hidden" name="id_empresa" value="{{ empresa.id_empresa }}">
+
+                    <div class="form-group">
+                      <label for="nom_empresa">Nombre</label>
+                      <input type="text" class="form-control" id="nom_empresa" placeholder="Nombre empresa" required value="{{ empresa.nom_empresa }}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tel_fijo">Teléfono Fijo</label>
+                      <input type="text" class="form-control" id="tel_fijo" placeholder="Teléfono fijo" required  value="{{ empresa.tel_fijo }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Correo" required  value="{{ empresa.email }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input type="text" class="form-control" id="estado" placeholder="Estado" required  value="{{ empresa.estado }}">
+                    </div>
+
+                    {% endif %}
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-success">ACTUALIZAR</button>
+                    </div>
+                  </form>
+                </div>
+                
+              </div>
+              <div class="footer-wrapper col-xl-12">
+                <div class="footer-section f-section-1">
+                  <p class="">&copy; 2023 <a target="_blank"
+                      href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+  </div>
+  <!-- END MAIN CONTAINER -->
+ 
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- BEGIN SCRIPTS -->
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  {% endblock %}
+  <!-- END SCRIPTS -->
+</body>
+
+</html>
