@@ -967,15 +967,7 @@ def updateUser(
                     Usuario).filter_by(id_usuario=id_usuario).first()
 
                 if usuario_actualizar:
-                    valores_anteriores = {
-                        'nom_usuario': usuario_actualizar.nom_usuario,
-                        'apellido_usuario': usuario_actualizar.apellido_usuario,
-                        'correo': usuario_actualizar.correo,
-                        'direccion': usuario_actualizar.direccion,
-                        'municipio': usuario_actualizar.municipio,
-                        'estado': usuario_actualizar.estado,
-                        'tipo_doc': usuario_actualizar.tipo_doc
-                    }
+                    
                     # Actualiza los campos con los nuevos valores
                     usuario_actualizar.nom_usuario = nom_usuario
                     usuario_actualizar.apellido_usuario = apellido_usuario
@@ -987,26 +979,14 @@ def updateUser(
                     # Guarda los cambios en la base de datos
                     db.commit()
                     # Compara los valores actuales con los nuevos valores
-                    cambios_realizados = False
-                    for campo, valor_anterior in valores_anteriores.items():
-                        if getattr(usuario_actualizar, campo) != valor_anterior:
-                            cambios_realizados = True
-                            break
-
-                    if cambios_realizados:
-                        return RedirectResponse(url="/consultar_usuario", status_code=status.HTTP_303_SEE_OTHER)
-                    else:
-                        alerta = {
-                            "mensaje": "No se realizaron cambios.",
-                            "color": "warning"
-
-                        }
-                        return alerta
+                    
+                    
+                    return RedirectResponse(url="/usuarios", status_code=status.HTTP_303_SEE_OTHER)
+                    
 
                 else:
-                    # raise HTTPException(
-                    #   status_code=404, detail="Usuario no encontrado")
-                    return
+                    
+                    return RedirectResponse(url="/usuarios", status_code=status.HTTP_303_SEE_OTHER)
         else:
 
             return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
