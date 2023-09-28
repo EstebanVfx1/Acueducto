@@ -16,10 +16,8 @@
   
 </head>
 <style>
-  /* Cambia el color de fondo del modal de copia */
   div.dt-button-info h2 {
     color: #000000;
-    /* Cambia el color del texto si es necesario */
   }
 </style>
 
@@ -50,7 +48,8 @@
             <tr>
               <th>Nombre</th>
               <th>Correo</th>
-              <th>Teléfono</th>
+              <th>Teléfono fijo</th>
+              <th>Teléfono celular</th>
               <th>Direccion</th>    
               {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
                 <th>Estado</th>
@@ -65,11 +64,16 @@
               <td>{{ emp.nom_empresa }}</td>
               <td>{{ emp.email }}</td>
               <td>{{ emp.tel_fijo }}</td>
+              <td>{{ emp.tel_cel }}</td>
               <td>{{ emp.direccion_empresa }}</td>
               {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
               <td><img src="{{ url_for('static', path='assets/images/')}}{{emp.estado}}.png" alt="{{ emp.estado }}"></td>
               {% endif %}
-              <td><a href="/EditarEmpresa/{{ emp.id_empresa }}" class="btn btn-warning">Editar</a></td>
+              <td><form action="/EditarEmpresa/" method="POST">
+                <input type="hidden" name="id_empresa" value="{{ emp.id_empresa  }}">
+                <button type="submit" class="btn btn-warning">Editar</button>
+              </form>
+                
               <td>
                 {% if emp.estado == 'Activo' %}
                   <button type="button" class="btn btn-danger" onclick="confirmDeleteEmpresa('{{ emp.id_empresa }}')">Desactivar</button>

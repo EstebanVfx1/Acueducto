@@ -541,7 +541,17 @@ def create_super_admin(
     return {"mensaje": "Super Admin creado exitosamente"}
 
 
+# funcion verificar campos crear usuario
+
+def verificar_existencia(campos, valores, db):
+    query = db.query(Usuario)
+    for campo, valor in zip(campos, valores):
+        query = query.filter(getattr(Usuario, campo) == valor)
+    return db.query(query.exists()).scalar()
+
 # CREAR USUARIOS
+
+
 @app.post("/crearUser")
 def create_usuario(
     rol: str = Form(...),
@@ -557,20 +567,35 @@ def create_usuario(
     token: str = Cookie(None),
     db: Session = Depends(get_database),
 ):
+
+    empresa_existente = db.query(Empresa).filter(
+        Empresa.id_empresa == empresa).first()
+    if not empresa_existente:
+
+        return
+
+    campos = ['correo', 'num_doc']
+    valores = [correo, num_doc]
+    if verificar_existencia(campos, valores, db):
+        return
+
     if token:
         is_valid = verificar_token(token, db)
         if is_valid:
             usuario = db.query(Usuario).filter(
                 Usuario.id_usuario == is_valid).first()
             if usuario.rol in [SUPER_ADMIN, ADMIN]:
-                # Verificar si el correo electrónico ya está registrado
-                existing_user = (
-                    db.query(Usuario).filter(Usuario.correo == correo).first()
-                )
+                # Verificar si el correo electronico ya está registrado
+                existing_user = db.query(Usuario).filter(
+                    Usuario.correo == correo).first()
                 if existing_user:
-                    raise HTTPException(
-                        status_code=400, detail="Correo electrónico ya registrado"
-                    )
+                    return
+
+                verificar_documento = db.query(Usuario).filter(
+                    Usuario.num_doc == num_doc).first()
+                if verificar_documento:
+                    return
+
                 # Genera un ID de usuario aleatorio
                 id_usuario = generar_random_id()
                 user = (
@@ -585,7 +610,7 @@ def create_usuario(
                 hashed_password = bcrypt.hashpw(
                     contrasenia.encode("utf-8"), bcrypt.gensalt()
                 )
-                # Validar y crear el usuario en la base de datos con la contraseña encriptada
+                # Validar y crear el usuario en la base de datos con la contrasena encriptada
                 usuario_db = Usuario(
                     id_usuario=id_usuario,
                     rol=rol,
@@ -608,9 +633,7 @@ def create_usuario(
                     return {"mensaje": "Usuario creado exitosamente"}
                 except Exception as e:
                     db.rollback()  # Realiza un rollback en caso de error para deshacer cambios
-                    raise HTTPException(
-                        status_code=400, detail=f"Error al crear la empresa: {str(e)}"
-                    )
+                    return
             return {"mensaje": "Usuario creado exitosamente"}
         else:
             raise HTTPException(status_code=401, detail="No autorizado")
@@ -661,7 +684,7 @@ async def login(
     db.commit()
 
     # datos_usuario = get_datos_usuario(usuario.id_usuario, db)
-    # Codificar el diccionario en la URL como un parámetro
+    # Codificar el diccionario en la URL como un parametro
     # encoded_usuario = urllib.parse.urlencode(datos_usuario)
 
     # Construir la URL con el diccionario de usuario codificado
@@ -705,12 +728,10 @@ def get_form_usuario(
             if rol_usuario == SUPER_ADMIN or rol_usuario == ADMIN:
                 datos_usuario = get_datos_usuario(is_token_valid, db)
                 return template.TemplateResponse(
-                    "registro_usuario.html", {
-                        "request": request, "usuario": datos_usuario}
-                )
+                    "registro_usuario.html", {"request": request, "usuario": datos_usuario})
             else:
                 alerta = {
-                    "mensaje": "No tiene los permisos para esta acción",
+                    "mensaje": "No tiene los permisos para esta accion",
                     "color": "warning",
                 }
                 return template.TemplateResponse(
@@ -724,7 +745,7 @@ def get_form_usuario(
 # Opcion consultar empresa
 
 
-@app.get("/consultar_empresa", response_class=HTMLResponse)
+@app.get("/empresas", response_class=HTMLResponse)
 def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
 
     if token:
@@ -759,7 +780,7 @@ def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = 
 # Opcion consultar Usuario
 
 
-@app.get("/consultar_usuario", response_class=HTMLResponse)
+@app.get("/usuarios", response_class=HTMLResponse)
 def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
     if token:
         token_valido = verificar_token(token, db)
@@ -882,10 +903,10 @@ async def generar_pdf_P01_F_03():
 # EDITAR USUARIOS:
 
 
-@app.get("/EditarUsuarios/{id_usuario}", response_class=HTMLResponse)
+@app.post("/EditarUsuarios/", response_class=HTMLResponse)
 def Editar_Usuarios(
         request: Request,
-        id_usuario: str,
+        id_usuario: str = Form(...),
         token: str = Cookie(None),
         db: Session = Depends(get_database),
 ):
@@ -894,18 +915,20 @@ def Editar_Usuarios(
         token_valido = verificar_token(token, db)
         if token_valido:
             rol_usuario = get_rol(token_valido, db)
+            usuario = db.query(Usuario).filter(
+                Usuario.id_usuario == token_valido).first()
             if rol_usuario in [SUPER_ADMIN, ADMIN]:
-                usuario = get_datos_usuario(id_usuario, db)
-                return template.TemplateResponse("EditarUsuario.html", {"request": request, "usuario": usuario})
+                user = get_datos_usuario(id_usuario, db)
+                return template.TemplateResponse("EditarUsuario.html", {"request": request, "user": user, "usuario": usuario})
     raise HTTPException(
         status_code=403, detail="No tiene los permisos necesarios")
 
 
 # EDITAR USUARIO (PERSONAL):
-@app.get("/EditarUsuario/{id_usuario}", response_class=HTMLResponse)
+@app.post("/EditarUsuario/", response_class=HTMLResponse)
 def Editar_Usuario(
-    id_usuario: str,
     request: Request,
+    id_usuario: str = Form(...),
     token: str = Cookie(None),
     db: Session = Depends(get_database)
 ):
@@ -921,6 +944,7 @@ def Editar_Usuario(
 # guardar cambios
 @app.post("/updateUser/")
 def updateUser(
+
     id_usuario: str = Form(...),
     nom_usuario: str = Form(...),
     apellido_usuario: str = Form(...),
@@ -932,7 +956,6 @@ def updateUser(
     token: str = Cookie(None),
     db: Session = Depends(get_database),
 ):
-    print(id_usuario)  # si mande el id
     if token:
         token_valido = verificar_token(token, db)
 
@@ -944,6 +967,15 @@ def updateUser(
                     Usuario).filter_by(id_usuario=id_usuario).first()
 
                 if usuario_actualizar:
+                    valores_anteriores = {
+                        'nom_usuario': usuario_actualizar.nom_usuario,
+                        'apellido_usuario': usuario_actualizar.apellido_usuario,
+                        'correo': usuario_actualizar.correo,
+                        'direccion': usuario_actualizar.direccion,
+                        'municipio': usuario_actualizar.municipio,
+                        'estado': usuario_actualizar.estado,
+                        'tipo_doc': usuario_actualizar.tipo_doc
+                    }
                     # Actualiza los campos con los nuevos valores
                     usuario_actualizar.nom_usuario = nom_usuario
                     usuario_actualizar.apellido_usuario = apellido_usuario
@@ -952,20 +984,35 @@ def updateUser(
                     usuario_actualizar.municipio = municipio
                     usuario_actualizar.estado = estado
                     usuario_actualizar.tipo_doc = tipo_doc
-                    print("si llego hasta aca")
                     # Guarda los cambios en la base de datos
                     db.commit()
+                    # Compara los valores actuales con los nuevos valores
+                    cambios_realizados = False
+                    for campo, valor_anterior in valores_anteriores.items():
+                        if getattr(usuario_actualizar, campo) != valor_anterior:
+                            cambios_realizados = True
+                            break
 
-                    return {"exitoso": "Guardado cambios"}
-                # else:
-                #    raise HTTPException(
-                #        status_code=404, detail="Usuario no encontrado")
+                    if cambios_realizados:
+                        return RedirectResponse(url="/consultar_usuario", status_code=status.HTTP_303_SEE_OTHER)
+                    else:
+                        alerta = {
+                            "mensaje": "No se realizaron cambios.",
+                            "color": "warning"
+
+                        }
+                        return alerta
+
+                else:
+                    # raise HTTPException(
+                    #   status_code=404, detail="Usuario no encontrado")
+                    return
         else:
 
-            return {"fallo": "no es el rol"}
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
     else:
 
-        return {"fallo": "algo jodio en el token"}
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # Otras importaciones necesarias (como SUPER_ADMIN, ADMIN, Usuario, verificar_token, get_rol, get_database, etc.)
@@ -1046,8 +1093,11 @@ def cambiar_estado_empresa(id_empresa: int, token: str = Cookie(None), db: Sessi
         return JSONResponse(status_code=500, content={"error": f"Error interno: {str(e)}"})
 
 
-@app.get("/EditarEmpresa/{id_empresa}", response_class=HTMLResponse)
-def Editar_Empresas(request: Request, id_empresa: int, token: str = Cookie(None),  db: Session = Depends(get_database)):
+@app.post("/EditarEmpresa/", response_class=HTMLResponse)
+def Editar_Empresas(request: Request,
+                    id_empresa: int = Form(...),
+                    token: str = Cookie(None),
+                    db: Session = Depends(get_database)):
     if token:
         token_valido = verificar_token(token, db)
         if token_valido:
@@ -1067,4 +1117,61 @@ def Editar_Empresas(request: Request, id_empresa: int, token: str = Cookie(None)
 
 # ACTUALIZAR EMPRESA:
 
-# @app.post("")
+@app.post("/updateEmpresa")
+def updateEmpresa(
+
+    id_empresa: int = Form(...),
+    nom_empresa: str = Form(...),
+    tel_fijo: str = Form(...),
+    tel_cel: str = Form(...),
+    email: str = Form(...),
+    estado: str = Form(...),
+    token: str = Cookie(None),
+    db: Session = Depends(get_database),
+):
+    if token:
+        token_valido = verificar_token(token, db)
+        if token_valido:
+            rol_usuario = get_rol(token_valido, db)
+
+            if rol_usuario in [SUPER_ADMIN, ADMIN]:
+                update_empresa = db.query(Empresa).filter_by(
+                    id_empresa=id_empresa).first()
+
+                if update_empresa:
+                    update_empresa.nom_empresa = nom_empresa
+                    update_empresa.tel_fijo = tel_fijo
+                    update_empresa.tel_cel = tel_cel
+                    update_empresa.email = email
+                    update_empresa.estado = estado
+                    db.commit()
+                    return RedirectResponse(url="/empresas", status_code=status.HTTP_303_SEE_OTHER)
+                else:
+                    raise HTTPException(
+                        status_code=404, detail="Empresa no encontrada")
+            else:
+                raise HTTPException(
+                    status_code=403, detail="No tienes permisos para actualizar empresas")
+        else:
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+# @app.post("/EditarPerfil/", response_class=HTMLResponse)
+# def editar_perfil(request: Request,
+#                     token: str = Cookie(None),
+#                     db: Session = Depends(get_database)):
+#     if token:
+#         token_valido = verificar_token(token, db)
+#         if token_valido:
+#             usuario = db.query(Usuario).filter(Usuario.id_usuario == token_valido).first()
+#             if usuario:
+#                 datos_usuario = get_datos_usuario(id_usuario, db)
+#                 return template.TemplateResponse("perfil_usuario.html", {"request": request, "usuario": usuario})
+#             else:
+#                 raise HTTPException(status_code=403, detail="No puede entrar")
+#         else:
+#             return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+#     else:
+#         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)

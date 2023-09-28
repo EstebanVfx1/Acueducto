@@ -7,6 +7,35 @@
     {% include 'meta.html' %}
     {% endblock %}
 
+    <script>
+      function validarFormulario() {
+        var nom_usuario = document.getElementById("nom_usuario").value.trim();
+        var apellido_usuario = document.getElementById("apellido_usuario").value.trim();
+        
+        var num_doc = document.getElementById("num_doc").value.trim();
+        var correo = document.getElementById("correo").value.trim();
+        var municipio = document.getElementById("municipio").value.trim();
+        var direccion = document.getElementById("direccion").value.trim();
+        
+        
+        // Verifica que los campos no estén vacíos
+        if (
+          nom_usuario === "" ||
+          apellido_usuario === "" ||
+          num_doc === "" ||
+          correo === "" ||
+          municipio === "" ||
+          direccion === "" 
+        ) {
+          alert("Por favor, ingresa valores válidos en todos los campos.");
+          return false;
+        }
+    
+        
+        return true;
+      }
+    </script>
+    
 </head>
 
 <body>
@@ -34,74 +63,78 @@
         <div class="container-xxl">
           <div class="layout-top-spacing">
             <div class="col-left-content">
-
+              {% if alerta: %}
+              <div class="alert alert-{{alerta.color}}" role="alert">
+                  {{alerta.mensaje}}
+              </div>
+              {% endif %}
 
               <!-- Formulario registro suscriptores -->
               <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
                 <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
-                  {% if usuario %}
-                  <h2 class="text-center mb-4">Estas modificado a {{ usuario.nom_usuario }}</h2>
-                  <form action="/updateUser/" method="POST">
-                    <input type="hidden" name="id_usuario" value="{{ usuario.id_usuario }}">
+                  
+                  <h2 class="text-center mb-4">Estas modificado a {{ user.nom_usuario }}</h2>
+                  <form action="/updateUser/" method="POST" onsubmit="return validarFormulario()">
+                    <input type="hidden" name="id_usuario" value="{{ user.id_usuario }}">
                     <div class="form-group">
                       <label for="nom_usuario">Nombres</label>
-                      <input type="text" name="nom_usuario" class="form-control" id="nom_usuario" placeholder="Nombres" required value="{{ usuario.nom_usuario }}">
+                      <input type="text" name="nom_usuario" class="form-control" id="nom_usuario" placeholder="Nombres"  value="{{ user.nom_usuario }}  " required>
                     </div>
                     <div class="form-group">
                       <label for="apellido_usuario">Apellidos</label>
-                      <input type="text" name="apellido_usuario" class="form-control" id="apellido_usuario" placeholder="Apellidos" required  value="{{ usuario.apellido_usuario }}">
+                      <input type="text" name="apellido_usuario" class="form-control" id="apellido_usuario" placeholder="Apellidos" required  value="{{ user.apellido_usuario }}">
                     </div>
                     <div class="row d-flex">
                       <div class="col-6 form-group">
                         <label for="tipo_doc">Tipo de Documento:</label>
                           <select class="form-select" name="tipo_doc" id="tipo_doc" required>
-                            <option value="CC" {% if usuario.tipo_doc == "CC" %}selected{% endif %}>Cédula de Ciudadanía</option>
-                            <option value="CE" {% if usuario.tipo_doc == "CE" %}selected{% endif %}>Cédula de Extranjería</option>
-                            <option value="DNI" {% if usuario.tipo_doc == "DNI" %}selected{% endif %}>DNI</option>
-                            <option value="NIT" {% if usuario.tipo_doc == "NIT" %}selected{% endif %}>NIT</option>
+                            <option value="CC" {% if user.tipo_doc == "CC" %}selected{% endif %}>Cédula de Ciudadanía</option>
+                            <option value="CE" {% if user.tipo_doc == "CE" %}selected{% endif %}>Cédula de Extranjería</option>
+                            <option value="DNI" {% if user.tipo_doc == "DNI" %}selected{% endif %}>DNI</option>
+                            <option value="NIT" {% if user.tipo_doc == "NIT" %}selected{% endif %}>NIT</option>
                           </select>
                       </div>
                       <div class="col-6 form-group">
                         <label for="num_doc">Número de Documento:</label>
-                        <input type="number" class="form-control" name="num_doc" id="num_doc" required value="{{ usuario.num_doc }}">
+                        <input type="number" class="form-control" name="num_doc" id="num_doc" required value="{{ user.num_doc }}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="correo">Correo Electrónico:</label>
-                      <input type="email" class="form-control" name="correo" id="correo" required value="{{ usuario.correo }}">
+                      <input type="email" class="form-control" name="correo" id="correo" required value="{{ user.correo }}">
                     </div>
                     <div class="form-group">
                       <label for="municipio">Municipio:</label>
-                      <input type="text" class="form-control" name="municipio" id="municipio" required value="{{ usuario.municipio }}"> 
+                      <input type="text" class="form-control" name="municipio" id="municipio" required value="{{ user.municipio }}"> 
                     </div>
                     <div class="form-group">
                       <label for="direccion">Dirección:</label>
-                      <input type="text" class="form-control" name="direccion" id="direccion" required value="{{ usuario.direccion }}">
+                      <input type="text" class="form-control" name="direccion" id="direccion" required value="{{ user.direccion }}">
                     </div>
                     <div class="form-group">
                       <label for="estado">Estado:</label>
                       <select class="form-select" name="estado" id="estado" required>
-                        <option value="Activo" {% if usuario.estado == "Activo" %}selected{% endif %}>Activo</option>
-                        <option value="Inactivo" {% if usuario.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
+                        <option value="Activo" {% if user.estado == "Activo" %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if user.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
                       </select>
                     </div>
-                    {% if usuario.rol != "SuperAdmin" %}
+                    
                     <div class="form-group">
                       <label for="rol">Rol:</label>
                       <select class="form-select" name="rol" id="rol" required>
-                        <option value="Admin" {% if usuario.rol == "Admin" %}selected{% endif %}>Admin</option>
-                        <option value="Tecnico" {% if usuario.rol == "Tecnico" %}selected{% endif %}>Técnico</option>
-                        <option value="Suscriptor" {% if usuario.rol == "Suscriptor" %}selected{% endif %}>Suscriptor</option>
+                        <option value="Admin" {% if user.rol == "Admin" %}selected{% endif %}>Admin</option>
+                        <option value="Tecnico" {% if user.rol == "Tecnico" %}selected{% endif %}>Técnico</option>
+                        <option value="Suscriptor" {% if user.rol == "Suscriptor" %}selected{% endif %}>Suscriptor</option>
                       </select>
                     </div>
-                    {% endif %}
+                    
                     <div class="text-center">
                       <button type="submit" class="btn btn-success">ACTUALIZAR</button>
                     </div>
                   
                     
                   </form>
-                  {% endif %}
+                  
                 </div>
               </div>
               <div class="footer-wrapper col-xl-12">

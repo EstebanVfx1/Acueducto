@@ -77,8 +77,11 @@
                                 <td><img src="{{ url_for('static', path='assets/images/')}}{{user.estado}}.png" alt="{{ user.estado }}"></td>
                                 {% endif %}
                                 <td>{{ user.direccion }}</td>
-                                <td><a href="/EditarUsuarios/{{user.id_usuario}}" type="button"
-                                        class="btn btn-warning">Editar</a></td>
+
+                                <td><form action="/EditarUsuarios/" method="POST">
+                                        <input type="hidden" name="id_usuario" value="{{ user.id_usuario }}">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    </form>
                                 <td>
                                     {% if user.estado == 'Activo' %}
                                         <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ user.id_usuario }}')"> 

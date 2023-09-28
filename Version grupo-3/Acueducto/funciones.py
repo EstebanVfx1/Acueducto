@@ -107,7 +107,7 @@ def convertir_a_pdf(docx_path, pdf_path):
     pdf.output(pdf_path)
 
 
-# OBTENER DATOS EMPRESAS:
+# OBTENER DATOS EMPRESA:
 def get_datos_empresa(id_empresa, db):
     if id_empresa:
         empresa = db.query(Empresa).filter(
@@ -126,3 +126,10 @@ def get_datos_empresa(id_empresa, db):
             return None
     else:
         return None
+
+
+# OBTERNER DATOS EMPRESA (TODAS LAS REGISTRADAS):
+
+def get_datos_empresas(db) -> list[str]:
+    nom_empresas = db.query(Empresa.nom_empresa).all()
+    return [nombre[0] for nombre in nom_empresas]

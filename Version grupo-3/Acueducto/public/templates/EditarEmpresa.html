@@ -7,6 +7,22 @@
   {% include 'meta.html' %}
   {% endblock %}
 
+  <script>
+    
+    function validarFormulario() {
+      var nomEmpresa = document.getElementById("nom_empresa").value.trim();
+      var telFijo = document.getElementById("tel_fijo").value.trim();
+      var telCel = document.getElementById("tel_cel").value.trim();
+      var email = document.getElementById("email").value.trim();
+
+      if (nomEmpresa === "" || telFijo === "" || telCel === "" || email === "") {
+        alert("Por favor, ingresa valores válidos en todos los campos.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 </head>
 
 <body>
@@ -41,40 +57,49 @@
                 <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
                   {% if empresa %}
 
-                  <h2 class="text-center mb-4">Estas modificando a {{ empresa.nom_empresa }}</h2>
+                  <h2 class="text-center mb-4">Estas modificando la empresa <b>{{ empresa.nom_empresa }}</b></h2>
 
-                  <form action="/EditarEmpresa/" method="POST">
+                  <form action="/updateEmpresa/" method="POST" onsubmit="return validarFormulario()">
                     <input type="hidden" name="id_empresa" value="{{ empresa.id_empresa }}">
 
                     <div class="form-group">
                       <label for="nom_empresa">Nombre</label>
-                      <input type="text" class="form-control" id="nom_empresa" placeholder="Nombre empresa" required
+                      <input type="text" class="form-control" name="nom_empresa" id="nom_empresa" placeholder="Nombre empresa" required
                         value="{{ empresa.nom_empresa }}">
                     </div>
 
                     <div class="form-group">
                       <label for="tel_fijo">Teléfono Fijo</label>
-                      <input type="text" class="form-control" id="tel_fijo" placeholder="Teléfono fijo" required
+                      <input type="text" class="form-control" name="tel_fijo" id="tel_fijo" placeholder="Teléfono fijo" required
                         value="{{ empresa.tel_fijo }}">
                     </div>
 
                     <div class="form-group">
-                      <label for="email">Correo electrónico</label>
-                      <input type="email" class="form-control" id="email" placeholder="Correo" required
-                        value="{{ empresa.email }}">
-                    </div>
+                      <label for="tel_cel">Teléfono Celular</label>
+                      <input type="text" class="form-control" name="tel_cel" id="tel_cel" placeholder="Teléfono celular" required
+                        value="{{ empresa.tel_fijo }}">
+                    </div>  
 
                     <div class="form-group">
-                      <label for="estado">Estado</label>
-                      <input type="text" class="form-control" id="estado" placeholder="Estado" required
-                        value="{{ empresa.estado }}">
+                      <label for="email">Correo electrónico</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Correo" required
+                        value="{{ empresa.email }}">
                     </div>
-
-                    {% endif %}
+                    
+                    <div class="form-group">
+                      <label for="estado">Estado:</label>
+                      <select class="form-select" name="estado" id="estado" required>
+                        <option value="Activo" {% if empresa.estado == "Activo" %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if empresa.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
+                      </select>
+                    </div>
+                    
                     <div class="text-center">
+                      <a href="/empresas" class="btn btn-danger">CANCELAR</a>
                       <button type="submit" class="btn btn-success">ACTUALIZAR</button>
                     </div>
                   </form>
+                  {% endif %}
                 </div>
 
               </div>
@@ -94,9 +119,6 @@
   </div>
   <!-- END MAIN CONTAINER -->
 
-  <footer>
-    <!-- place footer here -->
-  </footer>
   <!-- BEGIN SCRIPTS -->
   {% block scripts %}
   {% include 'scripts.html' %}
