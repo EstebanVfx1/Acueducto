@@ -4,8 +4,8 @@
 <head>
   <title>Editar Empresa</title>
   {% block meta %}
-    {% include 'meta.html' %}
-    {% endblock %}
+  {% include 'meta.html' %}
+  {% endblock %}
 
 </head>
 
@@ -15,14 +15,14 @@
     {% include 'nav.html' %}
     {% endblock %}
   </header>
-  
-    <!-- [  navigation menu ] end -->
 
-    <!-- BEGIN LOADER -->
-    {% block loader %}
-    {% include 'loader.html' %}
-    {% endblock %}
-    <!--  END LOADER -->
+  <!-- [  navigation menu ] end -->
+
+  <!-- BEGIN LOADER -->
+  {% block loader %}
+  {% include 'loader.html' %}
+  {% endblock %}
+  <!--  END LOADER -->
   <div class="main-container" id="container">
 
     <div class="overlay"></div>
@@ -48,22 +48,26 @@
 
                     <div class="form-group">
                       <label for="nom_empresa">Nombre</label>
-                      <input type="text" class="form-control" id="nom_empresa" placeholder="Nombre empresa" required value="{{ empresa.nom_empresa }}">
+                      <input type="text" class="form-control" id="nom_empresa" placeholder="Nombre empresa" required
+                        value="{{ empresa.nom_empresa }}">
                     </div>
 
                     <div class="form-group">
                       <label for="tel_fijo">Teléfono Fijo</label>
-                      <input type="text" class="form-control" id="tel_fijo" placeholder="Teléfono fijo" required  value="{{ empresa.tel_fijo }}">
+                      <input type="text" class="form-control" id="tel_fijo" placeholder="Teléfono fijo" required
+                        value="{{ empresa.tel_fijo }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Correo" required  value="{{ empresa.email }}">
+                      <label for="email">Correo electrónico</label>
+                      <input type="email" class="form-control" id="email" placeholder="Correo" required
+                        value="{{ empresa.email }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="estado">Estado</label>
-                        <input type="text" class="form-control" id="estado" placeholder="Estado" required  value="{{ empresa.estado }}">
+                      <label for="estado">Estado</label>
+                      <input type="text" class="form-control" id="estado" placeholder="Estado" required
+                        value="{{ empresa.estado }}">
                     </div>
 
                     {% endif %}
@@ -72,7 +76,7 @@
                     </div>
                   </form>
                 </div>
-                
+
               </div>
               <div class="footer-wrapper col-xl-12">
                 <div class="footer-section f-section-1">
@@ -89,7 +93,7 @@
     <!--  END CONTENT AREA  -->
   </div>
   <!-- END MAIN CONTAINER -->
- 
+
   <footer>
     <!-- place footer here -->
   </footer>

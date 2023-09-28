@@ -56,7 +56,7 @@
                             <th>Documento</th>
                             <th>Ciudad</th>
                             {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
-                            <th>estado</th>
+                                <th>estado</th>
                             {% endif %}
                             <th>Direccion</th>
                             <th class="dt-no-sorting"></th>
@@ -65,27 +65,28 @@
                     </thead>
                     <tbody>
                         {% for user in usuarios %}
-                        <tr>
-                            <td>{{ user.nom_usuario }}</td>
-                            <td>{{ user.apellido_usuario }}</td>
-                            <td>{{ user.correo }}</td>
-                            <td>{{ user.rol }}</td>
-                            <td>{{ user.tipo_doc }}</td>
-                            <td>{{ user.num_doc}}</td>
-                            <td>{{ user.municipio }}</td>
-                            {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
-                            <td><img src="{{ url_for('static', path='assets/images/')}}{{user.estado}}.png" alt="{{ user.estado }}"></td>
-                            {% endif %}
-                            <td>{{ user.direccion }}</td>
-                            <td><a href="/EditarUsuarios/{{user.id_usuario}}" type="button"
-                                    class="btn btn-warning">Editar</a></td>
-                            <td>
-                                <button type="button" class="btn btn-danger"
-                                    onclick="confirmDelete('{{ user.id_usuario }}')">
-                                    Desactivar
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ user.nom_usuario }}</td>
+                                <td>{{ user.apellido_usuario }}</td>
+                                <td>{{ user.correo }}</td>
+                                <td>{{ user.rol }}</td>
+                                <td>{{ user.tipo_doc }}</td>
+                                <td>{{ user.num_doc}}</td>
+                                <td>{{ user.municipio }}</td>
+                                {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
+                                <td><img src="{{ url_for('static', path='assets/images/')}}{{user.estado}}.png" alt="{{ user.estado }}"></td>
+                                {% endif %}
+                                <td>{{ user.direccion }}</td>
+                                <td><a href="/EditarUsuarios/{{user.id_usuario}}" type="button"
+                                        class="btn btn-warning">Editar</a></td>
+                                <td>
+                                    {% if user.estado == 'Activo' %}
+                                        <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ user.id_usuario }}')"> 
+                                            Desactivar
+                                        </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

@@ -9,8 +9,6 @@
         {% endblock %}
     </head>
 <body class="form">
-    
-
     <div class="form-container">
         <div class="form-form">
             <div class="form-form-wrap">
@@ -18,7 +16,6 @@
                     <div class="form-content">
 
                         <h1 class="">Iniciar sesión en <a href="index.html"><span class="brand-name">Acueducto</span></a></h1>
-                        <p class="signup-link">¿Nuevo aquí? <a href="auth_register.html">Crear una cuenta</a></p>
                         <form class="text-left" action="/iniciarSesion" method="post">
                             {% if alerta: %}
                             <div class="alert alert-{{alerta.color}}" role="alert">
@@ -65,7 +62,6 @@
                             </div>
                         </form>
                         <p class="terms-conditions">© 2023 Todos los derechos reservados. <a href="index.html">ACUEDUCTO</a> es un producto de Manolos. <a href="javascript:void(0);">Preferencias de cookies</a>, <a href="javascript:void(0);">Privacidad</a> y <a href="javascript:void(0);">Términos</a>.</p>
-                        
                     </div>                    
                 </div>
             </div>

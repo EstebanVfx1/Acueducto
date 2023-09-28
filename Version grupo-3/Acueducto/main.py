@@ -39,9 +39,7 @@ template = Jinja2Templates(directory="public/templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-def login(
-    request: Request,
-):
+def login(request: Request):
     return template.TemplateResponse("login.html", {"request": request})
 
 
@@ -59,12 +57,12 @@ def inicio(
             )
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # -- 1.1 --
 # CENSO
-
-
 @app.get("/censo", response_class=HTMLResponse)
 def pagCenso(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -90,9 +88,9 @@ def pagCenso(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/index", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # CONCEPTOS BASICO
@@ -121,14 +119,12 @@ def pagConceptosBasicos(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # ESTATUTOS
-
-
 @app.get("/estatutos", response_class=HTMLResponse)
 def pagEstatutos(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -154,14 +150,12 @@ def pagEstatutos(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # CONTRATO DE CONDICIONES UNIFORME
-
-
 @app.get("/contrato_condiciones", response_class=HTMLResponse)
 def pagContrato_de_condiciones_uniformes(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -187,14 +181,12 @@ def pagContrato_de_condiciones_uniformes(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # INVITACION A LA ASAMBLEA
-
-
 @app.get("/invitacion_asamblea", response_class=HTMLResponse)
 def pagInvitacion_a_la_asamblea(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -220,9 +212,9 @@ def pagInvitacion_a_la_asamblea(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # FIN 1.1
@@ -257,14 +249,12 @@ def pagLlamado(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # VERIFICACION DEL CUORUM
-
-
 @app.get("/cuorum", response_class=HTMLResponse)
 def pagCuorum(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -290,14 +280,12 @@ def pagCuorum(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # ORDEN DEL DIA
-
-
 @app.get("/orden_dia", response_class=HTMLResponse)
 def pagOrdenDia(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -323,14 +311,12 @@ def pagOrdenDia(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # ELECCION A LA COMISION
-
-
 @app.get("/eleccion_comision", response_class=HTMLResponse)
 def pagEleccion(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -356,14 +342,12 @@ def pagEleccion(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # APROBACION ESTATUTOS
-
-
 @app.get("/aprobacion_estatutos", response_class=HTMLResponse)
 def pagAprobacion_estatutos(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -389,14 +373,12 @@ def pagAprobacion_estatutos(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # ELECCION DE LA JUNTA
-
-
 @app.get("/eleccion_junta_administradora", response_class=HTMLResponse)
 def pagEleccion_junta_administradora(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -422,9 +404,9 @@ def pagEleccion_junta_administradora(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # APROBACION DE LA ACTA
@@ -455,9 +437,9 @@ def PagAprobacion_acta_constitucion(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # FIN 1.2
@@ -487,9 +469,9 @@ def PagArchivo_control_documental(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @app.get("/registro_suscriptor", response_class=HTMLResponse)
@@ -510,10 +492,8 @@ def PagRegistro_comiSion(request: Request):
 
 
 # PARA CREAR SUPER ADMIN
-
-
 @app.post("/crear_super_admin/")
-def create_usuario(
+def create_super_admin(
     id_usuario: str = Form(...),
     rol: str = Form(...),
     empresa: int = Form(None),
@@ -562,83 +542,84 @@ def create_usuario(
 
 
 # CREAR USUARIOS
-# @app.post("/crearUsuario")
-# def create_usuario(
-#    rol: str = Form(...),
-#    empresa: int = Form(None),
-#    nom_usuario: str = Form(...),
-#    apellido_usuario: str = Form(...),
-#    correo: str = Form(...),
-#    tipo_doc: str = Form(...),
-#    num_doc: str = Form(...),
-#    direccion: str = Form(...),
-#    municipio: str = Form(...),
-#    contrasenia: str = Form(...),
-#    token: str = Cookie(None),
-#    db: Session = Depends(get_database),
-# ):
-#    if token:
-#        is_valid = verificar_token(token)
-#        if is_valid:
-#            usuario = db.query(Usuario).filter(
-#                Usuario.id_usuario == is_valid).first()
-#            if usuario.rol == "Admin":
-#                # Verificar si el correo electrónico ya está registrado
-#                existing_user = (
-#                    db.query(Usuario).filter(Usuario.correo == correo).first()
-#                )
-#                if existing_user:
-#                    raise HTTPException(
-#                        status_code=400, detail="Correo electrónico ya registrado"
-#                    )
-#                # Genera un ID de usuario aleatorio
-#                id_usuario = generar_random_id()
-#                user = (
-#                    db.query(Usuario).filter(
-#                        Usuario.id_usuario == id_usuario).first()
-#                )
-#                if user:
-#                    raise HTTPException(
-#                        status_code=400, detail="Id de usuario ya Existe"
-#                    )
-#                # Encriptar la contraseña antes de almacenarla
-#                hashed_password = bcrypt.hashpw(
-#                    contrasenia.encode("utf-8"), bcrypt.gensalt()
-#                )
-#                # Validar y crear el usuario en la base de datos con la contraseña encriptada
-#                usuario_db = Usuario(
-#                    id_usuario=id_usuario,
-#                    rol=rol,
-#                    empresa=empresa,
-#                    nom_usuario=nom_usuario,
-#                    apellido_usuario=apellido_usuario,
-#                    correo=correo,
-#                    tipo_doc=tipo_doc,
-#                    num_doc=num_doc,
-#                    direccion=direccion,
-#                    municipio=municipio,
-#                    contrasenia=hashed_password.decode(
-#                        "utf-8"
-#                    ),  # Almacena la contraseña encriptada
-#                )
-#                try:
-#                    db.add(usuario_db)
-#                    db.commit()
-#                    db.refresh(usuario_db)
-#                    return {"mensaje": "Usuario creado exitosamente"}
-#                except Exception as e:
-#                    db.rollback()  # Realiza un rollback en caso de error para deshacer cambios
-#                    raise HTTPException(
-#                        status_code=400, detail=f"Error al crear la empresa: {str(e)}"
-#                    )
-#            return {"mensaje": "Usuario creado exitosamente"}
-#        else:
-#            raise HTTPException(status_code=401, detail="No autorizado")
-#    else:
-#        raise HTTPException(status_code=401, detail="No autorizado")
-
+@app.post("/crearUser")
+def create_usuario(
+    rol: str = Form(...),
+    empresa: int = Form(...),
+    nom_usuario: str = Form(...),
+    apellido_usuario: str = Form(...),
+    correo: str = Form(...),
+    tipo_doc: str = Form(...),
+    num_doc: str = Form(...),
+    direccion: str = Form(...),
+    municipio: str = Form(...),
+    contrasenia: str = Form(...),
+    token: str = Cookie(None),
+    db: Session = Depends(get_database),
+):
+    if token:
+        is_valid = verificar_token(token, db)
+        if is_valid:
+            usuario = db.query(Usuario).filter(
+                Usuario.id_usuario == is_valid).first()
+            if usuario.rol in [SUPER_ADMIN, ADMIN]:
+                # Verificar si el correo electrónico ya está registrado
+                existing_user = (
+                    db.query(Usuario).filter(Usuario.correo == correo).first()
+                )
+                if existing_user:
+                    raise HTTPException(
+                        status_code=400, detail="Correo electrónico ya registrado"
+                    )
+                # Genera un ID de usuario aleatorio
+                id_usuario = generar_random_id()
+                user = (
+                    db.query(Usuario).filter(
+                        Usuario.id_usuario == id_usuario).first()
+                )
+                if user:
+                    raise HTTPException(
+                        status_code=400, detail="Id de usuario ya Existe"
+                    )
+                # Encriptar la contraseña antes de almacenarla
+                hashed_password = bcrypt.hashpw(
+                    contrasenia.encode("utf-8"), bcrypt.gensalt()
+                )
+                # Validar y crear el usuario en la base de datos con la contraseña encriptada
+                usuario_db = Usuario(
+                    id_usuario=id_usuario,
+                    rol=rol,
+                    empresa=empresa,
+                    nom_usuario=nom_usuario,
+                    apellido_usuario=apellido_usuario,
+                    correo=correo,
+                    tipo_doc=tipo_doc,
+                    num_doc=num_doc,
+                    direccion=direccion,
+                    municipio=municipio,
+                    contrasenia=hashed_password.decode(
+                        "utf-8"
+                    ),  # Almacena la contraseña encriptada
+                )
+                try:
+                    db.add(usuario_db)
+                    db.commit()
+                    db.refresh(usuario_db)
+                    return {"mensaje": "Usuario creado exitosamente"}
+                except Exception as e:
+                    db.rollback()  # Realiza un rollback en caso de error para deshacer cambios
+                    raise HTTPException(
+                        status_code=400, detail=f"Error al crear la empresa: {str(e)}"
+                    )
+            return {"mensaje": "Usuario creado exitosamente"}
+        else:
+            raise HTTPException(status_code=401, detail="No autorizado")
+    else:
+        raise HTTPException(status_code=401, detail="No autorizado")
 
 # INICIAR SESION
+
+
 @app.post("/iniciarSesion", response_class=RedirectResponse)
 async def login(
     request: Request,
@@ -736,9 +717,9 @@ def get_form_usuario(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # Opcion consultar empresa
 
@@ -771,9 +752,9 @@ def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = 
             else:
                 raise HTTPException(status_code=403, detail="No puede entrar")
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # Opcion consultar Usuario
 
@@ -812,12 +793,13 @@ def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = 
                 raise HTTPException(
                     status_code=403, detail="No cuenta con los permisos")
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
-
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # ACCESO A PERFIL DE USUARIO
+
+
 @app.get("/perfil_usuario", response_class=HTMLResponse)
 def get_perfil_usuario(
     request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
@@ -843,9 +825,9 @@ def get_perfil_usuario(
                     "index.html", {"request": request, "alerta": alerta}
                 )
         else:
-            return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse(url="/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # GENERAR DOCUMENTOS PERSONALIZADOS
 
@@ -944,6 +926,7 @@ def updateUser(
     apellido_usuario: str = Form(...),
     correo: str = Form(...),
     direccion: str = Form(...),
+    tipo_doc: str = Form(...),
     municipio: str = Form(...),
     estado: str = Form(...),
     token: str = Cookie(None),
@@ -952,8 +935,10 @@ def updateUser(
     print(id_usuario)  # si mande el id
     if token:
         token_valido = verificar_token(token, db)
+
         if token_valido:
             rol_usuario = get_rol(token_valido, db)
+
             if rol_usuario in [SUPER_ADMIN, ADMIN]:
                 usuario_actualizar = db.query(
                     Usuario).filter_by(id_usuario=id_usuario).first()
@@ -966,18 +951,21 @@ def updateUser(
                     usuario_actualizar.direccion = direccion
                     usuario_actualizar.municipio = municipio
                     usuario_actualizar.estado = estado
-
+                    usuario_actualizar.tipo_doc = tipo_doc
+                    print("si llego hasta aca")
                     # Guarda los cambios en la base de datos
                     db.commit()
-                    return {"exitoso": "Guardado cambios"}
-                else:
-                    raise HTTPException(
-                        status_code=404, detail="Usuario no encontrado")
 
+                    return {"exitoso": "Guardado cambios"}
+                # else:
+                #    raise HTTPException(
+                #        status_code=404, detail="Usuario no encontrado")
         else:
-            return RedirectResponse("/", status_code=status.HTTP_403_FORBIDDEN)
+
+            return {"fallo": "no es el rol"}
     else:
-        return RedirectResponse("/", status_code=status.HTTP_403_FORBIDDEN)
+
+        return {"fallo": "algo jodio en el token"}
 
 
 # Otras importaciones necesarias (como SUPER_ADMIN, ADMIN, Usuario, verificar_token, get_rol, get_database, etc.)
@@ -1046,7 +1034,7 @@ def cambiar_estado_empresa(id_empresa: int, token: str = Cookie(None), db: Sessi
                 raise HTTPException(
                     status_code=404, detail="Empresa no encontrada")
 
-            empresa_a_cambiar.estado = "Inactiva"
+            empresa_a_cambiar.estado = "Inactivo"
             db.commit()
 
             return {"exitoso": "Estado de la empresa cambiado a 'Inactivo' correctamente"}
@@ -1060,7 +1048,6 @@ def cambiar_estado_empresa(id_empresa: int, token: str = Cookie(None), db: Sessi
 
 @app.get("/EditarEmpresa/{id_empresa}", response_class=HTMLResponse)
 def Editar_Empresas(request: Request, id_empresa: int, token: str = Cookie(None),  db: Session = Depends(get_database)):
-
     if token:
         token_valido = verificar_token(token, db)
         if token_valido:
@@ -1073,6 +1060,11 @@ def Editar_Empresas(request: Request, id_empresa: int, token: str = Cookie(None)
             else:
                 raise HTTPException(status_code=403, detail="No puede entrar")
         else:
-            return RedirectResponse("/", status_code=status.HTTP_403_FORBIDDEN)
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse("/", status_code=status.HTTP_403_FORBIDDEN)
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+# ACTUALIZAR EMPRESA:
+
+# @app.post("")

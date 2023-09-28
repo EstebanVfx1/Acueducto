@@ -14,7 +14,7 @@ class Empresa(Base):
     tel_fijo = Column(String(10))
     tel_cel = Column(String(10))
     email = Column(String(90))
-    estado = Column(Enum('Activa', 'Inactiva'), default='Activa')
+    estado = Column(Enum('Activo', 'Inactivo'), default='Activo')
     create_at = Column(String, server_default=func.now(), nullable=False)
     update_at = Column(String, server_default=func.now(),
                        onupdate=func.now(), nullable=False)

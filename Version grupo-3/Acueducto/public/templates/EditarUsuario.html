@@ -45,11 +45,11 @@
                     <input type="hidden" name="id_usuario" value="{{ usuario.id_usuario }}">
                     <div class="form-group">
                       <label for="nom_usuario">Nombres</label>
-                      <input type="text" class="form-control" id="nom_usuario" placeholder="Nombres" required value="{{ usuario.nom_usuario }}">
+                      <input type="text" name="nom_usuario" class="form-control" id="nom_usuario" placeholder="Nombres" required value="{{ usuario.nom_usuario }}">
                     </div>
                     <div class="form-group">
                       <label for="apellido_usuario">Apellidos</label>
-                      <input type="text" class="form-control" id="apellido_usuario" placeholder="Apellidos" required  value="{{ usuario.apellido_usuario }}">
+                      <input type="text" name="apellido_usuario" class="form-control" id="apellido_usuario" placeholder="Apellidos" required  value="{{ usuario.apellido_usuario }}">
                     </div>
                     <div class="row d-flex">
                       <div class="col-6 form-group">
@@ -78,6 +78,13 @@
                       <label for="direccion">Dirección:</label>
                       <input type="text" class="form-control" name="direccion" id="direccion" required value="{{ usuario.direccion }}">
                     </div>
+                    <div class="form-group">
+                      <label for="estado">Estado:</label>
+                      <select class="form-select" name="estado" id="estado" required>
+                        <option value="Activo" {% if usuario.estado == "Activo" %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if usuario.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
+                      </select>
+                    </div>
                     {% if usuario.rol != "SuperAdmin" %}
                     <div class="form-group">
                       <label for="rol">Rol:</label>
@@ -88,11 +95,13 @@
                       </select>
                     </div>
                     {% endif %}
-                  {% endif %}
                     <div class="text-center">
                       <button type="submit" class="btn btn-success">ACTUALIZAR</button>
                     </div>
+                  
+                    
                   </form>
+                  {% endif %}
                 </div>
               </div>
               <div class="footer-wrapper col-xl-12">
