@@ -1,4 +1,4 @@
-from fastapi import HTTPException, Depends, Cookie
+from fastapi import HTTPException, Depends, Cookie, Response
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 from typing import Optional
@@ -566,14 +566,18 @@ def create_usuario(
     contrasenia: str = Form(...),
     token: str = Cookie(None),
     db: Session = Depends(get_database),
+    
 ):
 
     empresa_existente = db.query(Empresa).filter(
         Empresa.id_empresa == empresa).first()
     if not empresa_existente:
-
+        """         alerta = {
+            "mensaje": "La empresa seleccionada, no existe.",
+            "color": "danger",
+        }
+        return RedirectResponse(url="/form_registro_usuario", status_code=status.HTTP_303_SEE_OTHER, alerta=alerta) """
         return
-
     campos = ['correo', 'num_doc']
     valores = [correo, num_doc]
     if verificar_existencia(campos, valores, db):
@@ -589,12 +593,12 @@ def create_usuario(
                 existing_user = db.query(Usuario).filter(
                     Usuario.correo == correo).first()
                 if existing_user:
-                    return
+                    return {"error": "Usuario ya existe"}
 
                 verificar_documento = db.query(Usuario).filter(
                     Usuario.num_doc == num_doc).first()
                 if verificar_documento:
-                    return
+                    return {"no exitoso": "documento ya existente"}
 
                 # Genera un ID de usuario aleatorio
                 id_usuario = generar_random_id()
@@ -630,10 +634,17 @@ def create_usuario(
                     db.add(usuario_db)
                     db.commit()
                     db.refresh(usuario_db)
-                    return {"mensaje": "Usuario creado exitosamente"}
+                    
+                    #falta mostra el mensaje para cuando se almacene correctamnete el usuario
+                    """ alerta = {
+                        "mensaje": "creado correctamente",
+                        "color": "success",
+                    } """
+                   
+                    return RedirectResponse(url="/form_registro_usuario", status_code=status.HTTP_303_SEE_OTHER)
                 except Exception as e:
                     db.rollback()  # Realiza un rollback en caso de error para deshacer cambios
-                    return
+                    return {"mensaje": e}
             return {"mensaje": "Usuario creado exitosamente"}
         else:
             raise HTTPException(status_code=401, detail="No autorizado")
@@ -641,8 +652,6 @@ def create_usuario(
         raise HTTPException(status_code=401, detail="No autorizado")
 
 # INICIAR SESION
-
-
 @app.post("/iniciarSesion", response_class=RedirectResponse)
 async def login(
     request: Request,
@@ -727,8 +736,9 @@ def get_form_usuario(
             print(rol_usuario)
             if rol_usuario == SUPER_ADMIN or rol_usuario == ADMIN:
                 datos_usuario = get_datos_usuario(is_token_valid, db)
+                empresas = db.query(Empresa).all()
                 return template.TemplateResponse(
-                    "registro_usuario.html", {"request": request, "usuario": datos_usuario})
+                    "registro_usuario.html", {"request": request, "usuario": datos_usuario,"empresas": empresas})
             else:
                 alerta = {
                     "mensaje": "No tiene los permisos para esta accion",
@@ -754,22 +764,13 @@ def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = 
             rol_usuario = get_rol(token_valido, db)
             usuario = db.query(Usuario).filter(
                 Usuario.id_usuario == token_valido).first()
-            if rol_usuario == SUPER_ADMIN:
+            if rol_usuario in [SUPER_ADMIN, ADMIN]:
                 query_empresas = db.query(Empresa)
                 if query_empresas:
                     return template.TemplateResponse("consultar_empresa.html", {"request": request, "empresa": query_empresas, "usuario": usuario})
                 else:
                     raise HTTPException(
                         status_code=403, detail="No hay empresas que consultar")
-            elif rol_usuario == ADMIN:
-                # si se quieren traer varias empresas hay que decirle en lugar de .first() .all()
-                query_empresas_admin = db.query(Empresa).join(
-                    Usuario, Empresa.id_empresa == Usuario.empresa).all()
-                if query_empresas_admin:
-                    return template.TemplateResponse("consultar_empresa.html",  {"request": request, "empresa": query_empresas_admin})
-                else:
-                    raise HTTPException(
-                        status_code=403, detail="No hay empresas para consultar")
             else:
                 raise HTTPException(status_code=403, detail="No puede entrar")
         else:
@@ -777,78 +778,8 @@ def consultarEmpresa(request: Request, token: str = Cookie(None), db: Session = 
     else:
         return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
-# Opcion consultar Usuario
 
 
-@app.get("/usuarios", response_class=HTMLResponse)
-def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
-    if token:
-        token_valido = verificar_token(token, db)
-        if token_valido:
-            rol_usuario = get_rol(token_valido, db)
-            usuario = db.query(Usuario).filter(
-                Usuario.id_usuario == token_valido).first()
-            if rol_usuario == SUPER_ADMIN:
-                query_usuarios = db.query(Usuario)
-                if query_usuarios:
-                    return template.TemplateResponse("consultar_usuario.html",  {"request": request, "usuarios": query_usuarios, "usuario": usuario})
-                else:
-                    raise HTTPException(
-                        status_code=403, detail="No hay usuarios para consultar")
-            elif rol_usuario == ADMIN:
-                usuario = get_datos_usuario(token_valido, db)
-                if usuario:
-                    print(usuario)
-                    id_empresa = usuario.get("empresa")
-                    query_usuarios_admin = db.query(Usuario).filter(
-                        Usuario.empresa == id_empresa).all()
-                    if query_usuarios_admin:
-                        return template.TemplateResponse("consultar_usuario.html",  {"request": request, "usuarios": query_usuarios_admin})
-                    else:
-                        raise HTTPException(
-                            status_code=403, detail="No hay usuarios para consultar")
-                else:
-                    raise HTTPException(
-                        status_code=403, detail="Problemas al momento de consultar el usuario")
-            else:
-                raise HTTPException(
-                    status_code=403, detail="No cuenta con los permisos")
-        else:
-            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
-    else:
-        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
-
-# ACCESO A PERFIL DE USUARIO
-
-
-@app.get("/perfil_usuario", response_class=HTMLResponse)
-def get_perfil_usuario(
-    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
-):
-    if token:
-        is_token_valid = verificar_token(token, db)  # retorna el id_usuario
-
-        if is_token_valid:
-            rol_usuario = get_rol(is_token_valid, db)
-            print(rol_usuario)
-            if rol_usuario == SUPER_ADMIN or rol_usuario == "Admin":
-                datos_usuario = get_datos_usuario(is_token_valid, db)
-                return template.TemplateResponse(
-                    "perfil_usuario.html", {
-                        "request": request, "usuario": datos_usuario}
-                )
-            else:
-                alerta = {
-                    "mensaje": "No tiene los permisos para esta acción",
-                    "color": "warning",
-                }
-                return template.TemplateResponse(
-                    "index.html", {"request": request, "alerta": alerta}
-                )
-        else:
-            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
-    else:
-        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 # GENERAR DOCUMENTOS PERSONALIZADOS
 
@@ -901,8 +832,33 @@ async def generar_pdf_P01_F_03():
     return {"mensaje": "Archivo PDF generado exitosamente!"}
 
 # EDITAR USUARIOS:
+#-----------------------------------------------BLOQUE USUARIO-----------------------------------------------
 
+# consultar Usuario
+@app.get("/usuarios", response_class=HTMLResponse)
+def consultarUsuario(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
+    if token:
+        token_valido = verificar_token(token, db)
+        if token_valido:
+            rol_usuario = get_rol(token_valido, db)
+            usuario = db.query(Usuario).filter(
+                Usuario.id_usuario == token_valido).first()
+            if rol_usuario in [SUPER_ADMIN, ADMIN]:
+                query_usuarios = db.query(Usuario)
+                if query_usuarios:
+                    return template.TemplateResponse("consultar_usuario.html",  {"request": request, "usuarios": query_usuarios, "usuario": usuario})
+                else:
+                    raise HTTPException(
+                        status_code=403, detail="No hay usuarios para consultar")
+            else:
+                raise HTTPException(
+                    status_code=403, detail="No cuenta con los permisos")
+        else:
+            return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
+#abir formulario de editar usuarios
 @app.post("/EditarUsuarios/", response_class=HTMLResponse)
 def Editar_Usuarios(
         request: Request,
@@ -923,8 +879,7 @@ def Editar_Usuarios(
     raise HTTPException(
         status_code=403, detail="No tiene los permisos necesarios")
 
-
-# EDITAR USUARIO (PERSONAL):
+# ABRIR EDITAR USUARIO (PERSONAL):
 @app.post("/EditarUsuario/", response_class=HTMLResponse)
 def Editar_Usuario(
     request: Request,
@@ -939,7 +894,6 @@ def Editar_Usuario(
             return template.TemplateResponse("perfil_usuario.html", {"request": request, "usuario": usuario})
     raise HTTPException(
         status_code=403, detail="Ha ocurrido un error.")
-
 
 # guardar cambios
 @app.post("/updateUser/")
@@ -994,7 +948,6 @@ def updateUser(
 
         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
-
 # Otras importaciones necesarias (como SUPER_ADMIN, ADMIN, Usuario, verificar_token, get_rol, get_database, etc.)
 
 # cambiar de estado en tabla Usuario
@@ -1034,6 +987,7 @@ def cambiar_estado_usuario(id_usuario: str, token: str = Cookie(None), db: Sessi
         # Captura cualquier error inesperado
         return JSONResponse(status_code=500, content={"error": f"Error interno: {str(e)}"})
 
+#-----------------------------------------------FIN BLOQUE USUARIO---------------------------------------------------
 
 # cambiar de estado en tabla Empresa
 @app.post("/CambiarEstadoEmpresa/{id_empresa}")
@@ -1137,21 +1091,144 @@ def updateEmpresa(
     else:
         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
+# ACCESO A PERFIL DE USUARIO
 
-# @app.post("/EditarPerfil/", response_class=HTMLResponse)
-# def editar_perfil(request: Request,
-#                     token: str = Cookie(None),
-#                     db: Session = Depends(get_database)):
-#     if token:
-#         token_valido = verificar_token(token, db)
-#         if token_valido:
-#             usuario = db.query(Usuario).filter(Usuario.id_usuario == token_valido).first()
-#             if usuario:
-#                 datos_usuario = get_datos_usuario(id_usuario, db)
-#                 return template.TemplateResponse("perfil_usuario.html", {"request": request, "usuario": usuario})
-#             else:
-#                 raise HTTPException(status_code=403, detail="No puede entrar")
-#         else:
-#             return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
-#     else:
-#         return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+@app.get("/perfil_usuario", response_class=HTMLResponse)
+def get_perfil_usuario(
+    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
+):
+    if token:
+        is_token_valid = verificar_token(token, db)  # retorna el id_usuario 
+
+        if is_token_valid:
+            rol_usuario = get_rol(is_token_valid, db)
+            
+            if rol_usuario:
+                datos_usuario = get_datos_usuario(is_token_valid, db)
+                return template.TemplateResponse("perfil_usuario.html", {"request": request, "usuario": datos_usuario})
+            else:
+                alerta = {"mensaje": "No tiene los permisos para esta acción","color": "warning",}
+                
+                return template.TemplateResponse("index.html", {"request": request, "alerta": alerta})
+        else:
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+#FUNCIÓN PARA ACTUALIZAR LOS DATOS DEL PERFIL (PERSONAL):
+@app.post("/actualizarPerfil", response_class=HTMLResponse)
+async def actualizar_perfil(request: Request,
+    nom_usuario: str = Form(...),
+    apellido_usuario: str = Form(...),
+    tipo_doc: str = Form(...),
+    num_doc: str = Form(...),
+    email: str = Form(...),
+    direccion: str = Form(...),
+    token: str = Cookie(None),
+    db: Session = Depends(get_database)):
+    if token:
+        token_valido = verificar_token(token, db)
+        if token_valido:
+            usuario = db.query(Usuario).filter(Usuario.id_usuario == token_valido).first()
+            if usuario:
+                # Validar si alguno de los campos está vacío o lleno de espacios
+
+                usuario.nom_usuario = nom_usuario
+                usuario.apellido_usuario = apellido_usuario
+                usuario.tipo_doc = tipo_doc
+                usuario.num_doc = num_doc
+                usuario.correo = email 
+                usuario.direccion = direccion
+                
+                db.commit()
+
+                # Redireccionar al perfil actualizado
+                return RedirectResponse("/perfil_usuario")
+            else:
+                raise HTTPException(status_code=403, detail="No puede entrar")
+        else:
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+# ------------------------------------ BLOQUE PARA CREACION DE EMPRESA ------------------------------------
+
+# --- MOSTRAMOS LA PAGINA PARA REGISTRAR UNA EMPRESA
+@app.get("/registro_empresa", response_class=HTMLResponse)
+def MostrarRegistroEmpresa(request: Request,
+    token: str = Cookie(None), db: Session = Depends(get_database)
+):
+    if token:
+        token_valido = verificar_token(token, db)
+        if token_valido:
+            rol_usuario = get_rol(token_valido, db)
+            usuario = db.query(Usuario).filter(Usuario.id_usuario == token_valido).first()
+            if rol_usuario in [SUPER_ADMIN, ADMIN]:
+                
+                return template.TemplateResponse("registro_empresa.html", {"request": request, "usuario": usuario})
+                
+            else:
+                raise HTTPException(status_code=403, detail="NO TIENES LOS PERMISOS PARA ACCEDER A ESTA PAGINA ")
+        else:
+            return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    else:
+        return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    
+# --- CREAMOS UNA EMPRESA 
+@app.post("/registrarEmpresa")
+def crearEmpresa(
+    request: Request,
+    nom_empresa: str = Form(...),
+    direccion_empresa: str = Form(...),
+    tel_fijo: str = Form(...),
+    tel_cel: str = Form(...),
+    email: str = Form(...),
+    token: str = Cookie(None),
+    db: Session = Depends(get_database),
+):
+    # Verificar si todos los campos fueron proporcionados
+    if not nom_empresa or not direccion_empresa or not tel_fijo or not tel_cel or not email:
+        raise HTTPException(status_code=400, detail="Todos los campos son requeridos")
+
+    # Verificar si se proporciona un token válido en las cookies
+    if token:
+        is_valid = verificar_token(token, db)
+        if is_valid:
+            usuario = db.query(Usuario).filter(Usuario.id_usuario == is_valid).first()
+
+            if usuario.rol in ['SUPER_ADMIN', 'ADMIN']:
+                # Verificar si el correo electrónico de la empresa ya está registrado
+                existing_correo = db.query(Empresa).filter(Empresa.email == email).first()
+
+                # Verificar si el nombre de la empresa ya está registrado
+                existing_nombre = db.query(Empresa).filter(Empresa.nom_empresa == nom_empresa).first()
+
+                if existing_correo:
+                    raise HTTPException(status_code=400, detail="Correo de la empresa ya registrado")
+
+                if existing_nombre:
+                    raise HTTPException(status_code=400, detail="Nombre de la empresa ya registrado")
+
+                # Crear una instancia de la clase Empresa
+                empresa_db = Empresa(
+                    nom_empresa=nom_empresa,
+                    direccion_empresa=direccion_empresa,
+                    tel_fijo=tel_fijo,
+                    tel_cel=tel_cel,
+                    email=email
+                )
+
+                try:
+                    db.add(empresa_db)
+                    db.commit()
+                    db.refresh(empresa_db)
+                    return JSONResponse(status_code=200, content={"mensaje": "Empresa creada exitosamente"})
+                except Exception as e:
+                    db.rollback()
+                    raise HTTPException(status_code=500, detail="Error al registrar la empresa")
+        else:
+            raise HTTPException(status_code=401, detail="No autorizado")
+    else:
+        raise HTTPException(status_code=401, detail="No autorizado")
+# ------------------------------------ FIN DE BLOQUE DE CREACION DE EMPRESA ---------------------------------

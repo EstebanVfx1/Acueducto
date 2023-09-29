@@ -34,8 +34,13 @@
               <!-- Formulario registro suscriptores -->
               <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
                 <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  {% if alerta: %}
+                  <div class="alert alert-{{alerta.color}}" role="alert">
+                      {{alerta.mensaje}}
+                  </div>
+                  {% endif %}
                   <h2 class="text-center mb-4">Registro Usuario</h2>
-                  <form action="/crearUser" method="POST" onsubmit="return validarFormulario()">
+                  <form action="/crearUser" method="POST">
                     <!-- Agregamos action y method para enviar datos al servidor -->
                     <div class="form-group">
                       <label for="nom_usuario">Nombres</label>
@@ -76,9 +81,13 @@
                       <input type="text" class="form-control" name="direccion" id="direccion" required>
                     </div>
                     <div class="form-group">
-                      <label for="empresa">ID de Empresa</label>
-                      <input type="number" class="form-control" name="empresa" id="empresa" required>
-                    </div>
+                      <label for="empresa">Empresa</label>
+                      <select class="form-control" name="empresa" id="empresa" required>
+                          {% for empresa in empresas %}
+                          <option value="{{ empresa.id_empresa }}">{{ empresa.nom_empresa }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
                     <div class="form-group">
                       <label for="rol">Rol:</label>
                       <select class="form-select" name="rol" id="rol" required>

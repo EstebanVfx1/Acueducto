@@ -3,11 +3,15 @@
 
 <head>
   <title>Editar Usuario</title>
-  {% block meta %}
+    {% block meta %}
     {% include 'meta.html' %}
     {% endblock %}
 
-    <script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script type="text/javascript">
       function validarFormulario() {
         var nom_usuario = document.getElementById("nom_usuario").value.trim();
         var apellido_usuario = document.getElementById("apellido_usuario").value.trim();
@@ -33,6 +37,22 @@
     
         
         return true;
+      }
+
+
+      function validarUpdate(){
+        Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Deseas actualizar los datos?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, actualizar',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('updateUser').submit();
+            }
+        });
       }
     </script>
     
@@ -74,7 +94,7 @@
                 <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
                   
                   <h2 class="text-center mb-4">Estas modificado a {{ user.nom_usuario }}</h2>
-                  <form action="/updateUser/" method="POST" onsubmit="return validarFormulario()">
+                  <form action="/updateUser/" method="POST" id="updateUser" onsubmit="return validarFormulario()">
                     <input type="hidden" name="id_usuario" value="{{ user.id_usuario }}">
                     <div class="form-group">
                       <label for="nom_usuario">Nombres</label>
@@ -129,7 +149,8 @@
                     </div>
                     
                     <div class="text-center">
-                      <button type="submit" class="btn btn-success">ACTUALIZAR</button>
+                      <a href="/usuarios" class="btn btn-danger">CANCELAR</a>
+                      <button onclick="validarUpdate()"  type="button" class="btn btn-success">ACTUALIZAR</button>
                     </div>
                   
                     

@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/pages/page-profile.css')}}">
 
+
 </head>
 
 <body class="horizontal-active">
@@ -91,7 +92,7 @@
                             </div> -->
                         </div>
                         <div class="col ps-16 ps-sm-32 py-24 py-sm-32 overflow-hidden">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-12 col-md-8">
                                     <h2>Información Personal</h2>
                                     <p class="hp-p1-body mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales sit amet nunc et vehicula. Mauris sed lectus nisi.</p>
@@ -102,7 +103,7 @@
                                 <div class="col-12 col-md-8">
                                     <h3>Información</h3>
                                     <p class="hp-p1-body mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales sit amet nunc et vehicula. Mauris sed lectus nisi. Suspendisse velit mi, pretium non euismod vitae Suspendisse velit mi, pretium non euismod vitae</p>
-                                </div>
+                                </div> -->
 
                                 <div class="divider border-black-40 hp-border-color-dark-80"></div>
 
@@ -111,9 +112,9 @@
                                         <div class="col-12 col-md-6">
                                             <h3>Datos Personales</h3>
                                         </div>
-
+                                        
                                         <div class="col-12 col-md-6 hp-profile-action-btn text-end">
-                                            <button class="btn btn-ghost btn-primary" data-bs-toggle="modal" data-bs-target="#profileContactEditModal">Edit</button>
+                                            <button class="btn btn-ghost btn-primary" data-bs-toggle="modal" data-bs-target="#profileContactEditModal">Editar</button>
                                         </div>
 
                                         <div class="col-12 hp-profile-content-list mt-8 pb-0 pb-sm-120">
@@ -123,12 +124,12 @@
                                                     <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.nom_usuario}} {{usuario.apellido_usuario}}</span>
                                                 </li>
                                                 <li class="mt-18">
-                                                    <span class="hp-p1-body">Email</span>
-                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.correo}}</span>
+                                                    <span class="hp-p1-body">Número documento</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.num_doc}}</span>
                                                 </li>
                                                 <li class="mt-18">
-                                                    <span class="hp-p1-body">Numero Documento</span>
-                                                    <a class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0" href="tel:+900374323">{{usuario.num_doc}}</a>
+                                                    <span class="hp-p1-body">Email</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.correo}}</span>
                                                 </li>
                                                 <li class="mt-18">
                                                     <span class="hp-p1-body">Dirección</span>
@@ -148,53 +149,64 @@
                     </div>
                 </div>
             </div>
-            <!-- ACA ESTA EL MODAL XD  -->
-            <div class="modal fade" id="profileContactEditModal" tabindex="-1" aria-labelledby="profileContactEditModalLabel" aria-hidden="true">
+            <!-- MODAL: EDITAR USUARIO (PERSONAL). Se agrega data-bs-backdrop="static" para evitar el cierre automático del modal -->
+            <div class="modal fade" id="profileContactEditModal" tabindex="-1" aria-labelledby="profileContactEditModalLabel" aria-hidden="true" data-bs-backdrop="static"> 
                 <div class="modal-dialog modal-dialog-centered" style="max-width: 416px;">
                     <div class="modal-content">
                         <div class="modal-header py-16">
-                            <h5 class="modal-title" id="profileContactEditModalLabel">Contact Edit</h5>
+                            <h5 class="modal-title" id="profileContactEditModalLabel">DATOS DE USUARIO</h5>
                             <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
                                 <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
                             </button>
                         </div>
 
                         <div class="divider my-0"></div>
-
+                        
                         <div class="modal-body py-48">
-                            <form>
+                            <form action="/actualizarPerfil" method="POST">
                                 <div class="row g-24">
+
                                     <div class="col-12">
-                                        <label for="fullName" class="form-label">Nombre Completo</label>
-                                        <input type="text" class="form-control" id="fullName">
+                                        <label for="nom_usuario" class="form-label">Nombres</label>
+                                        <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" value="{{usuario.nom_usuario}}">
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="displayName" class="form-label">Display Name</label>
-                                        <input type="text" class="form-control" id="displayName">
+                                        <label for="apellido_usuario" class="form-label">Apellidos</label>
+                                        <input type="text" class="form-control" id="apellido_usuario" name="apellido_usuario" value="{{usuario.apellido_usuario}}" >
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="displayName" class="form-label">Tipo documento</label>
+                                        <select class="form-select" name="tipo_doc" id="tipo_doc" required>
+                                            <option value="CC">Cédula de Ciudadanía</option>
+                                            <option value="CE">Cédula de Extranjería</option>
+                                            <option value="DNI">DNI</option>
+                                            <option value="NIT">NIT</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="num_doc" class="form-label">Número documento</label>
+                                        <input type="text" class="form-control" id="num_doc" name="num_doc" value="{{usuario.num_doc}}">
                                     </div>
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input type="email" class="form-control" id="email" name="email" value="{{usuario.correo}}">
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="phone">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="address" class="form-label">Address</label>
-                                        <textarea name="address" id="address" class="form-control"></textarea>
+                                        <label for="direccion" class="form-label">Dirección</label>
+                                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{usuario.direccion}}">
                                     </div>
 
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-primary w-100">Edit</button>
+                                        <button type="submit" class="btn btn-primary w-100">Actualizar</button>
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="btn w-100" data-bs-dismiss="modal">Cancel</div>
+                                        <div class="btn w-100" data-bs-dismiss="modal">Cancelar</div>
                                     </div>
                                 </div>
                             </form>
