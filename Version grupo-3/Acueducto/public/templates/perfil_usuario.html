@@ -168,12 +168,12 @@
 
                                     <div class="col-12">
                                         <label for="nom_usuario" class="form-label">Nombres</label>
-                                        <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" value="{{usuario.nom_usuario}}">
+                                        <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" value="{{usuario.nom_usuario}}" required>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="apellido_usuario" class="form-label">Apellidos</label>
-                                        <input type="text" class="form-control" id="apellido_usuario" name="apellido_usuario" value="{{usuario.apellido_usuario}}" >
+                                        <input type="text" class="form-control" id="apellido_usuario" name="apellido_usuario" value="{{usuario.apellido_usuario}}"required>
                                     </div>
 
                                     <div class="col-12">
@@ -188,17 +188,17 @@
 
                                     <div class="col-12">
                                         <label for="num_doc" class="form-label">Número documento</label>
-                                        <input type="text" class="form-control" id="num_doc" name="num_doc" value="{{usuario.num_doc}}">
+                                        <input type="number" max="9999999999" pattern="\d{10}" min="0" oninput="validarNumero(this)" class="form-control" id="num_doc" name="num_doc" value="{{usuario.num_doc}}"required>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" value="{{usuario.correo}}">
+                                        <input type="email" class="form-control" id="email" name="email" value="{{usuario.correo}}" required>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="direccion" class="form-label">Dirección</label>
-                                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{usuario.direccion}}">
+                                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{usuario.direccion}}" required>
                                     </div>
 
                                     <div class="col-6">
@@ -216,7 +216,14 @@
             </div>
         </div>
     </main>
-
+    <script>
+        /* alimina numero negatios */
+        function validarNumero(input){
+            if (input.value < 0){
+                input.vulue = Math.abs(input.value);
+            }
+        }
+    </script>
     <!-- Plugin -->
     <script src="https://kit.fontawesome.com/83996c6a04.js" crossorigin="anonymous"></script>
     <!-- <script src="../../../app-assets/js/plugin/bootstrap.bundle.min.js"></script> -->

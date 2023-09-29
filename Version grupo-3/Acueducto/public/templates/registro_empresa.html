@@ -143,22 +143,32 @@
       });
     }
 
+  document.getElementById("formularioEmpresa").addEventListener("submit", async function (event){
+    event.preventDefault();
+    console.log("SI ENTRAMOS PAPI");
+    try {
+      const formData = new FormData(this);
 
-    document.getElementById("formularioEmpresa").addEventListener("submit", async function (event){
-      event.preventDefault();
-      console.log("SI ENTRAMNOS PAPI");
-      try {
-        const formData = new FormData(this);
+      const response = await enviarSolicitud(formData);
 
-        const response = await enviarSolicitud(formData);
+      if (response.success) {
+        mostrarAlert("La empresa se registró con éxito.", "success");
 
-        if(response.success){
-          mostrarAlert("La empresa se registró con éxito.", "success");
-        }
-      } catch (error) {
-        mostrarAlert(`Error al registrar la empresa: ${error.message}`, "error");
+        //Limpiamos el form
+        this.reset();
+
+        document.getElementById("nom_empresa").focus();
+        
+        
+        setTimeout(function() {
+          window.location.href = "/registro_empresa";
+        }, 3000); // segundos
       }
-    });
+    } catch (error) {
+      mostrarAlert(`Error al registrar la empresa: ${error.message}`, "error");
+    }
+  });
+
   </script>
   {% block scripts %}
   {% include 'scripts.html' %}

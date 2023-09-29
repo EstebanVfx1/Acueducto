@@ -23,31 +23,42 @@
         
         
         // Verifica que los campos no estén vacíos
-        if (
-          nom_usuario === "" ||
-          apellido_usuario === "" ||
-          num_doc === "" ||
-          correo === "" ||
-          municipio === "" ||
-          direccion === "" 
-        ) {
-          alert("Por favor, ingresa valores válidos en todos los campos.");
-          return false;
-        }
-    
-        
+        if (nom_usuario.length === 0 || !nom_usuario.trim() ||
+          apellido_usuario.length === 0 || !apellido_usuario.trim() ||
+          num_doc.length === 0 || !num_doc.trim() ||
+          correo.length === 0 || !correo.trim() ||
+          municipio.length === 0 || !municipio.trim() ||
+          direccion.length === 0 || !direccion.trim())
+          {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Por favor, ingresa valores válidos en todos los campos.',
+            })
+            return false;
+          }
         return true;
       }
-
-
       function validarUpdate(){
+        var nom_usuario = document.getElementById("nom_usuario").value.trim();
+        var apellido_usuario = document.getElementById("apellido_usuario").value.trim();
+        var num_doc = document.getElementById("num_doc").value.trim();
+        var correo = document.getElementById("correo").value.trim();
+        var municipio = document.getElementById("municipio").value.trim();
+        var direccion = document.getElementById("direccion").value.trim();
+
+        if (!nom_usuario || !apellido_usuario) {
+            Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
+            return;
+        }
+
         Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Deseas actualizar los datos?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, actualizar',
-        cancelButtonText: 'Cancelar'
+            title: '¿Estás seguro?',
+            text: '¿Deseas actualizar los datos?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, actualizar',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('updateUser').submit();
@@ -93,7 +104,7 @@
               <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
                 <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
                   
-                  <h2 class="text-center mb-4">Estas modificado a {{ user.nom_usuario }}</h2>
+                  <h2 class="text-center mb-4">Estas modificando a {{ user.nom_usuario }}</h2>
                   <form action="/updateUser/" method="POST" id="updateUser" onsubmit="return validarFormulario()">
                     <input type="hidden" name="id_usuario" value="{{ user.id_usuario }}">
                     <div class="form-group">

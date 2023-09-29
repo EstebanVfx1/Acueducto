@@ -16,7 +16,11 @@
       var email = document.getElementById("email").value.trim();
 
       if (nomEmpresa === "" || telFijo === "" || telCel === "" || email === "") {
-        alert("Por favor, ingresa valores válidos en todos los campos.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Por favor, ingresa valores válidos en todos los campos.',
+        })
         return false;
       }
 
