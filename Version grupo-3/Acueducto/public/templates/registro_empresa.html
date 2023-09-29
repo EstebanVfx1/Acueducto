@@ -55,7 +55,7 @@
                   
                   <h2 class="text-center mb-4">Crear Empresa </h2>
 
-                  <form id="formularioEmpresa">
+                  <form id="formularioEmpresa" onsubmit="return validarFormulario()">
                     <div class="form-group">
                       <label for="nom_empresa">Nombre</label>
                       <input type="text" class="form-control" name="nom_empresa" id="nom_empresa" placeholder="Nombre empresa" required>
@@ -120,7 +120,7 @@
         });
 
         console.log(reponse.status);
-        if(reponse.status == 200){
+        if(reponse.status === 201){
           const data = await reponse.json();
           return {success: true, data};
 

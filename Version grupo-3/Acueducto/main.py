@@ -1196,8 +1196,8 @@ def crearEmpresa(
         is_valid = verificar_token(token, db)
         if is_valid:
             usuario = db.query(Usuario).filter(Usuario.id_usuario == is_valid).first()
-
-            if usuario.rol in ['SUPER_ADMIN', 'ADMIN']:
+            print(usuario.rol)
+            if usuario.rol in [SUPER_ADMIN, ADMIN]:
                 # Verificar si el correo electrónico de la empresa ya está registrado
                 existing_correo = db.query(Empresa).filter(Empresa.email == email).first()
 
@@ -1223,10 +1223,12 @@ def crearEmpresa(
                     db.add(empresa_db)
                     db.commit()
                     db.refresh(empresa_db)
-                    return JSONResponse(status_code=200, content={"mensaje": "Empresa creada exitosamente"})
+                    return JSONResponse(status_code=201, content={"mensaje": "Empresa creada exitosamente"})
                 except Exception as e:
                     db.rollback()
                     raise HTTPException(status_code=500, detail="Error al registrar la empresa")
+            else:
+                raise HTTPException(status_code=401, detail="No TIENE LOS PERMISOS")
         else:
             raise HTTPException(status_code=401, detail="No autorizado")
     else:
