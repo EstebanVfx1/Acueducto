@@ -32,12 +32,12 @@
   background: rgba(255, 255, 255, 0) !important;
 }
 .btn.btn-ghost.btn-primary {
-  color: #0010f7 !important;
+  color: #00af00 !important;
 }
 .btn.btn-ghost.btn-primary:hover {
   color: #ffffff !important;
-  background: #0010f7 !important;
-  border-color: #0010f7 !important;
+  background: #00af00 !important;
+  border-color: #00af00 !important;
 }
 .btn.btn-ghost.btn-secondary {
   color: #c903ff !important;
@@ -96,8 +96,8 @@
   color: #ffffff !important;
 }
 .btn.btn-primary:hover {
-  background: #0063f7 !important;
-  border-color: #0063f7 !important;
+  background: #00ff00 !important;
+  border-color: #00ff00 !important;
 }
 .btn.btn-secondary {
   color: #ffffff !important;
@@ -212,7 +212,7 @@
 .btn-dashed-primary {
   background: #ffffff !important;
   border-style: dashed;
-  color: #0010f7 !important;
+  color: #00af00 !important;
   border-color: #0010f7;
 }
 .btn-dashed-primary:hover {
@@ -764,7 +764,7 @@
 }
 .btn-check:checked + .btn {
   background-color: #ebfafa !important;
-  color: #0010f7 !important;
+  color: #00af00 !important;
   border-color: #0010f7;
 }
 .btn-check:active + .btn {

@@ -1,6 +1,6 @@
 /* Text Color Hover Map */
 .hp-hover-text-color-primary-1:hover {
-  color: #0010f7 !important;
+  color: #00af00 !important;
 }
 
 .hp-hover-text-color-primary-2:hover {
@@ -157,7 +157,7 @@
 
 /* Text Color Map */
 .hp-text-color-primary-1 {
-  color: #0010f7 !important;
+  color: #00af00 !important;
 }
 
 .hp-text-color-primary-2 {
@@ -314,7 +314,7 @@
 
 /* Background Color Hover Map */
 .hp-hover-bg-color-primary-1:hover {
-  background-color: #0010f7 !important;
+  background-color: #00af00 !important;
 }
 
 .hp-hover-bg-color-primary-2:hover {
@@ -471,7 +471,7 @@
 
 /* Background Color Map */
 .hp-bg-color-primary-1 {
-  background-color: #0010f7 !important;
+  background-color: #00af00 !important;
 }
 
 .hp-bg-color-primary-2 {
@@ -628,11 +628,11 @@
 
 /* Background Hover Map */
 .hp-hover-bg-primary-1:hover {
-  background: #0010f7 !important;
+  background: #00af00 !important;
 }
 
 .hp-hover-bg-primary-2:hover {
-  background: #0063f7 !important;
+  background: #940000 !important;
 }
 
 .hp-hover-bg-primary-3:hover {
@@ -792,7 +792,7 @@
 
 /* Background Map */
 .hp-bg-primary-1 {
-  background: #0010f7 !important;
+  background: #00af00 !important;
 }
 
 .hp-bg-primary-2 {
@@ -956,7 +956,7 @@
 
 /* Border Color Hover Map */
 .hp-hover-border-color-primary-1:hover {
-  border-color: #0010f7 !important;
+  border-color: #00af00 !important;
 }
 
 .hp-hover-border-color-primary-2:hover {
@@ -1113,7 +1113,7 @@
 
 /* Border Color Map */
 .hp-border-color-primary-1 {
-  border-color: #0010f7 !important;
+  border-color: #00af00 !important;
 }
 
 .hp-border-color-primary-2 {
@@ -1273,7 +1273,7 @@
 .hp-hover-fill-color-primary-1:hover rect,
 .hp-hover-fill-color-primary-1:hover line,
 .hp-hover-fill-color-primary-1:hover circle {
-  fill: #0010f7 !important;
+  fill: #00af00 !important;
 }
 
 .hp-hover-fill-color-primary-2:hover path,
@@ -1547,7 +1547,7 @@
 .hp-fill-color-primary-1 rect,
 .hp-fill-color-primary-1 line,
 .hp-fill-color-primary-1 circle {
-  fill: #0010f7 !important;
+  fill: #00af00 !important;
 }
 
 .hp-fill-color-primary-2 path,
@@ -1821,7 +1821,7 @@
 .hp-hover-stroke-color-primary-1 rect:hover,
 .hp-hover-stroke-color-primary-1 line:hover,
 .hp-hover-stroke-color-primary-1 circle:hover {
-  stroke: #0010f7 !important;
+  stroke: #00af00 !important;
 }
 
 .hp-hover-stroke-color-primary-2 path:hover,
@@ -2095,7 +2095,7 @@
 .hp-stroke-color-primary-1 rect,
 .hp-stroke-color-primary-1 line,
 .hp-stroke-color-primary-1 circle {
-  stroke: #0010f7 !important;
+  stroke: #00af00 !important;
 }
 
 .hp-stroke-color-primary-2 path,
