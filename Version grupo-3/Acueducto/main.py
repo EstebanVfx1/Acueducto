@@ -39,25 +39,36 @@ template = Jinja2Templates(directory="public/templates")
 
 @app.get("/", response_class=HTMLResponse)
 def login(request: Request):
-    return template.TemplateResponse("login.html", {"request": request})
+    headers = {
+        "Cache-Control": "no-store, must-revalidate",
+        "Pragma": "no-cache",
+    }
+    #return template.TemplateResponse("login.html", {"request": request})
+    response = template.TemplateResponse("login.html", {"request": request})
+    response.headers.update(headers)  # Actualiza las cabeceras
+    return response
 
 
 @app.get("/index", response_class=RedirectResponse)
-def inicio(
-    request: Request, token: str = Cookie(None), db: Session = Depends(get_database)
-):
+def inicio(request: Request, token: str = Cookie(None), db: Session = Depends(get_database)):
     if token:
         is_valid = verificar_token(token, db)
         if is_valid:
-            usuario = db.query(Usuario).filter(
-                Usuario.id_usuario == is_valid).first()
-            return template.TemplateResponse(
+            usuario = db.query(Usuario).filter(Usuario.id_usuario == is_valid).first()
+            headers = {
+                "Cache-Control": "no-store, must-revalidate",
+                "Pragma": "no-cache",
+            }
+
+            response = template.TemplateResponse(
                 "index.html", {"request": request, "usuario": usuario}
             )
+            response.headers.update(headers)  # Actualiza las cabeceras
+            return response
         else:
             return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
-    else:
-        return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+
+    return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 # -- 1.1 --
