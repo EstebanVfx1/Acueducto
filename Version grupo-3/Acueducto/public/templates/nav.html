@@ -7,10 +7,12 @@
                     <img class="img-radius" src="{{ url_for('static', path='assets/images/user/avatar-2.jpg') }}"
                         alt="User-Profile-Image">
                     <div class="user-details">
-                        
                         <span class="username">{{ usuario.nom_usuario }} {{usuario.apellido_usuario}}</span>
+                        <div class="div">
+                            <span class="username">{{ usuario.rol }}</span>
+                        </div>
                         <div id="more-details">Más detalles<i class="fa fa-chevron-down m-l-5"></i></div>
-                        
+
                     </div>
                 </div>
                 <div class="collapse" id="nav-user-link">
@@ -305,7 +307,7 @@
                 <a class="text-dark" href="/registro_empresa" target="_self">Registrar
                     empresa</a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="text-dark" href="/usuarios" target="_self">Usuarios</a>
             </li>

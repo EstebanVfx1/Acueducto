@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Registrar Empresa</title>
+  {% block meta %}
+  {% include 'meta.html' %}
+  {% endblock %}
+
+  <script>
+    
+    function validarFormulario() {
+      var nomEmpresa = document.getElementById("nom_empresa").value.trim();
+      var telFijo = document.getElementById("tel_fijo").value.trim();
+      var telCel = document.getElementById("tel_cel").value.trim();
+      var email = document.getElementById("email").value.trim();
+
+      if (nomEmpresa === "" || telFijo === "" || telCel === "" || email === "") {
+        alert("Por favor, ingresa valores válidos en todos los campos.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+  </header>
+
+  {% block loader %}
+  {% include 'loader.html' %}
+  {% endblock %}
+
+  <div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+      <div class="layout-px-spacing">
+        <div class="container-xxl">
+          <div class="layout-top-spacing">
+            <div class="col-left-content">
+
+
+              <!-- Formulario Edición de empresa -->
+              <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
+                <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  
+                  <h2 class="text-center mb-4">Crear Empresa </h2>
+
+                  <form id="formularioEmpresa" onsubmit="return validarFormulario()">
+                    <div class="form-group">
+                      <label for="nom_empresa">Nombre</label>
+                      <input type="text" class="form-control" name="nom_empresa" id="nom_empresa" placeholder="Nombre empresa" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="direccion_empresa">Direccion Empresa</label>
+                      <input type="text" class="form-control" name="direccion_empresa" id="direccion_empresa" placeholder="Direccion Empresa" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tel_fijo">Teléfono Fijo</label>
+                      <input type="text" class="form-control" name="tel_fijo" id="tel_fijo" placeholder="Teléfono fijo" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tel_cel">Teléfono Celular</label>
+                      <input type="text" class="form-control" name="tel_cel" id="tel_cel" placeholder="Teléfono celular" required>
+                    </div>  
+
+                    <div class="form-group">
+                      <label for="email">Correo electrónico</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Correo" required>
+                    </div>
+                    
+                    
+                    <div class="text-center">
+                      <a href="/index" class="btn btn-danger">Cancelar</a>
+                      <button type="submit" class="btn btn-success">Registrar</button>
+                    </div>
+                  </form>
+                  
+                </div>
+
+              </div>
+              <div class="footer-wrapper col-xl-12">
+                <div class="footer-section f-section-1">
+                  <p class="">&copy; 2023 <a target="_blank"
+                      href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+  </div>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script >
+    //funcion para valirdar que se creo
+
+    async function enviarSolicitud(formData){
+      try {
+        const reponse = await fetch("/registrarEmpresa", {
+          method: "POST",
+          body: formData,
+        });
+
+        console.log(reponse.status);
+        if(reponse.status === 201){
+          const data = await reponse.json();
+          return {success: true, data};
+
+        } else {
+          const errorData = await reponse.json();
+          throw new Error(errorData.detail || "Error desconocido" );
+        }
+
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    //funcion  para mostrar alert
+    function mostrarAlert(message, type = "info"){
+      Swal.fire({
+          title: "Aviso",
+          text: message,
+          icon: type,
+      });
+    }
+
+  document.getElementById("formularioEmpresa").addEventListener("submit", async function (event){
+    event.preventDefault();
+    console.log("SI ENTRAMOS PAPI");
+    try {
+      const formData = new FormData(this);
+
+      const response = await enviarSolicitud(formData);
+
+      if (response.success) {
+        mostrarAlert("La empresa se registró con éxito.", "success");
+
+        //Limpiamos el form
+        this.reset();
+
+        document.getElementById("nom_empresa").focus();
+        
+        
+        setTimeout(function() {
+          window.location.href = "/registro_empresa";
+        }, 3000); // segundos
+      }
+    } catch (error) {
+      mostrarAlert(`Error al registrar la empresa: ${error.message}`, "error");
+    }
+  });
+
+  </script>
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  {% endblock %}
+</body>
+
+</html>

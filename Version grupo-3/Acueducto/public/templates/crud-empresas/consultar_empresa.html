@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Listado Empresas </title>
+  {% block meta %}
+  {% include 'meta.html' %}
+  {% endblock %}
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet"
+    href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/kt-2.10.0/r-2.5.0/sr-1.3.0/datatables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+  
+</head>
+<style>
+  div.dt-button-info h2 {
+    color: #000000;
+  }
+</style>
+
+<body>
+
+  <!-- [ navigation menu ] start -->
+  {% block nav %}
+  {% include 'nav.html' %}
+  {% endblock %}
+  <!-- [  navigation menu ] end -->
+
+  <!-- BEGIN LOADER -->
+  {% block loader %}
+  {% include 'loader.html' %}
+  {% endblock %}
+  <!--  END LOADER -->
+
+
+  <main class="pcoded-main-container">
+    <div class="pcoded-content">
+      <div class="table-responsive">
+        <table class="table table-striped
+            table-hover	
+            table-borderless
+            table-primary
+            align-middle responsive " id="dataEmpresas" class="display">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Teléfono fijo</th>
+              <th>Teléfono celular</th>
+              <th>Direccion</th>    
+              {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
+                <th>Estado</th>
+              {% endif %}
+              <th class="dt-no-sorting"></th>
+              <th class="dt-no-sorting"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for emp in empresa %}
+            <tr>
+              <td>{{ emp.nom_empresa }}</td>
+              <td>{{ emp.email }}</td>
+              <td>{{ emp.tel_fijo }}</td>
+              <td>{{ emp.tel_cel }}</td>
+              <td>{{ emp.direccion_empresa }}</td>
+              {% if usuario.rol == 'SuperAdmin' or usuario.rol == 'Admin' %}
+              <td><img src="{{ url_for('static', path='assets/images/')}}{{emp.estado}}.png" alt="{{ emp.estado }}"></td>
+              {% endif %}
+              <td><form action="/EditarEmpresa/" method="POST">
+                <input type="hidden" name="id_empresa" value="{{ emp.id_empresa  }}">
+                <button type="submit" class="btn btn-warning">Editar</button>
+              </form>
+                
+              <td>
+                {% if emp.estado == 'Activo' %}
+                  <button type="button" class="btn btn-danger" onclick="confirmDeleteEmpresa('{{ emp.id_empresa }}')">Desactivar</button>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- modal de confirmacion de eliminacio de empresa -->
+      <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+      aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form id="postForm" action="/CambiarEstadoEmpresa/{{id_empresa}}" method="POST">
+              <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmación de Eliminación de la empresa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  ¿Está seguro de que desea desactivar esta empresa?
+              </div>
+              <div class="modal-footer">
+                <div class="content-buttons">
+                  <button type="button" id="confirmDeleteButton" class="btn btn-danger">Desactivar Empresa</button>
+                </div>
+            </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+
+
+  <footer>
+    
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+  <script src="sweetalert2.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#dataEmpresas').DataTable({
+        select: true,
+        destroy: true,
+        columnDefs: [{
+            targets: [5],
+            orderable: false
+          },
+          {
+            targets: [6],
+            orderable: false
+          }
+        ],
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+          "searchPlaceholder": "Busqueda en tabla",
+        },
+        pagingType: 'full_numbers',
+        dom: '<"top"Bfrtip>rt<"bottom"lp><"clear">',
+        buttons: [
+          'copy', 'excel', 'pdf', 'csv', 'print'
+        ],
+        stateSave: true,
+        "stripeClasses": [],
+        "lengthMenu": [5, 10, 20, 50],
+        "pageLength": 10
+      });
+    });
+
+    function confirmDeleteEmpresa(id_empresa) {
+    // Muestra el modal de confirmación
+    $('#confirmDeleteModal').modal('show');
+
+    // Captura el evento de clic en el botón "Desactivar Empresa"
+    $('#confirmDeleteButton').on('click', function () {
+        // Crea un objeto con los datos que quieres enviar
+        var dataToSend = {
+            empresa_id: id_empresa  // Suponiendo que el servidor espera "empresa_id"
+        };
+
+        // Envía la solicitud POST
+        $.ajax({
+            url: '/CambiarEstadoEmpresa/' + id_empresa,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(dataToSend),
+            success: function (response) {
+                
+                console.log('Estado de la empresa cambiado:', response);
+                
+                $('#confirmDeleteModal').modal('hide');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'El estado de la empresa ha sido cambiado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                // Recarga la página después de cambiar el estado
+                location.reload();
+            },
+            error: function (error) {
+               
+                console.error('Error al cambiar el estado de la empresa:', error);
+               
+            }
+        });
+    });
+}
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+  </script>
+  <script src="{{ url_for('static', path='plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', path='assets/js/pcoded.min.js') }}"></script>
+  <script src="{{ url_for('static', path='assets/js/loader.js') }}"></script>
+
+</body>
+
+</html>

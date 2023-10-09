@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [ Header ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div>
+
+                        <div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-5 pb-4">
+                                        <img class="img-fluid rounded"
+                                            src="{{ url_for('static', path='assets/images/cortes.jpg') }}">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="mb-5 mt-2">
+                                            <div class="media-body">
+                                                <br><br><br><br><br><br>
+
+                                                <h2 class=" display-4 text-primary mb-0 ">Estatutos</h2>
+                                                <h6 class="text-primary mb-5">Los estatutos de la asociación de
+                                                    suscriptores de un acueducto son un conjunto de reglas y normas que
+                                                    establecen la estructura, los derechos, las responsabilidades y el
+                                                    funcionamiento de dicha asociación. Estos estatutos son
+                                                    fundamentales para organizar y guiar la gestión y administración de
+                                                    la asociación, asegurando así un funcionamiento eficiente y
+                                                    transparente. Los estatutos suelen abordar aspectos como: </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Objetivos y propósitos: </h4>
+                                                <span class="mb-5">Los estatutos establecen los objetivos y propósitos
+                                                    de la asociación de suscriptores, es decir, cuál es su razón de ser
+                                                    y qué busca lograr en beneficio de los usuarios y la comunidad en
+                                                    general.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-4">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Estructura organizativa: </h4>
+                                                <span class="mb-5">Definen la estructura de la asociación, incluyendo
+                                                    los órganos de gobierno, como la junta directiva o el consejo de
+                                                    administración, y sus roles y responsabilidades. También establecen
+                                                    los mecanismos para la elección y rotación de los miembros de estos
+                                                    órganos.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Membresía y derechos: </h4>
+                                                <span class="mb-5">Especifican quiénes pueden formar parte de la
+                                                    asociación y cuáles son los derechos y beneficios que tienen los
+                                                    suscriptores al ser miembros. Esto puede incluir el derecho a
+                                                    participar en las asambleas, votar en decisiones importantes,
+                                                    acceder a información relevante, entre otros. </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-5">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Funciones y responsabilidades:
+                                                </h4>
+                                                <span class="mb-5">Establecen las funciones y responsabilidades de la
+                                                    asociación en relación con el acueducto. Esto puede abarcar desde la
+                                                    administración y mantenimiento de la infraestructura hasta la
+                                                    gestión de los recursos financieros, la facturación de los servicios
+                                                    y la atención a los usuarios.<span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Procedimientos de toma de decisiones:
+                                                </h4>
+                                                <h6 class="mb-5">Determinan los procedimientos y mecanismos para la toma
+                                                    de decisiones dentro de la asociación. Esto incluye la convocatoria
+                                                    y realización de asambleas generales, la forma de adoptar
+                                                    resoluciones y la necesidad de contar con mayorías para ciertas
+                                                    decisiones importantes.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="border-start ps-4">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Finanzas y auditoría:
+                                                </h4>
+                                                <h6 class="mb-5">Establecen los principios y directrices para la gestión
+                                                    financiera de la asociación, incluyendo la recaudación de fondos, el
+                                                    establecimiento de tarifas, la elaboración de presupuestos y la
+                                                    realización de auditorías periódicas para garantizar la
+                                                    transparencia y la rendición de cuentas.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="">
+                                            <div class="media-body">
+                                                <h4 class="mb-3">Disposiciones de enmienda:
+                                                </h4>
+                                                <h6 class="mb-5">Establecen cómo se pueden realizar modificaciones o
+                                                    enmiendas a los estatutos en el futuro, en caso de que sea necesario
+                                                    adaptar la asociación a nuevas circunstancias o requerimientos.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-center">
+                                            <div class="container mt-5">
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target="#exampleModal">Cargar Documento</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="footer-wrapper col-xl-12 d-flex justify-content-center mt-2">
+                                <div class="footer-section f-section-1">
+                                    <p class="">&copy; 2023 <a target="_blank"
+                                            href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                            Acueducto</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--  END CONTENT AREA  -->
+
+
+    <!--STAR MODAL-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SUBIR DOCUMENTOS</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="custom-file-container" data-upload-id="myFirstImage">
+                            <label for="formFile" class="form-label">Selecciona el archivo a subir</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Descartar</button>
+                    <button type="button" class="btn btn-primary">Subir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--END MODAL-->
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+</body>
+
+</html>

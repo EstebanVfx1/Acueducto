@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+
+<body class="dashboard-analytics admin-header">
+
+    <!-- BEGIN LOADER -->
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+    <!--  END LOADER -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+                <div class="container-xxl">
+                    <div class="layout-top-spacing">
+                        <div class="col-left-content">
+
+                            <br>
+
+                            <div class="container">
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-md-6">
+                                        <img class="img-fluid rounded" 
+                                             src="{{ url_for('static', path='assets/images/cortes.jpg') }}" 
+                                             width="300" alt="Descripción de la imagen">
+                                    </div>
+
+                                    <div class="col-md-6 border-start ps-4">
+                                        Los estatutos propuestos serán presentados a todos los asistentes de la
+                                        asamblea. Se brindará una copia impresa o digital de los estatutos para que los
+                                        participantes puedan revisarlos y familiarizarse con su contenido.
+                                        <br><br>
+                                        Se abrirá un espacio de tiempo para que los asistentes puedan plantear
+                                        preguntas, hacer aclaraciones o solicitar cualquier tipo de aclaración
+                                        relacionada con los estatutos.</p>
+                                        <br>
+                                        Se llevará a cabo un debate constructivo sobre los estatutos. Los asistentes
+                                        tendrán la oportunidad de expresarse, hacer propuestas de modificación o
+                                        sugerencias relacionadas con los estatutos. La comisión encargada de la asamblea
+                                        moderará el debate y garantizará el uso de la palabra.
+                                        <br><br>
+
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="row align-items-center border-start ps-4">
+
+                                    <div class="col-md-12 ">
+
+                                        Una vez finalizado el debate y la discusión, se procederá a la votación para la
+                                        aprobación de los estatutos propuestos. Los asistentes tendrán la oportunidad de
+                                        votar los estatutos en su totalidad. Dependiendo de lo establecido en los
+                                        estatutos o las normas internas de la asamblea, es posible que se requiera un
+                                        porcentaje mínimo de votos afirmativos para considerarlos aprobados.
+                                        <br><br>
+                                        Una vez concluida la votación, se contarán los votos y se anunciarán los
+                                        resultados. Se informará si los estatutos han sido aprobados o no, de acuerdo
+                                        con el porcentaje requerido de votos afirmativos.
+                                        <br><br>
+
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center mt-4">
+                                    <div class="col-md-6 text-center">
+                                        <a href="#" class="btn btn-success mx-2">Descargar Estatutos</a>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#exampleModal">Cargar Resultados</button>
+                                    </div>
+                                </div>
+                                <!--STAR MODAL-->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Cargar Documento</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-x">
+                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group mb-4">
+                                                        <span>Ubicacion:</span>
+                                                        <input type="email" class="form-control" id=""
+                                                            placeholder="Ubicacion *">
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <input type="file"
+                                                            class="custom-file-container__custom-file__custom-file-input"
+                                                            accept="*">
+                                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="n-chk">
+                                                            <label>Estatutos Aprobados: </label>
+                                                            <label
+                                                                class="new-control new-radio new-radio-rounded radio-primary">
+                                                                <input type="radio" class="new-control-input"
+                                                                    name="estatutos" value="si">
+                                                                <span class="new-control-indicator"></span>Si
+                                                            </label>
+                                                            <label
+                                                                class="new-control new-radio new-radio-rounded radio-primary">
+                                                                <input type="radio" class="new-control-input"
+                                                                    name="estatutos" value="no">
+                                                                <span class="new-control-indicator"></span>No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-check pl-0 mt-5">
+                                                        <div class="form-floating">
+                                                            <label for="floatingTextarea2">Comentarios</label>
+                                                            <textarea class="form-control"
+                                                                placeholder="No se puede por..." id="floatingTextarea2"
+                                                                style="height: 100px"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn text-success" data-dismiss="modal"><i
+                                                                class="flaticon-cancel-12"></i> Cancelar</button>
+                                                        <button type="button" class="btn btn-success">Enviar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END MODAL-->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="footer-wrapper col-xl-12">
+                                            <div class="footer-section f-section-1 text-center">
+                                                <p class="">© 2023 <a target="_blank"
+                                                        href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA -
+                                                        Acueducto</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  END CONTENT AREA  -->
+            </div>
+            <!-- END MAIN CONTAINER -->
+
+            <!-- BEGIN SCRIPTS -->
+            {% block scripts %}
+            {% include 'scripts.html' %}
+            {% endblock %}
+            <!-- END SCRIPTS -->
+</body>
+
+</html>

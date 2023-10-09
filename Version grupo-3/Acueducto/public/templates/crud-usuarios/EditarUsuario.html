@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Editar Usuario</title>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+
+    <!-- Esteban es gay, si lees esto, eres aún más gay. -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script type="text/javascript">
+      function validarFormulario() {
+        var nom_usuario = document.getElementById("nom_usuario").value.trim();
+        var apellido_usuario = document.getElementById("apellido_usuario").value.trim();
+        
+        var num_doc = document.getElementById("num_doc").value.trim();
+        var correo = document.getElementById("correo").value.trim();
+        var municipio = document.getElementById("municipio").value.trim();
+        var direccion = document.getElementById("direccion").value.trim();
+        
+        
+        // Verifica que los campos no estén vacíos
+        if (nom_usuario.length === 0 || !nom_usuario.trim() ||
+          apellido_usuario.length === 0 || !apellido_usuario.trim() ||
+          num_doc.length === 0 || !num_doc.trim() ||
+          correo.length === 0 || !correo.trim() ||
+          municipio.length === 0 || !municipio.trim() ||
+          direccion.length === 0 || !direccion.trim())
+          {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Por favor, ingresa valores válidos en todos los campos.',
+            })
+            return false;
+          }
+        return true;
+      }
+      function validarUpdate(){
+        var nom_usuario = document.getElementById("nom_usuario").value.trim();
+        var apellido_usuario = document.getElementById("apellido_usuario").value.trim();
+        var num_doc = document.getElementById("num_doc").value.trim();
+        var correo = document.getElementById("correo").value.trim();
+        var municipio = document.getElementById("municipio").value.trim();
+        var direccion = document.getElementById("direccion").value.trim();
+
+        if (!nom_usuario || !apellido_usuario) {
+            Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Deseas actualizar los datos?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, actualizar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('updateUser').submit();
+            }
+        });
+      }
+    </script>
+    
+</head>
+
+<body>
+  <header>
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+  </header>
+  
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+  <div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+      <div class="layout-px-spacing">
+        <div class="container-xxl">
+          <div class="layout-top-spacing">
+            <div class="col-left-content">
+              {% if alerta: %}
+              <div class="alert alert-{{alerta.color}}" role="alert">
+                  {{alerta.mensaje}}
+              </div>
+              {% endif %}
+
+              <!-- Formulario registro suscriptores -->
+              <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
+                <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  
+                  <h2 class="text-center mb-4">Estas modificando a {{ user.nom_usuario }}</h2>
+                  <form action="/updateUser/" method="POST" id="updateUser" onsubmit="return validarFormulario()">
+                    <input type="hidden" name="id_usuario" value="{{ user.id_usuario }}">
+                    <div class="form-group">
+                      <label for="nom_usuario">Nombres</label>
+                      <input type="text" name="nom_usuario" class="form-control" id="nom_usuario" placeholder="Nombres"  value="{{ user.nom_usuario }}  " required>
+                    </div>
+                    <div class="form-group">
+                      <label for="apellido_usuario">Apellidos</label>
+                      <input type="text" name="apellido_usuario" class="form-control" id="apellido_usuario" placeholder="Apellidos" required  value="{{ user.apellido_usuario }}">
+                    </div>
+                    <div class="row d-flex">
+                      <div class="col-6 form-group">
+                        <label for="tipo_doc">Tipo de Documento:</label>
+                          <select class="form-select" name="tipo_doc" id="tipo_doc" required>
+                            <option value="CC" {% if user.tipo_doc == "CC" %}selected{% endif %}>Cédula de Ciudadanía</option>
+                            <option value="CE" {% if user.tipo_doc == "CE" %}selected{% endif %}>Cédula de Extranjería</option>
+                            <option value="DNI" {% if user.tipo_doc == "DNI" %}selected{% endif %}>DNI</option>
+                            <option value="NIT" {% if user.tipo_doc == "NIT" %}selected{% endif %}>NIT</option>
+                          </select>
+                      </div>
+                      <div class="col-6 form-group">
+                        <label for="num_doc">Número de Documento:</label>
+                        <input type="number" class="form-control" name="num_doc" id="num_doc" required value="{{ user.num_doc }}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="correo">Correo Electrónico:</label>
+                      <input type="email" class="form-control" name="correo" id="correo" required value="{{ user.correo }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="municipio">Municipio:</label>
+                      <input type="text" class="form-control" name="municipio" id="municipio" required value="{{ user.municipio }}"> 
+                    </div>
+                    <div class="form-group">
+                      <label for="direccion">Dirección:</label>
+                      <input type="text" class="form-control" name="direccion" id="direccion" required value="{{ user.direccion }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="estado">Estado:</label>
+                      <select class="form-select" name="estado" id="estado" required>
+                        <option value="Activo" {% if user.estado == "Activo" %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if user.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="rol">Rol:</label>
+                      <select class="form-select" name="rol" id="rol" required>
+                        <option value="Admin" {% if user.rol == "Admin" %}selected{% endif %}>Admin</option>
+                        <option value="Tecnico" {% if user.rol == "Tecnico" %}selected{% endif %}>Técnico</option>
+                        <option value="Suscriptor" {% if user.rol == "Suscriptor" %}selected{% endif %}>Suscriptor</option>
+                      </select>
+                    </div>
+                    
+                    <div class="text-center">
+                      <a href="/usuarios" class="btn btn-danger">CANCELAR</a>
+                      <button onclick="validarUpdate()"  type="button" class="btn btn-success">ACTUALIZAR</button>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+              <div class="footer-wrapper col-xl-12">
+                <div class="footer-section f-section-1">
+                  <p class="">&copy; 2023 <a target="_blank"
+                      href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+  </div>
+  <!-- END MAIN CONTAINER -->
+ 
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- BEGIN SCRIPTS -->
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  {% endblock %}
+  <!-- END SCRIPTS -->
+</body>
+
+</html>

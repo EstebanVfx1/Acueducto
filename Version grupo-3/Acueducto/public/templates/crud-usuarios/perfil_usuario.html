@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/icons/iconly/index.min.css')}}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/bootstrap.css')}}">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/base/typography.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/base/base.css')}}">
+
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/layouts/header.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/components.css')}}">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='assets/css/app-assets/css/pages/page-profile.css')}}">
+
+
+</head>
+
+<body class="horizontal-active">
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <main>
+        {% block nav %}
+        {% include 'nav.html' %}
+        {% endblock %}
+        <div class="hp-main-layout hp-main-layout-horizontal">
+<!--         <div> -->
+            
+            <!-- [  navigation menu ] end -->
+            <div class="hp-main-layout-content">
+                <div class="col-12">
+                    <div class="row bg-black-0 hp-bg-color-dark-100 rounded pe-16 pe-sm-32 mx-0">
+                        <div class="col hp-profile-menu py-24" style="flex: 0 0 280px; justify-content: flex-start; ">
+                            <div class="w-100">
+                                <div class="hp-profile-menu-header mt-16 mt-lg-0 text-center">
+                                    <div class="hp-menu-header-btn mb-12 text-end">
+                                        <div class="d-inline-block" id="profile-menu-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <div class="d-inline-block position-relative">
+                                            <div class="avatar-item d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                                <img src="https://i.pinimg.com/474x/41/57/bd/4157bd037ef27997ed346d11e7c5f38a.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="mt-24 mb-4">{{usuario.nom_usuario}} {{usuario.apellido_usuario}}</h3>
+                                    <a href="mailto:{{usuario.correo}}" class="hp-p1-body">{{usuario.correo}}</a>
+                                </div>
+                            </div>
+
+                            <div class="hp-profile-menu-body w-100 text-start mt-16">
+                                <ul class="me-n1 mx-lg-n12">
+                                    <li class="mt-4 mb-16">
+                                        <a href="#" class="active position-relative text-black-80 hp-text-color-dark-30 hp-hover-text-color-primary-1 hp-hover-text-color-dark-0 py-12 px-24 d-flex align-items-center">
+                                            <i class="fa-regular fa-user fa-lg me-16"></i>
+                                            <span>Informacion Personal</span>
+                                            <span class="hp-menu-item-line position-absolute opacity-0 h-100 top-0 end-0 bg-primary hp-bg-dark-0" style="width: 2px;"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="mt-4 mb-16">
+                                        <a href="#" class="position-relative text-black-80 hp-text-color-dark-30 hp-hover-text-color-primary-1 hp-hover-text-color-dark-0 py-12 px-24 d-flex align-items-center">
+                                            <i class="fa-solid fa-key me-16"></i>
+                                            <span>Cambiar Contrasena</span>
+                                            <span class="hp-menu-item-line position-absolute opacity-0 h-100 top-0 end-0 bg-primary hp-bg-dark-0" style="width: 2px;"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- <div class="hp-profile-menu-footer">
+                                <img src="" alt="Profile Image">
+                            </div> -->
+                        </div>
+                        <div class="col ps-16 ps-sm-32 py-24 py-sm-32 overflow-hidden">
+                            <!-- <div class="row">
+                                <div class="col-12 col-md-8">
+                                    <h2>Información Personal</h2>
+                                    <p class="hp-p1-body mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales sit amet nunc et vehicula. Mauris sed lectus nisi.</p>
+                                </div>
+
+                                <div class="divider border-black-40 hp-border-color-dark-80"></div>
+
+                                <div class="col-12 col-md-8">
+                                    <h3>Información</h3>
+                                    <p class="hp-p1-body mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales sit amet nunc et vehicula. Mauris sed lectus nisi. Suspendisse velit mi, pretium non euismod vitae Suspendisse velit mi, pretium non euismod vitae</p>
+                                </div> -->
+
+                                <div class="divider border-black-40 hp-border-color-dark-80"></div>
+
+                                <div class="col-12">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-12 col-md-6">
+                                            <h3>Datos Personales</h3>
+                                        </div>
+                                        
+                                        <div class="col-12 col-md-6 hp-profile-action-btn text-end">
+                                            <button class="btn btn-ghost btn-primary" data-bs-toggle="modal" data-bs-target="#profileContactEditModal">Editar</button>
+                                        </div>
+
+                                        <div class="col-12 hp-profile-content-list mt-8 pb-0 pb-sm-120">
+                                            <ul>
+                                                <li>
+                                                    <span class="hp-p1-body">Nombre Completo</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.nom_usuario}} {{usuario.apellido_usuario}}</span>
+                                                </li>
+                                                <li class="mt-18">
+                                                    <span class="hp-p1-body">Número documento</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.num_doc}}</span>
+                                                </li>
+                                                <li class="mt-18">
+                                                    <span class="hp-p1-body">Email</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.correo}}</span>
+                                                </li>
+                                                <li class="mt-18">
+                                                    <span class="hp-p1-body">Dirección</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.direccion}}</span>
+                                                </li>
+                                                <li class="mt-18">
+                                                    <span class="hp-p1-body">Municipio</span>
+                                                    <span class="mt-0 mt-sm-4 hp-p1-body text-black-100 hp-text-color-dark-0">{{usuario.municipio}}</span>
+                                                </li>
+                                            </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL: EDITAR USUARIO (PERSONAL). Se agrega data-bs-backdrop="static" para evitar el cierre automático del modal -->
+            <div class="modal fade" id="profileContactEditModal" tabindex="-1" aria-labelledby="profileContactEditModalLabel" aria-hidden="true" data-bs-backdrop="static"> 
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 416px;">
+                    <div class="modal-content">
+                        <div class="modal-header py-16">
+                            <h5 class="modal-title" id="profileContactEditModalLabel">DATOS DE USUARIO</h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="divider my-0"></div>
+                        
+                        <div class="modal-body py-48">
+                            <form action="/actualizarPerfil" method="POST">
+                                <div class="row g-24">
+
+                                    <div class="col-12">
+                                        <label for="nom_usuario" class="form-label">Nombres</label>
+                                        <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" value="{{usuario.nom_usuario}}" required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="apellido_usuario" class="form-label">Apellidos</label>
+                                        <input type="text" class="form-control" id="apellido_usuario" name="apellido_usuario" value="{{usuario.apellido_usuario}}"required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="displayName" class="form-label">Tipo documento</label>
+                                        <select class="form-select" name="tipo_doc" id="tipo_doc" required>
+                                            <option value="CC">Cédula de Ciudadanía</option>
+                                            <option value="CE">Cédula de Extranjería</option>
+                                            <option value="DNI">DNI</option>
+                                            <option value="NIT">NIT</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="num_doc" class="form-label">Número documento</label>
+                                        <input type="number" max="9999999999" pattern="\d{10}" min="0" oninput="validarNumero(this)" class="form-control" id="num_doc" name="num_doc" value="{{usuario.num_doc}}"required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{usuario.correo}}" required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="direccion" class="form-label">Dirección</label>
+                                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{usuario.direccion}}" required>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary w-100">Actualizar</button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="btn w-100" data-bs-dismiss="modal">Cancelar</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        /* alimina numero negatios */
+        function validarNumero(input){
+            if (input.value < 0){
+                input.vulue = Math.abs(input.value);
+            }
+        }
+    </script>
+    <!-- Plugin -->
+    <script src="https://kit.fontawesome.com/83996c6a04.js" crossorigin="anonymous"></script>
+    <!-- <script src="../../../app-assets/js/plugin/bootstrap.bundle.min.js"></script> -->
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+
+</html>

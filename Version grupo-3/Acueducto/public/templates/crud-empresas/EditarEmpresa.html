@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <title>Editar Empresa</title>
+  {% block meta %}
+  {% include 'meta.html' %}
+  {% endblock %}
+
+  <script>
+    
+    function validarFormulario() {
+      var nomEmpresa = document.getElementById("nom_empresa").value.trim();
+      var telFijo = document.getElementById("tel_fijo").value.trim();
+      var telCel = document.getElementById("tel_cel").value.trim();
+      var email = document.getElementById("email").value.trim();
+
+      if (nomEmpresa === "" || telFijo === "" || telCel === "" || email === "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Por favor, ingresa valores válidos en todos los campos.',
+        })
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+  </header>
+
+  <!-- [  navigation menu ] end -->
+
+  <!-- BEGIN LOADER -->
+  {% block loader %}
+  {% include 'loader.html' %}
+  {% endblock %}
+  <!--  END LOADER -->
+  <div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+      <div class="layout-px-spacing">
+        <div class="container-xxl">
+          <div class="layout-top-spacing">
+            <div class="col-left-content">
+
+
+              <!-- Formulario Edición de empresa -->
+              <div class="container-xxl d-flex justify-content-center align-items-center vh-90">
+                <div class="col-12 col-lg-6 bg-light rounded p-4 shadow">
+                  {% if empresa %}
+
+                  <h2 class="text-center mb-4">Estas modificando la empresa <b>{{ empresa.nom_empresa }}</b></h2>
+
+                  <form action="/updateEmpresa" method="POST" onsubmit="return validarFormulario()">
+                    <input type="hidden" name="id_empresa" value="{{ empresa.id_empresa }}">
+
+                    <div class="form-group">
+                      <label for="nom_empresa">Nombre</label>
+                      <input type="text" class="form-control" name="nom_empresa" id="nom_empresa" placeholder="Nombre empresa" required
+                        value="{{ empresa.nom_empresa }}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tel_fijo">Teléfono Fijo</label>
+                      <input type="text" class="form-control" name="tel_fijo" id="tel_fijo" placeholder="Teléfono fijo" required
+                        value="{{ empresa.tel_fijo }}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tel_cel">Teléfono Celular</label>
+                      <input type="text" class="form-control" name="tel_cel" id="tel_cel" placeholder="Teléfono celular" required
+                        value="{{ empresa.tel_fijo }}">
+                    </div>  
+
+                    <div class="form-group">
+                      <label for="email">Correo electrónico</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Correo" required
+                        value="{{ empresa.email }}">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="estado">Estado:</label>
+                      <select class="form-select" name="estado" id="estado" required>
+                        <option value="Activo" {% if empresa.estado == "Activo" %}selected{% endif %}>Activo</option>
+                        <option value="Inactivo" {% if empresa.estado == "Inactivo" %}selected{% endif %}>Inactivo</option>
+                      </select>
+                    </div>
+                    
+                    <div class="text-center">
+                      <a href="/empresas" class="btn btn-danger">CANCELAR</a>
+                      <button type="submit" class="btn btn-success">ACTUALIZAR</button>
+                    </div>
+                  </form>
+                  {% endif %}
+                </div>
+
+              </div>
+              <div class="footer-wrapper col-xl-12">
+                <div class="footer-section f-section-1">
+                  <p class="">&copy; 2023 <a target="_blank"
+                      href="https://www.sena.edu.co/es-co/Paginas/default.aspx">SENA - Acueducto</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+  </div>
+  <!-- END MAIN CONTAINER -->
+
+  <!-- BEGIN SCRIPTS -->
+  {% block scripts %}
+  {% include 'scripts.html' %}
+  {% endblock %}
+  <!-- END SCRIPTS -->
+</body>
+
+</html>

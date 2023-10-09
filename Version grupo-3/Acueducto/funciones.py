@@ -4,6 +4,8 @@ from jose import jwt
 from docx import Document
 from fpdf import FPDF
 from models import Token, Usuario, Empresa
+from docx2pdf import convert
+import PyPDF2
 
 SECRET_KEY = "sd45g4f45SWFGVHHuoyiad4F5SFD65V4SFDVOJWNHACUfwghdfvcguDCwfghezxhAzAKHGFBJYTFdkjfghtjkdgb"
 
@@ -48,6 +50,18 @@ def get_rol(id_usuario, db):
             return None
     else:
         return None
+    
+# FUNCION PARA OBTENER LA EMPRESA DEL USUARIO
+def get_empresa(id_usuario, db):
+    if id_usuario:
+        usuario = db.query(Usuario).filter(
+            Usuario.id_usuario == id_usuario).first()
+        if usuario:
+            return usuario.empresa
+        else:
+            return None
+    else:
+        return None
 
 
 # FUNCION PARA OBTENER LOS DATOS DE USUARIO
@@ -76,35 +90,25 @@ def get_datos_usuario(id_usuario, db):
         return None
 
 # CAMBIAR LOS CAMPOS "[]" POR VALORES DE FORMULARIO
-
-
 def reemplazar_texto(docx_path, datos):
     document = Document(docx_path)
-
+    
     for paragraph in document.paragraphs:
-        for run in paragraph.runs:
-            texto = run.text
-            for clave, valor in datos.items():
-                texto = texto.replace(clave, valor)
-            run.text = texto
+        for campo, valor in datos.items():
+            if campo in paragraph.text:
+                paragraph.text = paragraph.text.replace(campo, valor)
 
     return document
 
 # CONVIERTE EL DOCUMENTO DOCX A PDF
-
-
 def convertir_a_pdf(docx_path, pdf_path):
-    document = Document(docx_path)
-
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
-
-    for paragraph in document.paragraphs:
-        pdf.set_font("Arial", size=12)
-        pdf.multi_cell(0, 10, paragraph.text)
-
-    pdf.output(pdf_path)
+    try:
+        # Llama a la función convert para convertir el documento DOCX a PDF
+        convert(docx_path, pdf_path)
+        return True  # La conversión fue exitosa
+    except Exception as e:
+        print(f"Error al convertir a PDF: {str(e)}")
+        return False  # Ocurrió un error durante la conversión
 
 
 # OBTENER DATOS EMPRESA:
@@ -133,3 +137,13 @@ def get_datos_empresa(id_empresa, db):
 def get_datos_empresas(db) -> list[str]:
     nom_empresas = db.query(Empresa.nom_empresa).all()
     return [nombre[0] for nombre in nom_empresas]
+
+
+#FUNCION PARA ELIMINAR EL CACHE (HEADERS) 4/10/2023
+
+def elimimar_cache():
+    headers = {
+        "Cache-Control": "no-store, must-revalidate",
+        "Pragma": "no-cache",
+    }
+    return headers

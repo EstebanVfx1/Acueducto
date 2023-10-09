@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    {% include 'meta.html' %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- [ navigation menu ] start -->
+    {% block nav %}
+    {% include 'nav.html' %}
+    {% endblock %}
+    <!-- [  navigation menu ] end -->
+
+    <!-- BEGIN LOADER -->
+    {% block loader %}
+    {% include 'loader.html' %}
+    {% endblock %}
+    <!--  END LOADER -->
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+
+            <div class="container-xxl py-5 bg-white">
+                <div class="container">
+                    <div class="row g-5 align-items-end">
+                        {% if alerta: %}
+                        <div class="alert alert-{{alerta.color}}" role="alert">
+                            {{alerta.mensaje}}
+                        </div>
+                        {% endif %}
+
+                        <h1 class="text-center">DATOS PERSONALES</h1>
+                        <h5>Nombres: <span class="text-dark">{{usuario.nom_usuario}}</span></h5>
+                        <h5>Apellidos: <span class="text-dark">{{usuario.apellido_usuario}}</span></h5>
+                        <h5>Correo: <span class="text-dark">{{usuario.correo}}</span></h5>
+                        <h5>Número de documento: <span class="text-dark">{{usuario.num_doc}}</span></h5>
+                        <h5>Dirección: <span class="text-dark">{{usuario.direccion}}</span></h5>
+                        <h5>Municipio: <span class="text-dark">{{usuario.municipio}}</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN SCRIPTS -->
+    {% block scripts %}
+    {% include 'scripts.html' %}
+    {% endblock %}
+    <!-- END SCRIPTS -->
+</body>
+
+</html>
